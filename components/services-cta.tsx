@@ -8,7 +8,7 @@ export function ServicesCTA() {
   return (
     <section className="py-40 relative overflow-hidden">
       <div className="absolute inset-0">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-gold/5 rounded-full blur-[150px]" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-200 h-100 bg-gold/5 rounded-full blur-[150px]" />
       </div>
 
       <div className="relative z-10 mx-auto max-w-4xl px-6 sm:px-8 lg:px-12">
@@ -19,7 +19,7 @@ export function ServicesCTA() {
           transition={{ duration: 0.6 }}
           className="text-center"
         >
-          <h2 className="font-heading text-4xl sm:text-5xl lg:text-6xl font-medium text-snow mb-6 text-balance">
+          <h2 className="font-heading text-4xl sm:text-5xl lg:text-6xl font-bold text-snow mb-6 text-balance">
             Ready to Start
             <br />
             Your Project?

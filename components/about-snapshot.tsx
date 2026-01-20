@@ -16,7 +16,7 @@ export function AboutSnapshot() {
   return (
     <section ref={sectionRef} className="py-40 overflow-hidden relative">
       <div className="absolute inset-0">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-gold/3 rounded-full blur-[100px]" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-150 h-75 bg-gold/3 rounded-full blur-[100px]" />
       </div>
 
       <motion.div style={{ opacity, y }} className="relative z-10 mx-auto max-w-5xl px-6 sm:px-8 lg:px-12">

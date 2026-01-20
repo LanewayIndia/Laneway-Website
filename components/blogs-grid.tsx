@@ -116,7 +116,7 @@ export function BlogsGrid() {
               <Link href={blog.href} className="group block h-full">
                 <div className="bg-background border border-border rounded-2xl overflow-hidden h-full transition-all duration-300 hover:border-gold/50 hover:shadow-lg hover:shadow-gold/5">
                   <div className="aspect-video bg-muted relative overflow-hidden">
-                    <div className="absolute inset-0 bg-gradient-to-br from-gold/20 to-gold-light/20" />
+                    <div className="absolute inset-0 bg-linear-to-br from-gold/20 to-gold-light/20" />
                     <div className="absolute top-4 left-4 flex items-center gap-2">
                       <span className="px-3 py-1 bg-gold/90 text-background text-xs font-medium rounded-full">
                         {blog.category}

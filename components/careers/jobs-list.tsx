@@ -3,51 +3,7 @@
 import { motion } from "framer-motion"
 import Link from "next/link"
 import { MapPin, Clock, ArrowRight } from "lucide-react"
-
-const jobs = [
-  {
-    title: "Senior AI Engineer",
-    department: "Engineering",
-    location: "Remote",
-    type: "Full-time",
-    href: "/careers/senior-ai-engineer",
-  },
-  {
-    title: "Product Designer",
-    department: "Design",
-    location: "Remote",
-    type: "Full-time",
-    href: "/careers/product-designer",
-  },
-  {
-    title: "Full-Stack Developer",
-    department: "Engineering",
-    location: "Remote",
-    type: "Full-time",
-    href: "/careers/full-stack-developer",
-  },
-  {
-    title: "Business Development Manager",
-    department: "Business",
-    location: "Hybrid",
-    type: "Full-time",
-    href: "/careers/bd-manager",
-  },
-  {
-    title: "Marketing Specialist",
-    department: "Marketing",
-    location: "Remote",
-    type: "Full-time",
-    href: "/careers/marketing-specialist",
-  },
-  {
-    title: "DevOps Engineer",
-    department: "Engineering",
-    location: "Remote",
-    type: "Full-time",
-    href: "/careers/devops-engineer",
-  },
-]
+import { jobs } from "@/lib/jobs"
 
 export function JobsList() {
   return (
@@ -69,13 +25,13 @@ export function JobsList() {
         <div className="space-y-4">
           {jobs.map((job, index) => (
             <motion.div
-              key={job.title}
+              key={job.slug}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: index * 0.05 }}
             >
-              <Link href={job.href} className="group block">
+              <Link href={`careers/${job.slug}`} className="group block">
                 <div className="bg-card border border-border rounded-xl p-6 transition-all duration-300 hover:border-gold/50 hover:shadow-lg hover:shadow-gold/5">
                   <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                     <div>

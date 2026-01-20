@@ -16,6 +16,10 @@ const inter = Inter({
 })
 
 export const metadata: Metadata = {
+  icons: {
+    icon: "/favicon.ico",
+  },
+
   title: "Laneway | Transforming Ideas into Digital Excellence",
   description:
     "We craft innovative digital solutions that empower businesses to thrive in the modern world. AI-powered technology, marketing, consulting, and software development.",

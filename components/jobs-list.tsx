@@ -9,42 +9,42 @@ const jobs = [
     title: "Senior AI Engineer",
     department: "Engineering",
     location: "Remote",
-    type: "Full-time",
+    type: "Internship",
     href: "/careers/senior-ai-engineer",
   },
   {
     title: "Product Designer",
     department: "Design",
     location: "Remote",
-    type: "Full-time",
+    type: "Internship",
     href: "/careers/product-designer",
   },
   {
     title: "Full-Stack Developer",
     department: "Engineering",
     location: "Remote",
-    type: "Full-time",
+    type: "Internship",
     href: "/careers/full-stack-developer",
   },
   {
     title: "Business Development Manager",
     department: "Business",
     location: "Hybrid",
-    type: "Full-time",
+    type: "Internship",
     href: "/careers/bd-manager",
   },
   {
     title: "Marketing Specialist",
     department: "Marketing",
     location: "Remote",
-    type: "Full-time",
+    type: "Internship",
     href: "/careers/marketing-specialist",
   },
   {
     title: "DevOps Engineer",
     department: "Engineering",
     location: "Remote",
-    type: "Full-time",
+    type: "Internship",
     href: "/careers/devops-engineer",
   },
 ]
@@ -60,7 +60,7 @@ export function JobsList() {
           transition={{ duration: 0.6 }}
           className="mb-12"
         >
-          <h2 className="font-heading text-3xl sm:text-4xl font-bold text-snow mb-4">Open Positions</h2>
+          <h2 className="font-heading text-3xl sm:text-4xl font-medium text-snow mb-4">Open Positions</h2>
           <p className="text-pumice text-lg max-w-2xl">
             Find your perfect role and become part of something extraordinary.
           </p>

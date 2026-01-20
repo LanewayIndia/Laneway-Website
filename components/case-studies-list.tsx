@@ -58,14 +58,14 @@ export function CaseStudiesList() {
             >
               {/* Visual */}
               <div className={`${index % 2 === 1 ? "lg:order-2" : ""}`}>
-                <div className="relative aspect-[4/3] bg-card border border-border rounded-2xl overflow-hidden">
-                  <div className="absolute inset-0 bg-gradient-to-br from-gold/20 to-gold-light/10" />
+                <div className="relative aspect-4/3 bg-card border border-border rounded-2xl overflow-hidden">
+                  <div className="absolute inset-0 bg-linear-to-br from-gold/20 to-gold-light/10" />
                   <div className="absolute inset-0 flex items-center justify-center">
                     <div className="text-center">
                       <span className="font-heading text-6xl font-bold text-gold/30">{study.name}</span>
                     </div>
                   </div>
-                  <div className="absolute bottom-0 left-0 right-0 h-1/3 bg-gradient-to-t from-background to-transparent" />
+                  <div className="absolute bottom-0 left-0 right-0 h-1/3 bg-linear-to-t from-background to-transparent" />
                 </div>
               </div>
 

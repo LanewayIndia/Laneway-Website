@@ -8,7 +8,7 @@ export function CaseStudiesHero() {
       <div className="absolute inset-0 noise-texture" />
 
       <div className="absolute inset-0">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-gold/5 rounded-full blur-[120px]" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-150 h-75 bg-gold/5 rounded-full blur-[120px]" />
       </div>
 
       <div className="relative z-10 mx-auto max-w-5xl px-6 sm:px-8 lg:px-12">

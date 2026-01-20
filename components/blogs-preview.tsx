@@ -35,7 +35,7 @@ export function BlogsPreview() {
   return (
     <section className="py-32 relative">
       <div className="absolute inset-0">
-        <div className="absolute top-1/2 left-1/4 w-[500px] h-[300px] bg-gold/3 rounded-full blur-[120px]" />
+        <div className="absolute top-1/2 left-1/4 w-125 h-75 bg-gold/3 rounded-full blur-[120px]" />
       </div>
 
       <div className="relative z-10 mx-auto max-w-7xl px-6 sm:px-8 lg:px-12">
@@ -73,9 +73,9 @@ export function BlogsPreview() {
             >
               <Link href={blog.href} className="group block h-full">
                 <div className="glass-card rounded-2xl overflow-hidden h-full transition-all duration-500 hover:border-gold/20">
-                  <div className="aspect-[16/10] bg-muted relative overflow-hidden">
-                    <div className="absolute inset-0 bg-gradient-to-br from-gold/10 via-transparent to-gold-light/10" />
-                    <div className="absolute inset-0 bg-[linear-gradient(rgba(201,168,85,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(201,168,85,0.03)_1px,transparent_1px)] bg-[size:40px_40px]" />
+                  <div className="aspect-16/10 bg-muted relative overflow-hidden">
+                    <div className="absolute inset-0 bg-linear-to-br from-gold/10 via-transparent to-gold-light/10" />
+                    <div className="absolute inset-0 bg-[linear-gradient(rgba(201,168,85,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(201,168,85,0.03)_1px,transparent_1px)] bg-size-[40px_40px]" />
                     <div className="absolute top-4 left-4">
                       <span className="px-3 py-1.5 bg-snow/90 text-background text-xs font-medium rounded-full">
                         {blog.category}
