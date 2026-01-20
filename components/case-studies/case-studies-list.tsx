@@ -4,40 +4,43 @@ import Link from "next/link"
 import { motion } from "framer-motion"
 import { ArrowRight, CheckCircle } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import Image from "next/image"
 
 const caseStudies = [
   {
     id: "vayo",
     name: "VAYO",
-    tagline: "Revolutionizing Transportation Logistics",
+    tagline: "Building a Hybrid Community Brand for Modern Social Connections",
     problem:
-      "VAYO needed a scalable platform to manage their growing fleet operations and optimize delivery routes across multiple regions.",
+      "In a time after 20s where life is fast and hectic, genuine friendships are harder to form. Vayo creates a comfortable, activity driven space where individuals meet new people, share experience and build real connections.",
     solution:
-      "We developed a comprehensive AI-powered logistics platform with real-time tracking, route optimization, and predictive maintenance capabilities.",
-    techStack: ["Next.js", "Python", "TensorFlow", "PostgreSQL", "Redis", "AWS"],
+      "We developed a The brand brings together two worlds: Offline meetups like bowling, Cubbon park gatherings, jam sessions and city activities & the online communities including gaming events, Whatsapp groups and digital hangouts.",
     results: [
-      "45% reduction in delivery times",
-      "30% decrease in operational costs",
-      "99.9% uptime reliability",
-      "2x fleet efficiency improvement",
+      "Strong brand identity",
+      "Growth of community (online and offline)",
+      "Increased event participation by 5 times",
+      "High recall within Bangalore's social ecosystem",
+      "More activeness in Whatsapp community interactions",
+      "Successful launch of online communities",
+      "Scalable funned was made from Instagram → WhatsApp → events",
     ],
+    logo: "/Vayo.png",
     href: "/case-studies/vayo",
   },
   {
     id: "samyam",
     name: "Samyam",
-    tagline: "Transforming Healthcare Accessibility",
+    tagline: "Designing a Digital Sanctuary for India's Luxury Spiritual Tourism Brand",
     problem:
-      "Samyam required a telemedicine platform to connect patients with healthcare providers, especially in underserved areas.",
+      "Samyam identifies that traditional spiritual travel (teerth yatra) often lacks the depth and structure required for true transformation",
     solution:
-      "We created a HIPAA-compliant telemedicine platform with video consultations, prescription management, and health record integration.",
-    techStack: ["React Native", "Node.js", "WebRTC", "MongoDB", "Twilio", "Azure"],
+      "Samyam has created a transcendental experience that bridges the gap between ancient tradition and modern luxury.",
     results: [
-      "100,000+ patients served",
-      "85% patient satisfaction rate",
-      "3x increase in doctor reach",
-      "40% reduction in wait times",
+      "Retreat listings and curated tour pages",
+      "A dedicated website that offers seekers easy access to these meticulously planned, high-consciousness journeys.",
+      "Blog style spiritual content",
     ],
+    logo: "/Samyam.png",
     href: "/case-studies/samyam",
   },
 ]
@@ -56,55 +59,80 @@ export function CaseStudiesList() {
               transition={{ duration: 0.6 }}
               className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center"
             >
-              {/* Visual */}
+              {/* Visual / Logo */}
+              {/* Visual / Brand Card */}
               <div className={`${index % 2 === 1 ? "lg:order-2" : ""}`}>
-                <div className="relative aspect-[4/3] bg-card border border-border rounded-2xl overflow-hidden">
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.96 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.6, ease: "easeOut" }}
+                  className="relative bg-card border border-border rounded-2xl overflow-hidden p-14 sm:p-20"
+                >
+                  {/* Background glow */}
                   <div className="absolute inset-0 bg-gradient-to-br from-gold/20 to-gold-light/10" />
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="text-center">
-                      <span className="font-heading text-6xl font-bold text-gold/30">{study.name}</span>
-                    </div>
-                  </div>
-                  <div className="absolute bottom-0 left-0 right-0 h-1/3 bg-gradient-to-t from-background to-transparent" />
-                </div>
+
+                  {/* Logo container */}
+                  <motion.div
+                    initial={{ opacity: 0, y: 8 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.15, duration: 0.5 }}
+                    className="relative flex items-center justify-center"
+                  >
+                    <Image
+                      src={study.logo}
+                      alt={`${study.name} logo`}
+                      width={320}
+                      height={180}
+                      priority
+                      className="max-h-28 sm:max-h-32 w-auto object-contain"
+                    />
+                  </motion.div>
+
+                  {/* Bottom fade */}
+                  <div className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-background to-transparent" />
+                </motion.div>
               </div>
 
               {/* Content */}
               <div className={`${index % 2 === 1 ? "lg:order-1" : ""}`}>
-                <span className="text-gold font-medium tracking-wider uppercase text-sm mb-2 block">{study.name}</span>
-                <h2 className="font-heading text-3xl sm:text-4xl font-bold text-snow mb-4">{study.tagline}</h2>
+                <span className="text-gold font-medium tracking-wider uppercase text-sm mb-2 block">
+                  {study.name}
+                </span>
+
+                <h2 className="font-heading text-3xl sm:text-4xl font-bold text-snow mb-4">
+                  {study.tagline}
+                </h2>
 
                 <div className="space-y-6">
                   <div>
-                    <h3 className="text-snow font-semibold mb-2">The Challenge</h3>
-                    <p className="text-pumice leading-relaxed">{study.problem}</p>
+                    <h3 className="text-snow font-semibold mb-2">
+                      The Challenge
+                    </h3>
+                    <p className="text-pumice leading-relaxed">
+                      {study.problem}
+                    </p>
                   </div>
 
                   <div>
-                    <h3 className="text-snow font-semibold mb-2">Our Solution</h3>
-                    <p className="text-pumice leading-relaxed">{study.solution}</p>
+                    <h3 className="text-snow font-semibold mb-2">
+                      Our Solution
+                    </h3>
+                    <p className="text-pumice leading-relaxed">
+                      {study.solution}
+                    </p>
                   </div>
 
                   <div>
-                    <h3 className="text-snow font-semibold mb-3">Tech Stack</h3>
-                    <div className="flex flex-wrap gap-2">
-                      {study.techStack.map((tech) => (
-                        <span
-                          key={tech}
-                          className="px-3 py-1 bg-gold/10 border border-gold/20 rounded-full text-sm text-gold"
-                        >
-                          {tech}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-
-                  <div>
-                    <h3 className="text-snow font-semibold mb-3">Results</h3>
+                    <h3 className="text-snow font-semibold mb-3">
+                      Results
+                    </h3>
                     <ul className="space-y-2">
                       {study.results.map((result) => (
                         <li key={result} className="flex items-center gap-3">
-                          <CheckCircle size={18} className="text-gold shrink-0" />
+                          <CheckCircle
+                            size={18}
+                            className="text-gold shrink-0"
+                          />
                           <span className="text-pumice">{result}</span>
                         </li>
                       ))}
@@ -117,7 +145,10 @@ export function CaseStudiesList() {
                   >
                     <Link href={study.href}>
                       Read Full Case Study
-                      <ArrowRight size={18} className="ml-2 group-hover:translate-x-1 transition-transform" />
+                      <ArrowRight
+                        size={18}
+                        className="ml-2 group-hover:translate-x-1 transition-transform"
+                      />
                     </Link>
                   </Button>
                 </div>
