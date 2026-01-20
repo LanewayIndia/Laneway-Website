@@ -4,8 +4,17 @@ import { motion } from "framer-motion"
 import Link from "next/link"
 import { MapPin, Clock, ArrowRight } from "lucide-react"
 import { jobs } from "@/lib/jobs"
+import { useState } from "react"
 
 export function JobsList() {
+  const [isOpen, setIsOpen] = useState(false)
+  const [selectedJob, setSelectedJob] = useState<{ slug: string; title: string; department: string; location: string; type: string; } | null>(null)
+
+  const handleJobClick = (job: { slug: string; title: string; department: string; location: string; type: string; }) => {
+    setSelectedJob(job);
+    setIsOpen(true);
+  };
+
   return (
     <section className="py-20">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -16,7 +25,9 @@ export function JobsList() {
           transition={{ duration: 0.6 }}
           className="mb-12"
         >
-          <h2 className="font-heading text-3xl sm:text-4xl font-bold text-snow mb-4">Open Positions</h2>
+          <h2 className="font-heading text-3xl sm:text-4xl font-bold text-snow mb-4">
+            Open Positions
+          </h2>
           <p className="text-pumice text-lg max-w-2xl">
             Find your perfect role and become part of something extraordinary.
           </p>
@@ -31,7 +42,10 @@ export function JobsList() {
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: index * 0.05 }}
             >
-              <Link href={`careers/${job.slug}`} className="group block">
+              <div
+                className="group block"
+                onClick={() => handleJobClick(job)}
+              >
                 <div className="bg-card border border-border rounded-xl p-6 transition-all duration-300 hover:border-gold/50 hover:shadow-lg hover:shadow-gold/5">
                   <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                     <div>
@@ -58,7 +72,7 @@ export function JobsList() {
                     />
                   </div>
                 </div>
-              </Link>
+              </div>
             </motion.div>
           ))}
         </div>
