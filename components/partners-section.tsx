@@ -7,7 +7,7 @@ const partners = ["TechCorp", "InnovateLabs", "FutureScale", "DigitalFirst", "Cl
 export function PartnersSection() {
   return (
     <section className="py-24 border-y border-glass-border overflow-hidden relative">
-      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-gold/[0.02] to-transparent" />
+      <div className="absolute inset-0 bg-linear-to-r from-transparent via-gold/2 to-transparent" />
 
       <div className="relative z-10 mx-auto max-w-7xl px-6 sm:px-8 lg:px-12">
         <motion.div
@@ -30,7 +30,7 @@ export function PartnersSection() {
             {[...partners, ...partners, ...partners, ...partners].map((partner, index) => (
               <div
                 key={index}
-                className="flex-shrink-0 flex items-center justify-center h-16 px-10 glass-card rounded-full transition-all duration-500 hover:border-gold/20"
+                className="shrink-0 flex items-center justify-center h-16 px-10 glass-card rounded-full transition-all duration-500 hover:border-gold/20"
               >
                 <span className="font-heading text-lg font-medium text-pumice whitespace-nowrap tracking-wide">
                   {partner}
