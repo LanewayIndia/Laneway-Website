@@ -3,14 +3,17 @@
 import { motion } from "framer-motion"
 import Link from "next/link"
 import { MapPin, Clock, ArrowRight } from "lucide-react"
-import { jobs } from "@/lib/jobs"
+import { jobs, Job } from "@/lib/jobs"
 import { useState } from "react"
+import { ApplicationForm } from "@/components/careers/application-form"
+
 
 export function JobsList() {
   const [isOpen, setIsOpen] = useState(false)
-  const [selectedJob, setSelectedJob] = useState<{ slug: string; title: string; department: string; location: string; type: string; } | null>(null)
+  const [selectedJob, setSelectedJob] = useState<Job | null>(null)
 
-  const handleJobClick = (job: { slug: string; title: string; department: string; location: string; type: string; }) => {
+  // Unused function, can be removed or used as needed
+  const handleJobClick = (job: Job) => {
     setSelectedJob(job);
     setIsOpen(true);
   };
@@ -39,12 +42,13 @@ export function JobsList() {
               key={job.slug}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
+              whileHover={{scale: 1.02}}
               viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: index * 0.05 }}
-            >
+              transition={{ duration: 0.4, delay: index * 0.05 }}>
+
               <div
                 className="group block"
-                onClick={() => handleJobClick(job)}
+                onClick={() => setSelectedJob(job)}
               >
                 <div className="bg-card border border-border rounded-xl p-6 transition-all duration-300 hover:border-gold/50 hover:shadow-lg hover:shadow-gold/5">
                   <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
@@ -53,9 +57,9 @@ export function JobsList() {
                         {job.title}
                       </h3>
                       <div className="flex flex-wrap items-center gap-4 text-sm text-pumice">
-                        <span className="px-3 py-1 bg-gold/10 border border-gold/20 rounded-full text-gold">
+                        {/* <span className="px-3 py-1 bg-gold/10 border border-gold/20 rounded-full text-gold">
                           {job.department}
-                        </span>
+                        </span> */}
                         <span className="flex items-center gap-1">
                           <MapPin size={14} />
                           {job.location}
@@ -76,6 +80,9 @@ export function JobsList() {
             </motion.div>
           ))}
         </div>
+        {selectedJob && (
+          <ApplicationForm jobTitle={selectedJob} open={isOpen} onClose={()=>setSelectedJob(null)}/>
+        )}
       </div>
     </section>
   )

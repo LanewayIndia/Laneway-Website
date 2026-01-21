@@ -60,7 +60,7 @@ export async function POST(request: NextRequest) {
       }
       if (coverLetterFile.size > maxSize) {
         return NextResponse.json({ error: "Cover letter file size exceeds 5MB limit." }, { status: 400 })
-      }
+    } 
     }
 
     // Upload files to Cloudinary

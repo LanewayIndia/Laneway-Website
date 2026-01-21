@@ -2,7 +2,7 @@
 
 import { notFound } from "next/navigation"
 import { jobs } from "@/lib/jobs"
-import { ApplicationForm }from "@/components/careers/application-form"
+import { ApplicationForm } from "@/components/careers/application-form"
 import { useState } from 'react';
 
 export default function JobPage({ params }: { params: { slug: string } }) {
@@ -19,7 +19,7 @@ export default function JobPage({ params }: { params: { slug: string } }) {
       <p className="mt-4">{job.description}</p>
 
       {/* Button + Modal logic lives here */}
-      <ApplicationForm open={isOpen} onClose={handleClose} jobTitle={job.title} />
+      <ApplicationForm open={isOpen} onClose={handleClose} jobTitle={job} />
     </main>
   )
 }
