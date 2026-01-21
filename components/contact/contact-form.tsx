@@ -32,7 +32,7 @@ export function ContactForm() {
                 <div>
                   <h3 className="font-semibold text-snow mb-1">Email Us</h3>
                   <a href="mailto:hello@laneway.ai" className="text-pumice hover:text-gold transition-colors">
-                    hello@laneway.ai
+                    info@laneway.in
                   </a>
                 </div>
               </div>
@@ -43,8 +43,8 @@ export function ContactForm() {
                 </div>
                 <div>
                   <h3 className="font-semibold text-snow mb-1">Call Us</h3>
-                  <a href="tel:+1234567890" className="text-pumice hover:text-gold transition-colors">
-                    +1 (234) 567-890
+                  <a href="tel:+91 9961348942" className="text-pumice hover:text-gold transition-colors">
+                    +91 9961348942
                   </a>
                 </div>
               </div>
