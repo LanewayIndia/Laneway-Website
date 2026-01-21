@@ -8,7 +8,7 @@ export function CaseStudiesHero() {
       <div className="absolute inset-0 noise-texture" />
 
       <div className="absolute inset-0">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-gold/5 rounded-full blur-[120px]" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-150 h-75 bg-gold/5 rounded-full blur-[120px]" />
       </div>
 
       <div className="relative z-10 mx-auto max-w-5xl px-6 sm:px-8 lg:px-12">
@@ -24,7 +24,7 @@ export function CaseStudiesHero() {
             <div className="w-12 h-px bg-gold/30" />
           </div>
 
-          <h1 className="font-heading text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-medium text-snow mb-8 text-balance leading-[1.1]">
+          <h1 className="font-heading text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-snow mb-8 text-balance leading-[1.1]">
             Case
             <br />
             <span className="text-gradient">Studies</span>
