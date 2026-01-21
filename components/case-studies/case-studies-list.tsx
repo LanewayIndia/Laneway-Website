@@ -49,7 +49,7 @@ export function CaseStudiesList() {
   return (
     <section className="py-20">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="space-y-32">
+        <div className="space-y-16 sm:space-y-24 lg:space-y-32">
           {caseStudies.map((study, index) => (
             <motion.div
               key={study.id}
@@ -66,30 +66,28 @@ export function CaseStudiesList() {
                   initial={{ opacity: 0, scale: 0.96 }}
                   whileInView={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.6, ease: "easeOut" }}
-                  className="relative bg-card border border-border rounded-2xl overflow-hidden p-14 sm:p-20"
+                  className="relative bg-card border border-border rounded-2xl overflow-hidden p-0 sm:p-0 lg:p-0"
                 >
                   {/* Background glow */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-gold/20 to-gold-light/10" />
+                  <div className="absolute inset-0 bg-linear-to-br from-gold/20 to-gold-light/10" />
 
                   {/* Logo container */}
                   <motion.div
                     initial={{ opacity: 0, y: 8 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.15, duration: 0.5 }}
-                    className="relative flex items-center justify-center"
+                    className="relative flex items-center justify-center aspect-square "
                   >
                     <Image
                       src={study.logo}
                       alt={`${study.name} logo`}
-                      width={320}
-                      height={180}
-                      priority
-                      className="max-h-28 sm:max-h-32 w-auto object-contain"
+                      fill
+                      className="object-contain"
                     />
                   </motion.div>
 
                   {/* Bottom fade */}
-                  <div className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-background to-transparent" />
+                  {/* <div className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-linear-to-t from-background to-transparent" /> */}
                 </motion.div>
               </div>
 
@@ -99,7 +97,7 @@ export function CaseStudiesList() {
                   {study.name}
                 </span>
 
-                <h2 className="font-heading text-3xl sm:text-4xl font-bold text-snow mb-4">
+                <h2 className="font-heading text-2xl sm:text-3xl lg:text-4xl font-bold text-snow mb-4">
                   {study.tagline}
                 </h2>
 
