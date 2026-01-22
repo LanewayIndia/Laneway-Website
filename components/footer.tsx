@@ -39,7 +39,7 @@ export function Footer() {
               <span className="font-heading text-2xl font-bold text-snow">Laneway</span>
             </Link>
             <p className="text-pumice text-sm leading-relaxed mb-6">
-              Transforming ideas into digital excellence through innovative solutions.
+              Laneway is a next-gen business consulting firm committed to help drive business growth through consulting, technology and media services.
             </p>
             <Link
               href="/contact"
@@ -108,7 +108,39 @@ export function Footer() {
             <ul className="space-y-4">
               <li className="flex items-start gap-3">
                 <MapPin size={16} className="text-gold mt-0.5 shrink-0" strokeWidth={1.5} />
-                <span className="text-snow/70 text-sm">Global Operations</span>
+                <div className="text-snow/70 text-sm">
+                  <div className="font-medium text-snow mb-1">Head Office</div>
+                  <div className="space-y-0.5">
+                    <p>1087 B, Sankranthi, Perumbaikkad</p>
+                    <p>Kottayam - 686016, Kerala</p>
+                  </div>
+                  <a
+                    href="https://www.google.com/maps/place/1087%2FB,+Sankranthi,+Kottayam,+Perumbaikad,+Kerala+686016/@9.6250908,76.5343883,17z/data=!3m1!4b1!4m10!1m2!2m1!1s1087+B,+Sankranthi,+Perumbaikkad,++Kottayam+-+686016,+Kerala!3m6!1s0x3b062b506f299b43:0x3c9adcd568e4052e!8m2!3d9.6250908!4d76.5392592!15sCjwxMDg3IEIsIFNhbmtyYW50aGksIFBlcnVtYmFpa2thZCwgIEtvdHRheWFtIC0gNjg2MDE2LCBLZXJhbGGSAQpzdWJwcmVtaXNl4AEA!16s%2Fg%2F11xz04j64r?entry=ttu&g_ep=EgoyMDI2MDExOS4wIKXMDSoKLDEwMDc5MjA3MUgBUAM%3D"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-pumice hover:text-gold transition-colors inline-block mt-1"
+                  >
+                    View on Google Maps →
+                  </a>
+                </div>
+              </li>
+              <li className="flex items-start gap-3">
+                <MapPin size={16} className="text-gold mt-0.5 shrink-0" strokeWidth={1.5} />
+                <div className="text-snow/70 text-sm">
+                  <div className="font-medium text-snow mb-1">Operational Office</div>
+                  <div className="space-y-0.5">
+                    <p>Koramangala 8th Block</p>
+                    <p>Bangalore - 560095, Karnataka</p>
+                  </div>
+                  <a
+                    href="https://www.google.com/maps/place/Koramangala+8th+Block,+Koramangala,+Bengaluru,+Karnataka/@12.9410853,77.6127627,16z/data=!3m1!4b1!4m6!3m5!1s0x3bae1448a71f8e4d:0x17f8352eed30fa02!8m2!3d12.9414686!4d77.6178125!16s%2Fg%2F1ts1l25j?entry=ttu&g_ep=EgoyMDI2MDExOS4wIKXMDSoKLDEwMDc5MjA3MUgBUAM%3D"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-pumice hover:text-gold transition-colors inline-block mt-1"
+                  >
+                    View on Google Maps →
+                  </a>
+                </div>
               </li>
               <li className="flex items-center gap-3">
                 <Phone size={16} className="text-gold shrink-0" strokeWidth={1.5} />
@@ -118,8 +150,8 @@ export function Footer() {
               </li>
               <li className="flex items-center gap-3">
                 <Mail size={16} className="text-gold shrink-0" strokeWidth={1.5} />
-                <a href="mailto:Info@laneway.in" className="text-snow/70 hover:text-snow transition-colors text-sm">
-                  Info@laneway.in
+                <a href="mailto:info@laneway.in" className="text-snow/70 hover:text-snow transition-colors text-sm">
+                  info@laneway.in
                 </a>
               </li>
             </ul>
@@ -131,13 +163,19 @@ export function Footer() {
       <div className="border-t border-glass-border">
         <div className="mx-auto max-w-7xl px-6 sm:px-8 lg:px-12 py-6">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-            <p className="text-pumice/60 text-sm">© {new Date().getFullYear()} Laneway. All rights reserved.</p>
+            <p className="text-pumice/60 text-sm">© {new Date().getFullYear()} Laneway India Enterprises Private Limited. All rights reserved.
+            <br/>
+            GST: 32AAGCL2491R1Z0
+            </p>
             <div className="flex items-center gap-8">
               <Link href="/privacy" className="text-pumice/60 hover:text-snow text-sm transition-colors">
-                Privacy
+                Privacy Policy
               </Link>
               <Link href="/terms" className="text-pumice/60 hover:text-snow text-sm transition-colors">
-                Terms
+                Terms & Services 
+              </Link>
+              <Link href="/cookie-policy" className="text-pumice/60 hover:text-snow text-sm transition-colors">
+                Cookie Policy
               </Link>
             </div>
           </div>
