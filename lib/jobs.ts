@@ -338,24 +338,6 @@ export const jobs: Job[] = [
   },
 
   {
-    slug: "content-writer-intern",
-    title: "Content Writer Intern",
-    department: "Marketing",
-    location: "Remote",
-    type: "Full-Time",
-    description:
-      "We are looking for a Content Writer Intern to assist in managing operations.",
-    requirements: [
-      "Currently pursuing a degree in Business Administration or related field.",
-    ],
-    seo: {
-      title: "Content Writer Intern Jobs at Laneway",
-      description:
-        "Apply for Content Writer Intern jobs at Laneway. Remote Full-Time opportunity.",
-    },
-  },
-
-  {
     slug: "digital-marketing-intern",
     title: "Digital Marketing Intern",
     department: "Marketing",
