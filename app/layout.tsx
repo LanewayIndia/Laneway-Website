@@ -3,6 +3,7 @@ import type { Metadata, Viewport } from "next"
 import { Playfair_Display, Inter } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
 import "./globals.css"
+import { CookieConsentBanner } from "@/components/cookie-consent/cookie-consent"
 
 const playfair = Playfair_Display({
   subsets: ["latin"],
@@ -47,6 +48,7 @@ export default function RootLayout({
     <html lang="en" className={`${playfair.variable} ${inter.variable}`}>
       <body className="font-sans antialiased bg-background text-foreground">
         {children}
+        <CookieConsentBanner/>
         <Analytics />
       </body>
     </html>
