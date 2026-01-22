@@ -5,14 +5,17 @@ import { motion, AnimatePresence } from "framer-motion"
 import { Send, X, Mail, Phone, MessageSquare, ArrowRight } from "lucide-react"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
+import { Chatbot } from "../chatbot"
 
 export function ContactSection() {
   const [isOpen, setIsOpen] = useState(false)
+  const [chatbotOpen, setChatbotOpen] = useState(false)
+
 
   return (
     <section className="py-40 relative overflow-hidden">
       <div className="absolute inset-0">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-gold/5 rounded-full blur-[150px]" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-200 h-100 bg-gold/5 rounded-full blur-[150px]" />
       </div>
 
       <div className="relative z-10 mx-auto max-w-4xl px-6 sm:px-8 lg:px-12">
@@ -35,9 +38,8 @@ export function ContactSection() {
 
           <motion.button
             onClick={() => setIsOpen(!isOpen)}
-            className={`group inline-flex items-center gap-3 px-8 py-4 rounded-full text-sm font-medium transition-all duration-300 ${
-              isOpen ? "bg-snow text-background hover:bg-pumice" : "bg-snow text-background hover:bg-gold"
-            }`}
+            className={`group inline-flex items-center gap-3 px-8 py-4 rounded-full text-sm font-medium transition-all duration-300 ${isOpen ? "bg-snow text-background hover:bg-pumice" : "bg-snow text-background hover:bg-gold"
+              }`}
           >
             <span>{isOpen ? "Close Form" : "Contact Us"}</span>
             {!isOpen && (
@@ -132,7 +134,7 @@ export function ContactSection() {
                       <div className="w-10 h-10 rounded-full bg-gold/10 flex items-center justify-center">
                         <Mail size={16} className="text-gold" />
                       </div>
-                      <span className="text-sm text-pumice">Info@laneway.in</span>
+                      <span className="text-sm text-pumice">info@laneway.in</span>
                     </div>
                     <div className="flex flex-col items-center gap-2">
                       <div className="w-10 h-10 rounded-full bg-gold/10 flex items-center justify-center">
@@ -144,7 +146,7 @@ export function ContactSection() {
                       <div className="w-10 h-10 rounded-full bg-gold/10 flex items-center justify-center">
                         <MessageSquare size={16} className="text-gold" />
                       </div>
-                      <span className="text-sm text-pumice">Live Chat Available</span>
+                      <span className="text-sm text-pumice"><button onClick={() => setChatbotOpen(true)} className="hover:text-snow transition-colors">Live Chat Available</button></span>
                     </div>
                   </div>
                 </div>
@@ -153,6 +155,7 @@ export function ContactSection() {
           )}
         </AnimatePresence>
       </div>
+      <Chatbot isOpen={chatbotOpen} onOpenChange={setChatbotOpen} />
     </section>
   )
 }
