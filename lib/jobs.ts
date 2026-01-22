@@ -14,452 +14,452 @@ export type Job = {
 
 export const jobs: Job[] = [
     {
-    slug: "operation-intern",
-    title: "Operation Intern",
+    slug: "operation",
+    title: "Operation",
     department: "Operations",
     location: "Remote",
     type: "Full-time",
     description:
-      "We are looking for a Operation Intern to assist in managing operations.",
+      "We are looking for a Operation to assist in managing operations.",
     requirements: [
       "Currently pursuing a degree in Business Administration or related field.",
     ],
     seo: {
-      title: "Operation Intern Jobs at Laneway",
+      title: "Operation Jobs at Laneway",
       description:
-        "Apply for Operation Intern jobs at Laneway. Remote Full-time opportunity.",
+        "Apply for Operation jobs at Laneway. Remote Full-time opportunity.",
     },
   },
 
   {
-    slug: "project-management-intern",
-    title: "Project management Intern",
+    slug: "project-management",
+    title: "Project management",
     department: "Operations",
     location: "Remote",
     type: "Full-time",
     description:
-      "We are looking for a Project management Intern to assist in managing operations.",
+      "We are looking for a Project management to assist in managing operations.",
     requirements: [
       "Currently pursuing a degree in Business Administration or related field.",
     ],
     seo: {
-      title: "Project management Intern Jobs at Laneway",
+      title: "Project management Jobs at Laneway",
       description:
-        "Apply for Project management Intern jobs at Laneway. Remote Full-time opportunity.",
+        "Apply for Project management jobs at Laneway. Remote Full-time opportunity.",
     },
   },
 
   {
-    slug: "hr-intern",
-    title: "HR Intern",
+    slug: "hr",
+    title: "HR",
     department: "Human Resources",
     location: "Remote",
     type: "Full-time",
     description:
-      "We are looking for a HR Intern to assist in managing operations.",
+      "We are looking for a HR to assist in managing operations.",
     requirements: [
       "Currently pursuing a degree in Business Administration or related field.",
     ],
     seo: {
-      title: "HR Intern Jobs at Laneway",
+      title: "HR Jobs at Laneway",
       description:
-        "Apply for HR Intern jobs at Laneway. Remote Full-time opportunity.",
+        "Apply for HR jobs at Laneway. Remote Full-time opportunity.",
     },
   },
 
   {
-    slug: "finance-accounting-intern",
-    title: "Finance & Accounting Intern",
+    slug: "finance-accounting",
+    title: "Finance & Accounting",
     department: "Finance & Accounting",
     location: "Remote",
     type: "Full-time",
     description:
-      "We are looking for a Finance & Accounting Intern to assist in managing operations.",
+      "We are looking for a Finance & Accounting to assist in managing operations.",
     requirements: [
       "Currently pursuing a degree in Business Administration or related field.",
     ],
     seo: {
-      title: "Finance & Accounting Intern Jobs at Laneway",
+      title: "Finance & Accounting Jobs at Laneway",
       description:
-        "Apply for Finance & Accounting Intern jobs at Laneway. Remote Full-time opportunity.",
+        "Apply for Finance & Accounting jobs at Laneway. Remote Full-time opportunity.",
     },
   },
 
   {
-    slug: "founder's-office-intern",
-    title: "Founders' Office Intern",
+    slug: "founder's-office",
+    title: "Founders' Office",
     department: "Founders' Office",
     location: "Remote",
     type: "Full-time",
     description:
-      "We are looking for a Founders' Office Intern to assist in managing operations.",
+      "We are looking for a Founders' Office to assist in managing operations.",
     requirements: [
       "Currently pursuing a degree in Business Administration or related field.",
     ],
     seo: {
-      title: "Founders' Office Intern Jobs at Laneway",
+      title: "Founders' Office Jobs at Laneway",
       description:
-        "Apply for Founders' Office Intern jobs at Laneway. Remote Full-time opportunity.",
+        "Apply for Founders' Office jobs at Laneway. Remote Full-time opportunity.",
     },
   },
 
   {
-    slug: "business-analyst-intern",
-    title: "Business Analyst Intern",
+    slug: "business-analyst",
+    title: "Business Analyst",
     department: "Business Analysis",
     location: "Remote",
     type: "Full-time",
     description:
-      "We are looking for a Business Analyst Intern to assist in managing operations.",
+      "We are looking for a Business Analyst to assist in managing operations.",
     requirements: [
       "Currently pursuing a degree in Business Administration or related field.",
     ],
     seo: {
-      title: "Business Analyst Intern Jobs at Laneway",
+      title: "Business Analyst Jobs at Laneway",
       description:
-        "Apply for Business Analyst Intern jobs at Laneway. Remote Full-time opportunity.",
+        "Apply for Business Analyst jobs at Laneway. Remote Full-time opportunity.",
     },
   },
 
   {
-    slug: "business-development-intern",
-    title: "Business Development Intern",
+    slug: "business-development",
+    title: "Business Development",
     department: "Business Development",
     location: "Remote",
     type: "Full-time",
     description:
-      "We are looking for a Business Development Intern to assist in managing operations.",
+      "We are looking for a Business Development to assist in managing operations.",
     requirements: [
       "Currently pursuing a degree in Business Administration or related field.",
     ],
     seo: {
-      title: "Business Development Intern Jobs at Laneway",
+      title: "Business Development Jobs at Laneway",
       description:
-        "Apply for Business Development Intern jobs at Laneway. Remote Full-time opportunity.",
+        "Apply for Business Development jobs at Laneway. Remote Full-time opportunity.",
     },
   },
 
   {
-    slug: "market-research-analyst-intern",
-    title: "Market Research Analyst Intern",
+    slug: "market-research-analyst",
+    title: "Market Research Analyst",
     department: "Market Research",
     location: "Remote",
     type: "Full-time",
     description:
-      "We are looking for a Market Research Analyst Intern to assist in managing operations.",
+      "We are looking for a Market Research Analyst to assist in managing operations.",
     requirements: [
       "Currently pursuing a degree in Business Administration or related field.",
     ],
     seo: {
-      title: "Market Research Analyst Intern Jobs at Laneway",
+      title: "Market Research Analyst Jobs at Laneway",
       description:
-        "Apply for Market Research Analyst Intern jobs at Laneway. Remote Full-time opportunity.",
+        "Apply for Market Research Analyst jobs at Laneway. Remote Full-time opportunity.",
     },
   },
 
   {
-    slug: "data-analyst-intern",
-    title: "Data Analyst Intern",
+    slug: "data-analyst",
+    title: "Data Analyst",
     department: "Data Analytics",
     location: "Remote",
     type: "Full-time",
     description:
-      "We are looking for a Data Analyst Intern to assist in managing operations.",
+      "We are looking for a Data Analyst to assist in managing operations.",
     requirements: [
       "Currently pursuing a degree in Business Administration or related field.",
     ],
     seo: {
-      title: "Data Analyst Intern Jobs at Laneway",
+      title: "Data Analyst Jobs at Laneway",
       description:
-        "Apply for Data Analyst Intern jobs at Laneway. Remote Full-time opportunity.",
+        "Apply for Data Analyst jobs at Laneway. Remote Full-time opportunity.",
     },
   },
 
   {
-    slug: "ai-research-development-intern",
-    title: "AI Research & Development Intern",
+    slug: "ai-research-development",
+    title: "AI Research & Development",
     department: "AI Research & Development",
     location: "Remote",
     type: "Full-time",
     description:
-      "We are looking for a AI Research & Development Intern to assist in managing operations.",
+      "We are looking for a AI Research & Development to assist in managing operations.",
     requirements: [
       "Currently pursuing a degree in Business Administration or related field.",
     ],
     seo: {
-      title: "AI Research & Development Intern Jobs at Laneway",
+      title: "AI Research & Development Jobs at Laneway",
       description:
-        "Apply for AI Research & Development Intern jobs at Laneway. Remote Full-time opportunity.",
+        "Apply for AI Research & Development jobs at Laneway. Remote Full-time opportunity.",
     },
   },
 
   {
-    slug: "web-development-intern",
-    title: "Web Development Intern",
+    slug: "web-development",
+    title: "Web Development",
     department: "Web Development",
     location: "Remote",
     type: "Full-time",
     description:
-      "We are looking for a Web Development Intern to assist in managing operations.",
+      "We are looking for a Web Development to assist in managing operations.",
     requirements: [
       "Currently pursuing a degree in Business Administration or related field.",
     ],
     seo: {
-      title: "Web Development Intern Jobs at Laneway",
+      title: "Web Development Jobs at Laneway",
       description:
-        "Apply for Web Development Intern jobs at Laneway. Remote Full-time opportunity.",
+        "Apply for Web Development jobs at Laneway. Remote Full-time opportunity.",
     },
   },
 
   {
-    slug: "full-stack-developer-intern",
-    title: "Full Stack Developer Intern",
+    slug: "full-stack-developer",
+    title: "Full Stack Developer",
     department: "Web Development",
     location: "Remote",
     type: "Full-time",
     description:
-      "We are looking for a Full Stack Developer Intern to assist in managing operations.",
+      "We are looking for a Full Stack Developer to assist in managing operations.",
     requirements: [
       "Currently pursuing a degree in Business Administration or related field.",
     ],
     seo: {
-      title: "Full Stack Developer Intern Jobs at Laneway",
+      title: "Full Stack Developer Jobs at Laneway",
       description:
-        "Apply for Full Stack Developer Intern jobs at Laneway. Remote Full-time opportunity.",
+        "Apply for Full Stack Developer jobs at Laneway. Remote Full-time opportunity.",
     },
   },
 
   {
-    slug: "ui-ux-designer-intern",
-    title: "UI/UX Designer Intern",
+    slug: "ui-ux-designer",
+    title: "UI/UX Designer",
     department: "Design",
     location: "Remote",
     type: "Full-time",
     description:
-      "We are looking for a UI/UX Designer Intern to assist in managing operations.",
+      "We are looking for a UI/UX Designer to assist in managing operations.",
     requirements: [
       "Currently pursuing a degree in Business Administration or related field.",
     ],
     seo: {
-      title: "UI/UX Designer Intern Jobs at Laneway",
+      title: "UI/UX Designer Jobs at Laneway",
       description:
-        "Apply for UI/UX Designer Intern jobs at Laneway. Remote Full-time opportunity.",
+        "Apply for UI/UX Designer jobs at Laneway. Remote Full-time opportunity.",
     },
   },
 
   {
-    slug: "graphics-designer-intern",
-    title: "Graphics Designer Intern",
+    slug: "graphics-designer",
+    title: "Graphics Designer",
     department: "Design",
     location: "Remote",
     type: "Full-time",
     description:
-      "We are looking for a Graphics Designer Intern to assist in managing operations.",
+      "We are looking for a Graphics Designer to assist in managing operations.",
     requirements: [
       "Currently pursuing a degree in Business Administration or related field.",
     ],
     seo: {
-      title: "Graphics Designer Intern Jobs at Laneway",
+      title: "Graphics Designer Jobs at Laneway",
       description:
-        "Apply for Graphics Designer Intern jobs at Laneway. Remote Full-time opportunity.",
+        "Apply for Graphics Designer jobs at Laneway. Remote Full-time opportunity.",
     },
   },
 
   {
-    slug: "brand-strategist-intern",
-    title: "Brand Strategist Intern",
+    slug: "brand-strategist",
+    title: "Brand Strategist",
     department: "Marketing",
     location: "Remote",
     type: "Full-time",
     description:
-      "We are looking for a Brand Strategist Intern to assist in managing operations.",
+      "We are looking for a Brand Strategist to assist in managing operations.",
     requirements: [
       "Currently pursuing a degree in Business Administration or related field.",
     ],
     seo: {
-      title: "Brand Strategist Intern Jobs at Laneway",
+      title: "Brand Strategist Jobs at Laneway",
       description:
-        "Apply for Brand Strategist Intern jobs at Laneway. Remote Full-time opportunity.",
+        "Apply for Brand Strategist jobs at Laneway. Remote Full-time opportunity.",
     },
   },
 
   {
-    slug: "social-media-manager-intern",
-    title: "Social Media Manager Intern",
+    slug: "social-media-manager",
+    title: "Social Media Manager",
     department: "Marketing",
     location: "Remote",
     type: "Full-time",
     description:
-      "We are looking for a Social Media Manager Intern to assist in managing operations.",
+      "We are looking for a Social Media Manager to assist in managing operations.",
     requirements: [
       "Currently pursuing a degree in Business Administration or related field.",
     ],
     seo: {
-      title: "Social Media Manager Intern Jobs at Laneway",
+      title: "Social Media Manager Jobs at Laneway",
       description:
-        "Apply for Social Media Manager Intern jobs at Laneway. Remote Full-time opportunity.",
+        "Apply for Social Media Manager jobs at Laneway. Remote Full-time opportunity.",
     },
   },
 
   {
-    slug: "social-media-marketing-intern",
-    title: "Social Media Marketing Intern",
+    slug: "social-media-marketing",
+    title: "Social Media Marketing",
     department: "Marketing",
     location: "Remote",
     type: "Full-time",
     description:
-      "We are looking for a Social Media Marketing Intern to assist in managing operations.",
+      "We are looking for a Social Media Marketing to assist in managing operations.",
     requirements: [
       "Currently pursuing a degree in Business Administration or related field.",
     ],
     seo: {
-      title: "Social Media Marketing Intern Jobs at Laneway",
+      title: "Social Media Marketing Jobs at Laneway",
       description:
-        "Apply for Social Media Marketing Intern jobs at Laneway. Remote Full-time opportunity.",
+        "Apply for Social Media Marketing jobs at Laneway. Remote Full-time opportunity.",
     },
   },
 
   {
-    slug: "content-strategist-intern",
-    title: "Content Strategist Intern",
+    slug: "content-strategist",
+    title: "Content Strategist",
     department: "Marketing",
     location: "Remote",
     type: "Full-time",
     description:
-      "We are looking for a Content Strategist Intern to assist in managing operations.",
+      "We are looking for a Content Strategist to assist in managing operations.",
     requirements: [
       "Currently pursuing a degree in Business Administration or related field.",
     ],
     seo: {
-      title: "Content Strategist Intern Jobs at Laneway",
+      title: "Content Strategist Jobs at Laneway",
       description:
-        "Apply for Content Strategist Intern jobs at Laneway. Remote Full-time opportunity.",
+        "Apply for Content Strategist jobs at Laneway. Remote Full-time opportunity.",
     },
   },
 
   {
-    slug: "digital-marketing-intern",
-    title: "Digital Marketing Intern",
+    slug: "digital-marketing",
+    title: "Digital Marketing",
     department: "Marketing",
     location: "Remote",
     type: "Full-time",
     description:
-      "We are looking for a Digital Marketing Intern to assist in managing operations.",
+      "We are looking for a Digital Marketing to assist in managing operations.",
     requirements: [
       "Currently pursuing a degree in Business Administration or related field.",
     ],
     seo: {
-      title: "Digital Marketing Intern Jobs at Laneway",
+      title: "Digital Marketing Jobs at Laneway",
       description:
-        "Apply for Digital Marketing Intern jobs at Laneway. Remote Full-time opportunity.",
+        "Apply for Digital Marketing jobs at Laneway. Remote Full-time opportunity.",
     },
   },
 
   {
-    slug: "performance-marketing-intern",
-    title: "Performance Marketing Intern",
+    slug: "performance-marketing",
+    title: "Performance Marketing",
     department: "Marketing",
     location: "Remote",
     type: "Full-time",
     description:
-      "We are looking for a Performance Marketing Intern to assist in managing operations.",
+      "We are looking for a Performance Marketing to assist in managing operations.",
     requirements: [
       "Currently pursuing a degree in Business Administration or related field.",
     ],
     seo: {
-      title: "Performance Marketing Intern Jobs at Laneway",
+      title: "Performance Marketing Jobs at Laneway",
       description:
-        "Apply for Performance Marketing Intern jobs at Laneway. Remote Full-time opportunity.",
+        "Apply for Performance Marketing jobs at Laneway. Remote Full-time opportunity.",
     },
   },
 
   {
-    slug: "content-creator-intern",
-    title: "Content Creator Intern",
+    slug: "content-creator",
+    title: "Content Creator",
     department: "Marketing",
     location: "Remote",
     type: "Full-time",
     description:
-      "We are looking for a Content Creator Intern to assist in managing operations.",
+      "We are looking for a Content Creator to assist in managing operations.",
     requirements: [
       "Currently pursuing a degree in Business Administration or related field.",
     ],
     seo: {
-      title: "Content Creator Intern Jobs at Laneway",
+      title: "Content Creator Jobs at Laneway",
       description:
-        "Apply for Content Creator Intern jobs at Laneway. Remote Full-time opportunity.",
+        "Apply for Content Creator jobs at Laneway. Remote Full-time opportunity.",
     },
   },
 
   {
-    slug: "content-writer-intern",
-    title: "Content Writer Intern",
+    slug: "content-writer",
+    title: "Content Writer",
     department: "Marketing",
     location: "Remote",
     type: "Full-time",
     description:
-      "We are looking for a Content Writer Intern to assist in managing operations.",
+      "We are looking for a Content Writer to assist in managing operations.",
     requirements: [
       "Currently pursuing a degree in Business Administration or related field.",
     ],
     seo: {
-      title: "Content Writer Intern Jobs at Laneway",
+      title: "Content Writer Jobs at Laneway",
       description:
-        "Apply for Content Writer Intern jobs at Laneway. Remote Full-time opportunity.",
+        "Apply for Content Writer jobs at Laneway. Remote Full-time opportunity.",
     },
   },
 
   {
-    slug: "content-designer-intern",
-    title: "Content Designer Intern",
+    slug: "content-designer",
+    title: "Content Designer",
     department: "Marketing",
     location: "Remote",
     type: "Full-time",
     description:
-      "We are looking for a Content Designer Intern to assist in managing operations.",
+      "We are looking for a Content Designer to assist in managing operations.",
     requirements: [
       "Currently pursuing a degree in Business Administration or related field.",
     ],
     seo: {
-      title: "Content Designer Intern Jobs at Laneway",
+      title: "Content Designer Jobs at Laneway",
       description:
-        "Apply for Content Designer Intern jobs at Laneway. Remote Full-time opportunity.",
+        "Apply for Content Designer jobs at Laneway. Remote Full-time opportunity.",
     },
   },
 
   {
-    slug: "commune-lead-intern",
-    title: "Commune Lead Intern",
+    slug: "commune-lead",
+    title: "Commune Lead",
     department: "Operations",
     location: "Remote",
     type: "Full-time",
     description:
-      "We are looking for a Commune Lead Intern to assist in managing operations.",
+      "We are looking for a Commune Lead to assist in managing operations.",
     requirements: [
       "Currently pursuing a degree in Business Administration or related field.",
     ],
     seo: {
-      title: "Commune Lead Intern Jobs at Laneway",
+      title: "Commune Lead Jobs at Laneway",
       description:
-        "Apply for Commune Lead Intern jobs at Laneway. Remote Full-time opportunity.",
+        "Apply for Commune Lead jobs at Laneway. Remote Full-time opportunity.",
     },
   },
     
   {
-    slug: "video-editors-intern",
-    title: "Video Editors Intern",
+    slug: "video-editors",
+    title: "Video Editors",
     department: "Operations",
     location: "Remote",
     type: "Full-time",
     description:
-      "We are looking for a Video Editors Intern to assist in managing operations.",
+      "We are looking for a Video Editors to assist in managing operations.",
     requirements: [
       "Currently pursuing a degree in Business Administration or related field.",
     ],
     seo: {
-      title: "Video Editors Intern Jobs at Laneway",
+      title: "Video Editors Jobs at Laneway",
       description:
-        "Apply for Video Editors Intern jobs at Laneway. Remote Full-time opportunity.",
+        "Apply for Video Editors jobs at Laneway. Remote Full-time opportunity.",
     },
   },
 
@@ -470,14 +470,14 @@ export const jobs: Job[] = [
     location: "Remote",
     type: "Full-time",
     description:
-      "We are looking for a Photographer Intern to assist in managing operations.",
+      "We are looking for a Photographer to assist in managing operations.",
     requirements: [
       "Currently pursuing a degree in Business Administration or related field.",
     ],
     seo: {
-      title: "Photographer Intern Jobs at Laneway",
+      title: "Photographer Jobs at Laneway",
       description:
-        "Apply for Photographer Intern jobs at Laneway. Remote Full-time opportunity.",
+        "Apply for Photographer jobs at Laneway. Remote Full-time opportunity.",
     },
   },
 ]
