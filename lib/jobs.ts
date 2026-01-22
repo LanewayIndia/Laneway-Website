@@ -18,7 +18,7 @@ export const jobs: Job[] = [
     title: "Operation Intern",
     department: "Operations",
     location: "Remote",
-    type: "Internship",
+    type: "Full-time",
     description:
       "We are looking for a Operation Intern to assist in managing operations.",
     requirements: [
@@ -27,7 +27,7 @@ export const jobs: Job[] = [
     seo: {
       title: "Operation Intern Jobs at Laneway",
       description:
-        "Apply for Operation Intern jobs at Laneway. Remote Internship opportunity.",
+        "Apply for Operation Intern jobs at Laneway. Remote Full-time opportunity.",
     },
   },
 
@@ -36,7 +36,7 @@ export const jobs: Job[] = [
     title: "Project management Intern",
     department: "Operations",
     location: "Remote",
-    type: "Internship",
+    type: "Full-time",
     description:
       "We are looking for a Project management Intern to assist in managing operations.",
     requirements: [
@@ -45,7 +45,7 @@ export const jobs: Job[] = [
     seo: {
       title: "Project management Intern Jobs at Laneway",
       description:
-        "Apply for Project management Intern jobs at Laneway. Remote Internship opportunity.",
+        "Apply for Project management Intern jobs at Laneway. Remote Full-time opportunity.",
     },
   },
 
@@ -54,7 +54,7 @@ export const jobs: Job[] = [
     title: "HR Intern",
     department: "Human Resources",
     location: "Remote",
-    type: "Internship",
+    type: "Full-time",
     description:
       "We are looking for a HR Intern to assist in managing operations.",
     requirements: [
@@ -63,7 +63,7 @@ export const jobs: Job[] = [
     seo: {
       title: "HR Intern Jobs at Laneway",
       description:
-        "Apply for HR Intern jobs at Laneway. Remote Internship opportunity.",
+        "Apply for HR Intern jobs at Laneway. Remote Full-time opportunity.",
     },
   },
 
@@ -72,7 +72,7 @@ export const jobs: Job[] = [
     title: "Finance & Accounting Intern",
     department: "Finance & Accounting",
     location: "Remote",
-    type: "Internship",
+    type: "Full-time",
     description:
       "We are looking for a Finance & Accounting Intern to assist in managing operations.",
     requirements: [
@@ -81,7 +81,7 @@ export const jobs: Job[] = [
     seo: {
       title: "Finance & Accounting Intern Jobs at Laneway",
       description:
-        "Apply for Finance & Accounting Intern jobs at Laneway. Remote Internship opportunity.",
+        "Apply for Finance & Accounting Intern jobs at Laneway. Remote Full-time opportunity.",
     },
   },
 
@@ -90,7 +90,7 @@ export const jobs: Job[] = [
     title: "Founders' Office Intern",
     department: "Founders' Office",
     location: "Remote",
-    type: "Internship",
+    type: "Full-time",
     description:
       "We are looking for a Founders' Office Intern to assist in managing operations.",
     requirements: [
@@ -99,7 +99,7 @@ export const jobs: Job[] = [
     seo: {
       title: "Founders' Office Intern Jobs at Laneway",
       description:
-        "Apply for Founders' Office Intern jobs at Laneway. Remote Internship opportunity.",
+        "Apply for Founders' Office Intern jobs at Laneway. Remote Full-time opportunity.",
     },
   },
 
@@ -108,7 +108,7 @@ export const jobs: Job[] = [
     title: "Business Analyst Intern",
     department: "Business Analysis",
     location: "Remote",
-    type: "Internship",
+    type: "Full-time",
     description:
       "We are looking for a Business Analyst Intern to assist in managing operations.",
     requirements: [
@@ -117,7 +117,7 @@ export const jobs: Job[] = [
     seo: {
       title: "Business Analyst Intern Jobs at Laneway",
       description:
-        "Apply for Business Analyst Intern jobs at Laneway. Remote Internship opportunity.",
+        "Apply for Business Analyst Intern jobs at Laneway. Remote Full-time opportunity.",
     },
   },
 
@@ -126,7 +126,7 @@ export const jobs: Job[] = [
     title: "Business Development Intern",
     department: "Business Development",
     location: "Remote",
-    type: "Internship",
+    type: "Full-time",
     description:
       "We are looking for a Business Development Intern to assist in managing operations.",
     requirements: [
@@ -135,7 +135,7 @@ export const jobs: Job[] = [
     seo: {
       title: "Business Development Intern Jobs at Laneway",
       description:
-        "Apply for Business Development Intern jobs at Laneway. Remote Internship opportunity.",
+        "Apply for Business Development Intern jobs at Laneway. Remote Full-time opportunity.",
     },
   },
 
@@ -144,7 +144,7 @@ export const jobs: Job[] = [
     title: "Market Research Analyst Intern",
     department: "Market Research",
     location: "Remote",
-    type: "Internship",
+    type: "Full-time",
     description:
       "We are looking for a Market Research Analyst Intern to assist in managing operations.",
     requirements: [
@@ -153,7 +153,7 @@ export const jobs: Job[] = [
     seo: {
       title: "Market Research Analyst Intern Jobs at Laneway",
       description:
-        "Apply for Market Research Analyst Intern jobs at Laneway. Remote Internship opportunity.",
+        "Apply for Market Research Analyst Intern jobs at Laneway. Remote Full-time opportunity.",
     },
   },
 
@@ -162,7 +162,7 @@ export const jobs: Job[] = [
     title: "Data Analyst Intern",
     department: "Data Analytics",
     location: "Remote",
-    type: "Internship",
+    type: "Full-time",
     description:
       "We are looking for a Data Analyst Intern to assist in managing operations.",
     requirements: [
@@ -171,7 +171,7 @@ export const jobs: Job[] = [
     seo: {
       title: "Data Analyst Intern Jobs at Laneway",
       description:
-        "Apply for Data Analyst Intern jobs at Laneway. Remote Internship opportunity.",
+        "Apply for Data Analyst Intern jobs at Laneway. Remote Full-time opportunity.",
     },
   },
 
@@ -180,7 +180,7 @@ export const jobs: Job[] = [
     title: "AI Research & Development Intern",
     department: "AI Research & Development",
     location: "Remote",
-    type: "Internship",
+    type: "Full-time",
     description:
       "We are looking for a AI Research & Development Intern to assist in managing operations.",
     requirements: [
@@ -189,7 +189,7 @@ export const jobs: Job[] = [
     seo: {
       title: "AI Research & Development Intern Jobs at Laneway",
       description:
-        "Apply for AI Research & Development Intern jobs at Laneway. Remote Internship opportunity.",
+        "Apply for AI Research & Development Intern jobs at Laneway. Remote Full-time opportunity.",
     },
   },
 
@@ -198,7 +198,7 @@ export const jobs: Job[] = [
     title: "Web Development Intern",
     department: "Web Development",
     location: "Remote",
-    type: "Internship",
+    type: "Full-time",
     description:
       "We are looking for a Web Development Intern to assist in managing operations.",
     requirements: [
@@ -207,7 +207,7 @@ export const jobs: Job[] = [
     seo: {
       title: "Web Development Intern Jobs at Laneway",
       description:
-        "Apply for Web Development Intern jobs at Laneway. Remote Internship opportunity.",
+        "Apply for Web Development Intern jobs at Laneway. Remote Full-time opportunity.",
     },
   },
 
@@ -216,7 +216,7 @@ export const jobs: Job[] = [
     title: "Full Stack Developer Intern",
     department: "Web Development",
     location: "Remote",
-    type: "Internship",
+    type: "Full-time",
     description:
       "We are looking for a Full Stack Developer Intern to assist in managing operations.",
     requirements: [
@@ -225,7 +225,7 @@ export const jobs: Job[] = [
     seo: {
       title: "Full Stack Developer Intern Jobs at Laneway",
       description:
-        "Apply for Full Stack Developer Intern jobs at Laneway. Remote Internship opportunity.",
+        "Apply for Full Stack Developer Intern jobs at Laneway. Remote Full-time opportunity.",
     },
   },
 
@@ -234,7 +234,7 @@ export const jobs: Job[] = [
     title: "UI/UX Designer Intern",
     department: "Design",
     location: "Remote",
-    type: "Internship",
+    type: "Full-time",
     description:
       "We are looking for a UI/UX Designer Intern to assist in managing operations.",
     requirements: [
@@ -243,7 +243,7 @@ export const jobs: Job[] = [
     seo: {
       title: "UI/UX Designer Intern Jobs at Laneway",
       description:
-        "Apply for UI/UX Designer Intern jobs at Laneway. Remote Internship opportunity.",
+        "Apply for UI/UX Designer Intern jobs at Laneway. Remote Full-time opportunity.",
     },
   },
 
@@ -252,7 +252,7 @@ export const jobs: Job[] = [
     title: "Graphics Designer Intern",
     department: "Design",
     location: "Remote",
-    type: "Internship",
+    type: "Full-time",
     description:
       "We are looking for a Graphics Designer Intern to assist in managing operations.",
     requirements: [
@@ -261,7 +261,7 @@ export const jobs: Job[] = [
     seo: {
       title: "Graphics Designer Intern Jobs at Laneway",
       description:
-        "Apply for Graphics Designer Intern jobs at Laneway. Remote Internship opportunity.",
+        "Apply for Graphics Designer Intern jobs at Laneway. Remote Full-time opportunity.",
     },
   },
 
@@ -270,7 +270,7 @@ export const jobs: Job[] = [
     title: "Brand Strategist Intern",
     department: "Marketing",
     location: "Remote",
-    type: "Internship",
+    type: "Full-time",
     description:
       "We are looking for a Brand Strategist Intern to assist in managing operations.",
     requirements: [
@@ -279,7 +279,7 @@ export const jobs: Job[] = [
     seo: {
       title: "Brand Strategist Intern Jobs at Laneway",
       description:
-        "Apply for Brand Strategist Intern jobs at Laneway. Remote Internship opportunity.",
+        "Apply for Brand Strategist Intern jobs at Laneway. Remote Full-time opportunity.",
     },
   },
 
@@ -288,7 +288,7 @@ export const jobs: Job[] = [
     title: "Social Media Manager Intern",
     department: "Marketing",
     location: "Remote",
-    type: "Internship",
+    type: "Full-time",
     description:
       "We are looking for a Social Media Manager Intern to assist in managing operations.",
     requirements: [
@@ -297,7 +297,7 @@ export const jobs: Job[] = [
     seo: {
       title: "Social Media Manager Intern Jobs at Laneway",
       description:
-        "Apply for Social Media Manager Intern jobs at Laneway. Remote Internship opportunity.",
+        "Apply for Social Media Manager Intern jobs at Laneway. Remote Full-time opportunity.",
     },
   },
 
@@ -306,7 +306,7 @@ export const jobs: Job[] = [
     title: "Social Media Marketing Intern",
     department: "Marketing",
     location: "Remote",
-    type: "Internship",
+    type: "Full-time",
     description:
       "We are looking for a Social Media Marketing Intern to assist in managing operations.",
     requirements: [
@@ -315,7 +315,7 @@ export const jobs: Job[] = [
     seo: {
       title: "Social Media Marketing Intern Jobs at Laneway",
       description:
-        "Apply for Social Media Marketing Intern jobs at Laneway. Remote Internship opportunity.",
+        "Apply for Social Media Marketing Intern jobs at Laneway. Remote Full-time opportunity.",
     },
   },
 
@@ -324,7 +324,7 @@ export const jobs: Job[] = [
     title: "Content Strategist Intern",
     department: "Marketing",
     location: "Remote",
-    type: "Internship",
+    type: "Full-time",
     description:
       "We are looking for a Content Strategist Intern to assist in managing operations.",
     requirements: [
@@ -333,7 +333,7 @@ export const jobs: Job[] = [
     seo: {
       title: "Content Strategist Intern Jobs at Laneway",
       description:
-        "Apply for Content Strategist Intern jobs at Laneway. Remote Internship opportunity.",
+        "Apply for Content Strategist Intern jobs at Laneway. Remote Full-time opportunity.",
     },
   },
 
@@ -342,7 +342,7 @@ export const jobs: Job[] = [
     title: "Digital Marketing Intern",
     department: "Marketing",
     location: "Remote",
-    type: "Internship",
+    type: "Full-time",
     description:
       "We are looking for a Digital Marketing Intern to assist in managing operations.",
     requirements: [
@@ -351,7 +351,7 @@ export const jobs: Job[] = [
     seo: {
       title: "Digital Marketing Intern Jobs at Laneway",
       description:
-        "Apply for Digital Marketing Intern jobs at Laneway. Remote Internship opportunity.",
+        "Apply for Digital Marketing Intern jobs at Laneway. Remote Full-time opportunity.",
     },
   },
 
@@ -360,7 +360,7 @@ export const jobs: Job[] = [
     title: "Performance Marketing Intern",
     department: "Marketing",
     location: "Remote",
-    type: "Internship",
+    type: "Full-time",
     description:
       "We are looking for a Performance Marketing Intern to assist in managing operations.",
     requirements: [
@@ -369,7 +369,7 @@ export const jobs: Job[] = [
     seo: {
       title: "Performance Marketing Intern Jobs at Laneway",
       description:
-        "Apply for Performance Marketing Intern jobs at Laneway. Remote Internship opportunity.",
+        "Apply for Performance Marketing Intern jobs at Laneway. Remote Full-time opportunity.",
     },
   },
 
@@ -378,7 +378,7 @@ export const jobs: Job[] = [
     title: "Content Creator Intern",
     department: "Marketing",
     location: "Remote",
-    type: "Internship",
+    type: "Full-time",
     description:
       "We are looking for a Content Creator Intern to assist in managing operations.",
     requirements: [
@@ -387,7 +387,7 @@ export const jobs: Job[] = [
     seo: {
       title: "Content Creator Intern Jobs at Laneway",
       description:
-        "Apply for Content Creator Intern jobs at Laneway. Remote Internship opportunity.",
+        "Apply for Content Creator Intern jobs at Laneway. Remote Full-time opportunity.",
     },
   },
 
@@ -396,7 +396,7 @@ export const jobs: Job[] = [
     title: "Content Writer Intern",
     department: "Marketing",
     location: "Remote",
-    type: "Internship",
+    type: "Full-time",
     description:
       "We are looking for a Content Writer Intern to assist in managing operations.",
     requirements: [
@@ -405,7 +405,7 @@ export const jobs: Job[] = [
     seo: {
       title: "Content Writer Intern Jobs at Laneway",
       description:
-        "Apply for Content Writer Intern jobs at Laneway. Remote Internship opportunity.",
+        "Apply for Content Writer Intern jobs at Laneway. Remote Full-time opportunity.",
     },
   },
 
@@ -414,7 +414,7 @@ export const jobs: Job[] = [
     title: "Content Designer Intern",
     department: "Marketing",
     location: "Remote",
-    type: "Internship",
+    type: "Full-time",
     description:
       "We are looking for a Content Designer Intern to assist in managing operations.",
     requirements: [
@@ -423,7 +423,7 @@ export const jobs: Job[] = [
     seo: {
       title: "Content Designer Intern Jobs at Laneway",
       description:
-        "Apply for Content Designer Intern jobs at Laneway. Remote Internship opportunity.",
+        "Apply for Content Designer Intern jobs at Laneway. Remote Full-time opportunity.",
     },
   },
 
@@ -432,7 +432,7 @@ export const jobs: Job[] = [
     title: "Commune Lead Intern",
     department: "Operations",
     location: "Remote",
-    type: "Internship",
+    type: "Full-time",
     description:
       "We are looking for a Commune Lead Intern to assist in managing operations.",
     requirements: [
@@ -441,7 +441,7 @@ export const jobs: Job[] = [
     seo: {
       title: "Commune Lead Intern Jobs at Laneway",
       description:
-        "Apply for Commune Lead Intern jobs at Laneway. Remote Internship opportunity.",
+        "Apply for Commune Lead Intern jobs at Laneway. Remote Full-time opportunity.",
     },
   },
     
@@ -450,7 +450,7 @@ export const jobs: Job[] = [
     title: "Video Editors Intern",
     department: "Operations",
     location: "Remote",
-    type: "Internship",
+    type: "Full-time",
     description:
       "We are looking for a Video Editors Intern to assist in managing operations.",
     requirements: [
@@ -459,7 +459,7 @@ export const jobs: Job[] = [
     seo: {
       title: "Video Editors Intern Jobs at Laneway",
       description:
-        "Apply for Video Editors Intern jobs at Laneway. Remote Internship opportunity.",
+        "Apply for Video Editors Intern jobs at Laneway. Remote Full-time opportunity.",
     },
   },
 
@@ -468,7 +468,7 @@ export const jobs: Job[] = [
     title: "Photographer",
     department: "Operations",
     location: "Remote",
-    type: "Internship",
+    type: "Full-time",
     description:
       "We are looking for a Photographer Intern to assist in managing operations.",
     requirements: [
@@ -477,7 +477,7 @@ export const jobs: Job[] = [
     seo: {
       title: "Photographer Intern Jobs at Laneway",
       description:
-        "Apply for Photographer Intern jobs at Laneway. Remote Internship opportunity.",
+        "Apply for Photographer Intern jobs at Laneway. Remote Full-time opportunity.",
     },
   },
 ]
