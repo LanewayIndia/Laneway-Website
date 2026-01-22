@@ -36,7 +36,7 @@ export function Header() {
         }`}
     >
       <div className="mx-auto max-w-7xl px-6 sm:px-8 lg:px-12">
-        <div className="flex h-24 items-center justify-between">
+        <div className="flex h-20 sm:h-24 items-center justify-between">
           <Link href="/" className="group flex items-center gap-2">
             <motion.span
               className="font-heading text-2xl font-bold tracking-tight text-snow"

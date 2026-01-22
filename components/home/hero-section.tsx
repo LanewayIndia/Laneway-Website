@@ -28,7 +28,7 @@ export function HeroSection() {
 
       <div className="absolute inset-0 bg-[linear-gradient(rgba(201,168,85,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(201,168,85,0.02)_1px,transparent_1px)] bg-[size:40px_40px] sm:bg-[size:60px_60px] lg:bg-[size:80px_80px]" />
 
-      <div className="relative z-10 mx-auto max-w-6xl px-4 sm:px-6 md:px-8 lg:px-12 py-16 sm:py-20 md:py-28 lg:py-32">
+      <div className="relative z-10 container py-16 sm:py-20 md:py-28 lg:py-32">
         <div className="text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
