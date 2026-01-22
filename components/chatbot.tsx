@@ -50,8 +50,10 @@ function getBotResponse(message: string): string {
   return botResponses.default
 }
 
-export function Chatbot() {
-  const [isOpen, setIsOpen] = useState(false)
+export function Chatbot({ isOpen: isOpenProp, onOpenChange }: { isOpen?: boolean; onOpenChange?: (open: boolean) => void } = {}) {
+  const [internalIsOpen, setInternalIsOpen] = useState(false)
+  const isOpen = isOpenProp !== undefined ? isOpenProp : internalIsOpen
+  const setIsOpen = onOpenChange || setInternalIsOpen
   const [messages, setMessages] = useState<Message[]>([
     {
       id: 1,
