@@ -39,7 +39,7 @@ export function Footer() {
               <span className="font-heading text-2xl font-bold text-snow">Laneway</span>
             </Link>
             <p className="text-pumice text-sm leading-relaxed mb-6">
-              Laneway is a next-gen business consulting firm committed to help drive business growth through consulting, technology and media services.
+              Laneway is a next-gen AI-Powered business consulting firm committed to help drive business growth through consulting, technology and media services.
             </p>
             <Link
               href="/contact"

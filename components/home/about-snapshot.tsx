@@ -50,7 +50,7 @@ export function AboutSnapshot() {
             transition={{ duration: 0.7, delay: 0.3 }}
             className="text-base sm:text-xl text-pumice max-w-(--container-width) mx-auto leading-relaxed font-light"
           >
-           Laneway is a next-generation consulting firm that drives business growth through strategy, technology, and media solutions. Founded and led by modern innovators, we partner with businesses to solve today's challenges and build lasting, sustainable value.
+           Laneway is a next-generation AI-Powered consulting firm that drives business growth through strategy, technology, and media solutions. Founded and led by modern innovators, we partner with businesses to solve today's challenges and build lasting, sustainable value.
           </motion.p>
         </div>
       </motion.div>
