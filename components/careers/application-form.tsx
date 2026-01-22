@@ -26,7 +26,7 @@ export function ApplicationForm({
         setLoading(true)
 
         const formData = new FormData(e.currentTarget)
-        formData.append("jobTitle", jobTitle.title)
+        formData.append("position", jobTitle.title)
 
         // Send form (with files) to server API; server will handle uploads via multer + Cloudinary
         const result = await fetch("/api/submit-application", {
@@ -68,12 +68,12 @@ export function ApplicationForm({
                             Apply for {jobTitle.title}
                         </h2>
 
-                        <Input name="name" placeholder="Full Name" required />
+                        <Input name="fullName" placeholder="Full Name" required />
                         <Input name="email" type="email" placeholder="Email" required />
                         <Input name="portfolio" placeholder="Portfolio URL" />
 
                         <Textarea
-                            name="coverLetter"
+                            name="coverLetterText"
                             placeholder="Why should we hire you?"
                         />
 

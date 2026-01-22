@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server"
 import { v2 as cloudinary } from "cloudinary"
 import { Readable } from "stream"
+import nodemailer from "nodemailer"
 
 // Configure Cloudinary
 cloudinary.config({
@@ -11,9 +12,11 @@ cloudinary.config({
 
 // Helper to upload to Cloudinary
 async function uploadToCloudinary(buffer: Buffer, filename: string): Promise<string> {
+  // Sanitize filename for Cloudinary public_id
+  const sanitizedFilename = filename.replace(/[^a-zA-Z0-9._-]/g, '_')
   return new Promise((resolve, reject) => {
     const stream = cloudinary.uploader.upload_stream(
-      { resource_type: "raw", public_id: filename },
+      { resource_type: "raw", public_id: sanitizedFilename },
       (error, result) => {
         if (error) reject(error)
         else resolve(result!.secure_url)
@@ -79,6 +82,33 @@ export async function POST(request: NextRequest) {
 
     // Here, you can integrate with an email service (e.g., SendGrid) or database to store/process the data
     // For example: sendEmail({ fullName, email, position, portfolio, coverLetterText, resumeUrl, coverLetterUrl })
+
+    // Send email notification
+    const transporter = nodemailer.createTransport({
+      host: process.env.SMTP_HOST,
+      port: parseInt(process.env.SMTP_PORT || '587'),
+      secure: false, // true for 465, false for other ports
+      auth: {
+        user: process.env.SMTP_USER,
+        pass: process.env.SMTP_PASS,
+      },
+    })
+
+    await transporter.sendMail({
+      from: process.env.SMTP_USER,
+      to: "pratyushsaha29@gmail.com",
+      subject: `New Application - ${position}`,
+      html: `
+        <p><b>Name:</b> ${fullName}</p>
+        <p><b>Email:</b> ${email}</p>
+        <p><b>Position:</b> ${position}</p>
+        <p><b>Portfolio:</b> ${portfolio || 'Not provided'}</p>
+        <p><b>Cover Letter:</b></p>
+        <p>${coverLetterText || 'Not provided'}</p>
+        ${resumeUrl ? `<p><b>Resume:</b> <a href="${resumeUrl}">Download</a></p>` : ''}
+        ${coverLetterUrl ? `<p><b>Cover Letter File:</b> <a href="${coverLetterUrl}">Download</a></p>` : ''}
+      `,
+    })
 
     return NextResponse.json({ message: "Application submitted successfully" }, { status: 200 })
   } catch (error) {
