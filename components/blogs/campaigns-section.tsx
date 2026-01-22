@@ -6,25 +6,25 @@ import { Calendar, ArrowUpRight } from "lucide-react"
 
 const campaigns = [
   {
-    title: "AI Transformation Initiative 2025",
+    title: "AI Transformation Initiative 2026",
     description: "A comprehensive campaign helping 50+ businesses integrate AI into their operations.",
-    date: "Q4 2025",
+    date: "Coming Soon",
     results: "40% average efficiency increase",
-    href: "/blogs/ai-transformation-2025",
+    href: "/campaigns/ai-transformation-initiative",
   },
   {
     title: "Startup Growth Accelerator",
     description: "Supporting early-stage startups with funding, mentorship, and strategic resources.",
     date: "Ongoing",
-    results: "15 startups funded",
-    href: "/blogs/startup-accelerator",
+    results: "3 startups funded",
+    href: "/campaigns/startup-accelerator",
   },
   {
     title: "Digital Marketing Excellence",
     description: "Multi-channel marketing campaigns leveraging AI-powered targeting and optimization.",
-    date: "Q3 2025",
+    date: "Coming Soon",
     results: "300% ROI average",
-    href: "/blogs/marketing-excellence",
+    href: "/campaigns/digital-marketing-excellence",
   },
 ]
 

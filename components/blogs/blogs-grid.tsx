@@ -4,6 +4,8 @@ import { useState } from "react"
 import { motion } from "framer-motion"
 import Link from "next/link"
 import { Calendar, Clock, Play, FileText } from "lucide-react"
+import Image from "next/image"
+
 
 const categories = ["All", "AI & Technology", "Marketing", "Startup", "Research", "Video"]
 
@@ -16,15 +18,16 @@ const blogs = [
     date: "Jan 10, 2026",
     readTime: "5 min read",
     href: "/blogs/ai-business-operations",
+    image: "/FABO.png",
   },
   {
     type: "video",
     title: "Building Your First AI-Powered Application",
     excerpt: "A step-by-step video guide to creating intelligent applications with modern AI frameworks.",
     category: "AI & Technology",
-    date: "Jan 8, 2026",
-    readTime: "12 min watch",
-    href: "/blogs/ai-app-tutorial",
+    date: "Coming Soon",
+    href: "/blogs/ai-powered-application",
+    image: "/BFAPA.png",
   },
   {
     type: "written",
@@ -34,6 +37,7 @@ const blogs = [
     date: "Jan 5, 2026",
     readTime: "6 min read",
     href: "/blogs/marketing-trends-2026",
+    image: "/DMT.png",
   },
   {
     type: "written",
@@ -43,15 +47,16 @@ const blogs = [
     date: "Jan 3, 2026",
     readTime: "8 min read",
     href: "/blogs/scalable-mvps",
+    image: "/BSM.png",
   },
   {
     type: "video",
     title: "Startup Funding Masterclass",
     excerpt: "Insights from our investment team on what makes a startup fundable and how to pitch successfully.",
     category: "Startup",
-    date: "Dec 28, 2025",
-    readTime: "25 min watch",
-    href: "/blogs/funding-masterclass",
+    date: "Coming Soon",
+    href: "/blogs/startup-funding-masterclass",
+    image: "/SFM.png",
   },
   {
     type: "written",
@@ -60,7 +65,8 @@ const blogs = [
     category: "Research",
     date: "Dec 20, 2025",
     readTime: "10 min read",
-    href: "/blogs/ai-adoption-research",
+    href: "/blogs/ai-adoption-smbs",
+    image: "/AAIS.png",
   },
 ]
 
@@ -91,11 +97,10 @@ export function BlogsGrid() {
               <button
                 key={category}
                 onClick={() => setActiveCategory(category)}
-                className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 ${
-                  activeCategory === category
+                className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 ${activeCategory === category
                     ? "bg-gold text-background"
                     : "bg-background border border-border text-pumice hover:border-gold/50 hover:text-snow"
-                }`}
+                  }`}
               >
                 {category}
               </button>
@@ -115,28 +120,40 @@ export function BlogsGrid() {
             >
               <Link href={blog.href} className="group block h-full">
                 <div className="bg-background border border-border rounded-2xl overflow-hidden h-full transition-all duration-300 hover:border-gold/50 hover:shadow-lg hover:shadow-gold/5">
-                  <div className="aspect-video bg-muted relative overflow-hidden">
-                    <div className="absolute inset-0 bg-linear-to-br from-gold/20 to-gold-light/20" />
-                    <div className="absolute top-4 left-4 flex items-center gap-2">
+                  <div className="aspect-video relative overflow-hidden">
+                    <Image
+                      src={blog.image}
+                      alt={blog.title}
+                      fill
+                      className="object-cover transition-transform duration-300 group-hover:scale-105"
+                    />
+
+                    {/* Overlay gradient */}
+                    <div className="absolute inset-0 bg-linear-to-br from-black/40 via-black/10 to-black/40" />
+
+                    {/* Category + Video Badge */}
+                    <div className="absolute top-4 left-4 flex items-center gap-2 z-10">
                       <span className="px-3 py-1 bg-gold/90 text-background text-xs font-medium rounded-full">
                         {blog.category}
                       </span>
+
                       {blog.type === "video" && (
                         <span className="p-1.5 bg-background/90 rounded-full">
                           <Play size={12} className="text-gold" fill="currentColor" />
                         </span>
                       )}
                     </div>
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      {blog.type === "video" ? (
+
+                    {/* Video Play Button Overlay */}
+                    {blog.type === "video" && (
+                      <div className="absolute inset-0 flex items-center justify-center z-10">
                         <div className="w-16 h-16 bg-gold/90 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
                           <Play size={28} className="text-background ml-1" fill="currentColor" />
                         </div>
-                      ) : (
-                        <FileText size={48} className="text-gold/30" />
-                      )}
-                    </div>
+                      </div>
+                    )}
                   </div>
+
                   <div className="p-6">
                     <h3 className="font-heading text-lg font-semibold text-snow mb-3 group-hover:text-gold transition-colors line-clamp-2">
                       {blog.title}
@@ -148,7 +165,7 @@ export function BlogsGrid() {
                         {blog.date}
                       </span>
                       <span className="flex items-center gap-1">
-                        <Clock size={14} />
+                        {/* <Clock size={14} /> */}
                         {blog.readTime}
                       </span>
                     </div>

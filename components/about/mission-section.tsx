@@ -7,7 +7,7 @@ export function MissionSection() {
   return (
     <section className="py-32 relative">
       <div className="absolute inset-0">
-        <div className="absolute top-1/2 right-0 w-[400px] h-[400px] bg-gold/3 rounded-full blur-[120px]" />
+        <div className="absolute top-1/2 right-0 w-100 h-100 bg-gold/3 rounded-full blur-[120px]" />
       </div>
 
       <div className="relative z-10 mx-auto max-w-7xl px-6 sm:px-8 lg:px-12">
@@ -30,9 +30,9 @@ export function MissionSection() {
             </h2>
 
             <p className="text-pumice text-lg leading-relaxed font-light">
-              Our mission is to empower businesses of all sizes to harness the transformative power of technology. We
-              believe that every organization deserves access to world-class digital solutions that drive growth,
-              efficiency, and competitive advantage.
+              At Laneway, we help businesses evolve through intelligence, creativity, and innovation. We are a consulting and technology solutions company that transforms ideas into measurable growth.
+
+              Our mission is simple: to bridge the gap between traditional business models and modern, AI-driven innovation.
             </p>
           </motion.div>
 
@@ -43,8 +43,8 @@ export function MissionSection() {
             transition={{ duration: 0.7, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
           >
             <div className="relative aspect-square glass-card rounded-2xl overflow-hidden">
-              <div className="absolute inset-0 bg-gradient-to-br from-gold/5 via-transparent to-gold-light/5" />
-              <div className="absolute inset-0 bg-[linear-gradient(rgba(201,168,85,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(201,168,85,0.02)_1px,transparent_1px)] bg-[size:40px_40px]" />
+              <div className="absolute inset-0 bg-linear-to-br from-gold/5 via-transparent to-gold-light/5" />
+              <div className="absolute inset-0 bg-[linear-gradient(rgba(201,168,85,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(201,168,85,0.02)_1px,transparent_1px)] bg-size-[40px_40px]" />
               <div className="absolute inset-0 flex items-center justify-center">
                 <Target size={140} className="text-gold/10" strokeWidth={0.5} />
               </div>
