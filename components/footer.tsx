@@ -23,7 +23,7 @@ const services = [
 export function Footer() {
   return (
     <footer className="relative border-t border-glass-border">
-      <div className="absolute inset-0 bg-gradient-to-b from-gold/[0.02] to-transparent pointer-events-none" />
+      <div className="absolute inset-0 bg-linear-to-b from-gold/2 to-transparent pointer-events-none" />
 
       <div className="relative z-10 mx-auto max-w-7xl px-6 sm:px-8 lg:px-12 py-20">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">
