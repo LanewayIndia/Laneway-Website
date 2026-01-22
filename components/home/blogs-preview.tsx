@@ -3,6 +3,8 @@
 import Link from "next/link"
 import { motion } from "framer-motion"
 import { ArrowUpRight, Calendar, Clock } from "lucide-react"
+import Image from "next/image"
+
 
 const blogs = [
   {
@@ -12,6 +14,7 @@ const blogs = [
     date: "Jan 10, 2026",
     readTime: "5 min read",
     href: "/blogs/ai-business-operations",
+    image: "/FABO.png",
   },
   {
     title: "Building Scalable MVPs: A Complete Guide",
@@ -20,6 +23,7 @@ const blogs = [
     date: "Jan 8, 2026",
     readTime: "8 min read",
     href: "/blogs/scalable-mvps",
+    image: "/BSM.png",
   },
   {
     title: "Digital Marketing Trends for 2026",
@@ -28,6 +32,7 @@ const blogs = [
     date: "Jan 5, 2026",
     readTime: "6 min read",
     href: "/blogs/marketing-trends-2026",
+    image: "/DMT.png",
   },
 ]
 
@@ -35,7 +40,7 @@ export function BlogsPreview() {
   return (
     <section className="py-32 relative">
       <div className="absolute inset-0">
-        <div className="absolute top-1/2 left-1/4 w-[500px] h-[300px] bg-gold/3 rounded-full blur-[120px]" />
+        <div className="absolute top-1/2 left-1/4 w-125 h-75 bg-gold/3 rounded-full blur-[120px]" />
       </div>
 
       <div className="relative z-10 mx-auto max-w-7xl px-6 sm:px-8 lg:px-12">
@@ -73,19 +78,37 @@ export function BlogsPreview() {
             >
               <Link href={blog.href} className="group block h-full">
                 <div className="glass-card rounded-2xl overflow-hidden h-full transition-all duration-500 hover:border-gold/20">
-                  <div className="aspect-[16/10] bg-muted relative overflow-hidden">
-                    <div className="absolute inset-0 bg-gradient-to-br from-gold/10 via-transparent to-gold-light/10" />
-                    <div className="absolute inset-0 bg-[linear-gradient(rgba(201,168,85,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(201,168,85,0.03)_1px,transparent_1px)] bg-[size:40px_40px]" />
+                  <div className="aspect-16/10 relative overflow-hidden bg-black">
+
+                    <Image
+                      src={blog.image}
+                      alt={blog.title}
+                      fill
+                      sizes="(max-width: 768px) 100vw, 33vw"
+                      className="object-cover transition-transform duration-700 group-hover:scale-110"
+                      priority={index === 0}
+                    />
+
+                    {/* Soft dark overlay */}
+                    <div className="absolute inset-0 bg-black/20" />
+
+                    {/* Gold glow overlay */}
+                    <div className="absolute inset-0 bg-linear-to-br from-gold/15 via-transparent to-gold-light/15" />
+
+                    {/* Category badge */}
                     <div className="absolute top-4 left-4">
                       <span className="px-3 py-1.5 bg-snow/90 text-background text-xs font-medium rounded-full">
                         {blog.category}
                       </span>
                     </div>
+
+                    {/* Arrow icon */}
                     <ArrowUpRight
                       size={20}
                       className="absolute top-4 right-4 text-snow opacity-0 group-hover:opacity-100 transition-all duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
                     />
                   </div>
+
                   <div className="p-6">
                     <h3 className="font-heading text-xl font-medium text-snow mb-3 group-hover:text-gold transition-colors duration-300 line-clamp-2">
                       {blog.title}
