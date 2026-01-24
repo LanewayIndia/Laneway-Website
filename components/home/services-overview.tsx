@@ -83,7 +83,7 @@ export function ServicesOverview() {
   return (
     <section className="py-32 relative">
       <div className="absolute inset-0">
-        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-gold/3 rounded-full blur-[150px]" />
+        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-200 h-100 bg-gold/3 rounded-full blur-[150px]" />
       </div>
 
       <div className="relative z-10 mx-auto max-w-7xl px-6 sm:px-8 lg:px-12">
@@ -110,7 +110,7 @@ export function ServicesOverview() {
           </Link>
         </motion.div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
           {services.map((service, index) => (
             <motion.div
               key={service.title}
@@ -122,7 +122,7 @@ export function ServicesOverview() {
               <Link href={service.href} className="group block h-full">
                 <div className="relative p-6 h-full glass-card rounded-xl transition-all duration-500 hover:border-gold/20 overflow-hidden">
                   {/* Hover highlight */}
-                  <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-gold/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                  <div className="absolute inset-0 rounded-xl bg-linear-to-br from-gold/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
                   <div className="relative z-10">
                     <div className="flex items-center justify-between mb-4">

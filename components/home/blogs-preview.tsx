@@ -78,7 +78,7 @@ export function BlogsPreview() {
             >
               <Link href={blog.href} className="group block h-full">
                 <div className="glass-card rounded-2xl overflow-hidden h-full transition-all duration-500 hover:border-gold/20">
-                  <div className="aspect-16/10 relative overflow-hidden bg-black">
+                  <div className="aspect-4/3 sm:aspect-16/10 relative overflow-hidden bg-black">
 
                     <Image
                       src={blog.image}

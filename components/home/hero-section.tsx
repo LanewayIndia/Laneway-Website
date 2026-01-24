@@ -23,10 +23,10 @@ export function HeroSection() {
       <div className="absolute inset-0 noise-texture" aria-hidden="true" />
 
       <div className="absolute inset-0">
-        <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-gold/5 rounded-full blur-[120px]" />
+        <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-75 sm:w-125 lg:w-200 h-50 sm:h-75 lg:h-112.5 bg-gold/5 rounded-full blur-[120px]" />
       </div>
 
-      <div className="absolute inset-0 bg-[linear-gradient(rgba(201,168,85,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(201,168,85,0.02)_1px,transparent_1px)] bg-[size:40px_40px] sm:bg-[size:60px_60px] lg:bg-[size:80px_80px]" />
+      <div className="absolute inset-0 bg-[linear-gradient(rgba(201,168,85,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(201,168,85,0.02)_1px,transparent_1px)] bg-size-[40px_40px] sm:bg-size-[60px_60px] lg:bg-size-[80px_80px]" />
 
       <div className="relative z-10 container py-16 sm:py-20 md:py-28 lg:py-32">
         <div className="text-center">
@@ -38,7 +38,7 @@ export function HeroSection() {
           >
             <span className="text-xs sm:text-sm tracking-premium uppercase text-pumice">Digital Excellence Redefined</span>
           </motion.div>
-          <div className="relative flex items-center justify-center h-[40px] sm:h-[50px] md:h-[60px] lg:h-[75px] mx-auto mb-4 sm:mb-6 md:mb-8 w-full">
+          <div className="relative flex items-center justify-center h-9 sm:h-12 md:h-14 lg:h-18 mx-auto mb-4 sm:mb-6 md:mb-8 w-full">
             <AnimatePresence mode="wait">
               <motion.h1
                 key={words[index]}
@@ -46,7 +46,7 @@ export function HeroSection() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -40 }}
                 transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-                className="font-heading text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-snow leading-tight whitespace-nowrap"
+                className="font-heading text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-snow leading-tight whitespace-nowrap"
               >
                 {words[index]}
               </motion.h1>
@@ -65,7 +65,7 @@ export function HeroSection() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.5 }}
-            className="text-xs sm:text-sm md:text-base lg:text-lg text-pumice max-w-2xl mx-auto mb-10 sm:mb-12 md:mb-14 leading-relaxed font-light px-2"
+            className="text-sm sm:text-base md:text-lg lg:text-lg text-pumice max-w-2xl mx-auto mb-10 sm:mb-12 md:mb-14 leading-relaxed font-light px-2"
           >
             Your success is our priority - we don't just meet expectations, we exceed them. Together, let's turn your vision into reality
           </motion.p>
@@ -105,7 +105,7 @@ export function HeroSection() {
           <motion.div
             animate={{ y: [0, 6, 0] }}
             transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-            className="w-px h-8 sm:h-12 bg-gradient-to-b from-gold/50 to-transparent"
+            className="w-px h-8 sm:h-12 bg-linear-to-b from-gold/50 to-transparent"
           />
         </div>
       </motion.div>

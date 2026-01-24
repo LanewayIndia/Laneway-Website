@@ -28,7 +28,7 @@ const values = [
 
 export function WhyLaneway() {
   return (
-    <section className="py-32 relative overflow-hidden">
+    <section className="py-20 sm:py-32 relative overflow-hidden">
       <div className="absolute inset-0 bg-linear-to-b from-transparent via-gold/2 to-transparent" />
 
       <div className="relative z-10 mx-auto max-w-7xl px-6 sm:px-8 lg:px-12">
@@ -45,7 +45,7 @@ export function WhyLaneway() {
           </h2>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-6">
           {values.map((value, index) => (
             <motion.div
               key={value.title}

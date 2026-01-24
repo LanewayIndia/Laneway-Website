@@ -15,7 +15,7 @@ const principles = [
 export function PrinciplesSection() {
   return (
     <section className="py-32 relative">
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-gold/[0.02] to-transparent" />
+      <div className="absolute inset-0 bg-linear-to-b from-transparent via-gold/2 to-transparent" />
 
       <div className="relative z-10 mx-auto max-w-7xl px-6 sm:px-8 lg:px-12">
         <motion.div

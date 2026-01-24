@@ -113,7 +113,7 @@ export function Chatbot({ isOpen: isOpenProp, onOpenChange }: { isOpen?: boolean
         animate={{ scale: isOpen ? 0 : 1, opacity: isOpen ? 0 : 1 }}
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
-        className="fixed bottom-8 right-8 z-50 w-14 h-14 bg-snow hover:bg-gold text-background rounded-full shadow-lg flex items-center justify-center transition-colors duration-300"
+        className="fixed bottom-20 sm:bottom-8 right-6 sm:right-8 z-50 w-14 h-14 bg-snow hover:bg-gold text-background rounded-full shadow-lg flex items-center justify-center transition-colors duration-300"
         aria-label="Open chat"
       >
         <MessageCircle size={22} strokeWidth={1.5} />

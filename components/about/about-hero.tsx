@@ -24,7 +24,7 @@ export function AboutHero() {
             <div className="w-12 h-px bg-gold/30" />
           </div>
 
-          <h1 className="font-heading text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-medium text-snow mb-8 text-balance leading-[1.1]">
+          <h1 className="font-heading text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-medium text-snow mb-8 text-balance leading-[1.1]">
             Pioneering
             <br />
             <span className="text-gradient">Digital Excellence</span>
