@@ -1,12 +1,78 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { Mail, Phone, MapPin, Send } from "lucide-react"
+import { Mail, Phone, MapPin, Send, Loader2 } from "lucide-react"
+import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
+import { useToast } from "@/hooks/use-toast"
 
 export function ContactForm() {
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const { toast } = useToast()
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    const form = e.currentTarget
+    setIsSubmitting(true)
+
+    const formData = new FormData(form)
+    const firstName = (formData.get('firstName') as string)?.trim()
+    const lastName = (formData.get('lastName') as string)?.trim()
+    const email = (formData.get('email') as string)?.trim()
+    const subject = (formData.get('subject') as string)?.trim()
+    const message = (formData.get('message') as string)?.trim()
+
+    // Basic validation
+    if (!firstName || !lastName || !email || !message) {
+      toast({
+        title: "Validation Error",
+        description: "Please fill in all required fields.",
+        variant: "destructive",
+      })
+      setIsSubmitting(false)
+      return
+    }
+
+    const data = {
+      name: `${firstName} ${lastName}`.trim(),
+      email: email,
+      subject: subject || 'Contact Form Submission',
+      message: message,
+    }
+
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      })
+
+      const result = await response.json()
+
+      if (response.ok && result.success) {
+        toast({
+          title: "Message sent successfully!",
+          description: "We'll get back to you within 24 hours.",
+        })
+        form.reset()
+      } else {
+        throw new Error(result.error || 'Failed to send message')
+      }
+    } catch (error) {
+      console.error('Form submission error:', error)
+      toast({
+        title: "Failed to send message",
+        description: error instanceof Error ? error.message : "Please try again or contact us directly.",
+        variant: "destructive",
+      })
+    } finally {
+      setIsSubmitting(false)
+    }
+  }
   return (
     <section className="py-20">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -99,41 +165,47 @@ export function ContactForm() {
             <div className="bg-card border border-border rounded-2xl p-8">
               <h2 className="font-heading text-2xl font-semibold text-snow mb-6">Send a Message</h2>
 
-              <form className="space-y-6" onSubmit={(e) => e.preventDefault()}>
+              <form className="space-y-6" onSubmit={handleSubmit}>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
-                    <label htmlFor="firstName" className="block text-sm font-medium text-pumice mb-2">
+                    <label htmlFor="firstName" className="block text-sm font-medium text-pumice mb-2" aria-required="true">
                       First Name
                     </label>
                     <Input
                       id="firstName"
+                      name="firstName"
                       type="text"
                       placeholder="John"
                       className="bg-background border-border text-snow placeholder:text-pumice/50 focus:border-gold"
+                      aria-required="true"
                     />
                   </div>
                   <div>
-                    <label htmlFor="lastName" className="block text-sm font-medium text-pumice mb-2">
+                    <label htmlFor="lastName" className="block text-sm font-medium text-pumice mb-2" aria-required="true">
                       Last Name
                     </label>
                     <Input
                       id="lastName"
+                      name="lastName"
                       type="text"
                       placeholder="Doe"
                       className="bg-background border-border text-snow placeholder:text-pumice/50 focus:border-gold"
+                      aria-required="true"
                     />
                   </div>
                 </div>
 
                 <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-pumice mb-2">
+                  <label htmlFor="email" className="block text-sm font-medium text-pumice mb-2" aria-required="true">
                     Email
                   </label>
                   <Input
                     id="email"
+                    name="email"
                     type="email"
                     placeholder="john@example.com"
                     className="bg-background border-border text-snow placeholder:text-pumice/50 focus:border-gold"
+                    aria-required="true"
                   />
                 </div>
 
@@ -143,6 +215,7 @@ export function ContactForm() {
                   </label>
                   <Input
                     id="company"
+                    name="company"
                     type="text"
                     placeholder="Your company name"
                     className="bg-background border-border text-snow placeholder:text-pumice/50 focus:border-gold"
@@ -155,6 +228,7 @@ export function ContactForm() {
                   </label>
                   <Input
                     id="subject"
+                    name="subject"
                     type="text"
                     placeholder="How can we help?"
                     className="bg-background border-border text-snow placeholder:text-pumice/50 focus:border-gold"
@@ -167,6 +241,7 @@ export function ContactForm() {
                   </label>
                   <Textarea
                     id="message"
+                    name="message"
                     placeholder="Tell us about your project..."
                     rows={5}
                     className="bg-background border-border text-snow placeholder:text-pumice/50 focus:border-gold resize-none"
@@ -175,10 +250,20 @@ export function ContactForm() {
 
                 <Button
                   type="submit"
-                  className="w-full bg-gold hover:bg-gold-light text-background font-semibold py-6 rounded-full"
+                  disabled={isSubmitting}
+                  className="w-full bg-gold hover:bg-gold-light text-background font-semibold py-6 rounded-full disabled:opacity-50"
                 >
-                  <Send size={18} className="mr-2" />
-                  Send Message
+                  {isSubmitting ? (
+                    <>
+                      <Loader2 size={18} className="mr-2 animate-spin" />
+                      Sending...
+                    </>
+                  ) : (
+                    <>
+                      <Send size={18} className="mr-2" />
+                      Send Message
+                    </>
+                  )}
                 </Button>
               </form>
             </div>
