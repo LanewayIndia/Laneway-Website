@@ -24,10 +24,20 @@ export const metadata: Metadata = {
   title: "Laneway | Transforming Ideas into Digital Excellence",
   description:
     "We craft innovative digital solutions that empower businesses to thrive in the modern world. AI-powered technology, marketing, consulting, and software development.",
-  keywords: ["digital agency", "AI solutions", "software development", "business consulting", "startup incubator"],
+  keywords: ["digital agency", "AI solutions", "software development", "business consulting", "startup incubator", "Laneway", "digital transformation", "technology services", "AI consulting", "marketing solutions"],
   authors: [{ name: "Laneway" }],
   openGraph: {
     title: "Laneway | Transforming Ideas into Digital Excellence",
+    url: "https://laneway.in",
+    siteName: "Laneway",
+    images: [
+      {
+        url: "https://laneway.in/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Laneway Open Graph Image",
+      }
+    ],
     description: "We craft innovative digital solutions that empower businesses to thrive in the modern world.",
     type: "website",
   },
@@ -48,7 +58,7 @@ export default function RootLayout({
     <html lang="en" className={`${playfair.variable} ${inter.variable}`}>
       <body className="font-sans antialiased bg-background text-foreground">
         {children}
-        <CookieConsentBanner/>
+        <CookieConsentBanner />
         <Analytics />
       </body>
     </html>
