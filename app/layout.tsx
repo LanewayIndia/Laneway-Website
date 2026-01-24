@@ -30,14 +30,6 @@ export const metadata: Metadata = {
     title: "Laneway | Transforming Ideas into Digital Excellence",
     url: "https://laneway.in",
     siteName: "Laneway",
-    images: [
-      {
-        url: "https://laneway.in/og-image.png",
-        width: 1200,
-        height: 630,
-        alt: "Laneway Open Graph Image",
-      }
-    ],
     description: "We craft innovative digital solutions that empower businesses to thrive in the modern world.",
     type: "website",
   },
