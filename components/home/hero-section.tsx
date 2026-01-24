@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from "framer-motion"
 import { ArrowRight } from "lucide-react"
 import { useEffect, useState } from "react"
 
-const words = ["BUILD", "TRANSFORM", "SCALE",]
+const words = ["BUILD", "MODIFY", "SCALE",]
 
 export function HeroSection() {
 
@@ -19,7 +19,7 @@ export function HeroSection() {
   }, [])
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden px-4 sm:px-6 lg:px-8">
+    <section className="relative min-h-screen flex items-center justify-center  px-4 sm:px-6 lg:px-8">
       <div className="absolute inset-0 noise-texture" aria-hidden="true" />
 
       <div className="absolute inset-0">
