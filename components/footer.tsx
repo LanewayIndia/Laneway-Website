@@ -114,14 +114,14 @@ export function Footer() {
                     <p>1087 B, Sankranthi, Perumbaikkad</p>
                     <p>Kottayam - 686016, Kerala</p>
                   </div>
-                  <a
+                  {/* <a
                     href="https://www.google.com/maps/place/1087%2FB,+Sankranthi,+Kottayam,+Perumbaikad,+Kerala+686016/@9.6250908,76.5343883,17z/data=!3m1!4b1!4m10!1m2!2m1!1s1087+B,+Sankranthi,+Perumbaikkad,++Kottayam+-+686016,+Kerala!3m6!1s0x3b062b506f299b43:0x3c9adcd568e4052e!8m2!3d9.6250908!4d76.5392592!15sCjwxMDg3IEIsIFNhbmtyYW50aGksIFBlcnVtYmFpa2thZCwgIEtvdHRheWFtIC0gNjg2MDE2LCBLZXJhbGGSAQpzdWJwcmVtaXNl4AEA!16s%2Fg%2F11xz04j64r?entry=ttu&g_ep=EgoyMDI2MDExOS4wIKXMDSoKLDEwMDc5MjA3MUgBUAM%3D"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-pumice hover:text-gold transition-colors inline-block mt-1"
                   >
                     View on Google Maps →
-                  </a>
+                  </a> */}
                 </div>
               </li>
               <li className="flex items-start gap-3">
@@ -132,14 +132,14 @@ export function Footer() {
                     <p>Koramangala 8th Block</p>
                     <p>Bangalore - 560095, Karnataka</p>
                   </div>
-                  <a
+                  {/* <a
                     href="https://www.google.com/maps/place/Koramangala+8th+Block,+Koramangala,+Bengaluru,+Karnataka/@12.9410853,77.6127627,16z/data=!3m1!4b1!4m6!3m5!1s0x3bae1448a71f8e4d:0x17f8352eed30fa02!8m2!3d12.9414686!4d77.6178125!16s%2Fg%2F1ts1l25j?entry=ttu&g_ep=EgoyMDI2MDExOS4wIKXMDSoKLDEwMDc5MjA3MUgBUAM%3D"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-pumice hover:text-gold transition-colors inline-block mt-1"
                   >
                     View on Google Maps →
-                  </a>
+                  </a> */}
                 </div>
               </li>
               <li className="flex items-center gap-3">
