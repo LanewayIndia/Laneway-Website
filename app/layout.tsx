@@ -33,7 +33,7 @@ export const metadata: Metadata = {
     images: [
       {
         url: "https://laneway.in/og-image.png",
-        width: 630,
+        width: 1200,
         height: 630,
         alt: "Laneway Open Graph Image",
       }
