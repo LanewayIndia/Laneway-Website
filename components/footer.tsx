@@ -3,6 +3,7 @@
 import Link from "next/link"
 import { motion } from "framer-motion"
 import { MapPin, Phone, Mail, ArrowUpRight } from "lucide-react"
+import Image from "next/image"
 
 const quickLinks = [
   { name: "Home", href: "/" },
@@ -36,7 +37,17 @@ export function Footer() {
             className="lg:col-span-1"
           >
             <Link href="/" className="inline-block mb-6">
-              <span className="font-heading text-2xl font-bold text-snow">Laneway</span>
+              <span className="font-heading text-2xl font-bold text-snow">
+                <Image
+                  src="/Laneway-Logo.png"
+                  alt="Laneway Logo"
+                  width={40}
+                  height={40}
+                  className="h-10 w-auto"
+                  priority
+                />
+                Laneway
+              </span>
             </Link>
             <p className="text-pumice text-sm leading-relaxed mb-6">
               Laneway is a next-gen AI-Powered business consulting firm committed to help drive business growth through consulting, technology and media services.
@@ -164,15 +175,15 @@ export function Footer() {
         <div className="mx-auto max-w-7xl px-6 sm:px-8 lg:px-12 py-6">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <p className="text-pumice/60 text-sm">© {new Date().getFullYear()} Laneway India Enterprises Private Limited. All rights reserved.
-            <br/>
-            GST: 32AAGCL2491R1Z0
+              <br />
+              GST: 32AAGCL2491R1Z0
             </p>
             <div className="flex items-center gap-8">
               <Link href="/privacy" className="text-pumice/60 hover:text-snow text-sm transition-colors">
                 Privacy Policy
               </Link>
               <Link href="/terms" className="text-pumice/60 hover:text-snow text-sm transition-colors">
-                Terms & Services 
+                Terms & Services
               </Link>
               <Link href="/cookie-policy" className="text-pumice/60 hover:text-snow text-sm transition-colors">
                 Cookie Policy
