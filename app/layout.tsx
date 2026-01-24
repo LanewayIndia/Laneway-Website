@@ -4,6 +4,7 @@ import { Playfair_Display, Inter } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
 import "./globals.css"
 import { CookieConsentBanner } from "@/components/cookie-consent/cookie-consent"
+import { Toaster } from "@/components/ui/toaster"
 
 const playfair = Playfair_Display({
   subsets: ["latin"],
@@ -51,6 +52,7 @@ export default function RootLayout({
       <body className="font-sans antialiased bg-background text-foreground">
         {children}
         <CookieConsentBanner />
+        <Toaster />
         <Analytics />
       </body>
     </html>
