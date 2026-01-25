@@ -2,6 +2,8 @@
 
 import { motion } from "framer-motion"
 import Link from "next/link"
+import { AnimatedServiceIcon } from "@/components/ui/animated-service-icon"
+import { ServiceVisual } from "@/components/ui/service-visual"
 import {
   Brain,
   TrendingUp,
@@ -168,7 +170,7 @@ export function ServicesList() {
               <div className="flex-1">
                 <div className="flex items-center gap-4 mb-8">
                   <div className="w-14 h-14 bg-gold/10 rounded-xl flex items-center justify-center">
-                    <service.icon size={26} className="text-gold" strokeWidth={1.5} />
+                    <AnimatedServiceIcon icon={service.icon} />
                   </div>
                   <h2 className="font-heading text-2xl sm:text-3xl font-bold text-snow">{service.title}</h2>
                 </div>
@@ -198,13 +200,13 @@ export function ServicesList() {
 
               {/* Visual Card */}
               <div className="flex-1 w-full">
-                <div className="relative aspect-[4/3] glass-card rounded-2xl overflow-hidden">
-                  <div className="absolute inset-0 bg-gradient-to-br from-gold/5 via-transparent to-gold-light/5" />
-                  <div className="absolute inset-0 bg-[linear-gradient(rgba(201,168,85,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(201,168,85,0.02)_1px,transparent_1px)] bg-[size:40px_40px]" />
+                <div className="relative aspect-4/3 glass-card rounded-2xl overflow-hidden">
+                  <div className="absolute inset-0 bg-linear-to-br from-gold/5 via-transparent to-gold-light/5" />
+                  <div className="absolute inset-0 bg-[linear-gradient(rgba(201,168,85,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(201,168,85,0.02)_1px,transparent_1px)] bg-size-[40px_40px]" />
                   <div className="absolute inset-0 flex items-center justify-center">
-                    <service.icon size={100} className="text-gold/10" strokeWidth={0.5} />
+                    <ServiceVisual id={service.id} />
                   </div>
-                  <div className="absolute bottom-0 left-0 right-0 h-1/3 bg-gradient-to-t from-background to-transparent" />
+                  <div className="absolute bottom-0 left-0 right-0 h-1/3 bg-linear-to-t from-background to-transparent" />
                 </div>
               </div>
             </motion.div>
