@@ -18,21 +18,49 @@ const inter = Inter({
 })
 
 export const metadata: Metadata = {
-  icons: {
-    icon: "/favicon.ico",
-  },
+  metadataBase: new URL("https://laneway.in"),
+  icons: { icon: "/favicon.ico" },
 
   title: "Laneway | Transforming Ideas into Digital Excellence",
   description:
     "We craft innovative digital solutions that empower businesses to thrive in the modern world. AI-powered technology, marketing, consulting, and software development.",
-  keywords: ["digital agency", "AI solutions", "software development", "business consulting", "startup incubator", "Laneway", "digital transformation", "technology services", "AI consulting", "marketing solutions"],
+  keywords: [
+    "digital agency",
+    "AI solutions",
+    "software development",
+    "business consulting",
+    "startup incubator",
+    "Laneway",
+    "digital transformation",
+    "technology services",
+    "AI consulting",
+    "marketing solutions",
+  ],
   authors: [{ name: "Laneway" }],
+
   openGraph: {
     title: "Laneway | Transforming Ideas into Digital Excellence",
-    url: "https://laneway.in",
+    description:
+      "We craft innovative digital solutions that empower businesses to thrive in the modern world.",
+    url: "/",
     siteName: "Laneway",
-    description: "We craft innovative digital solutions that empower businesses to thrive in the modern world.",
     type: "website",
+    images: [
+      {
+        url: "/logo.svg",
+        width: 1200,
+        height: 630,
+        alt: "Laneway OG Image",
+      },
+    ],
+  },
+
+  twitter: {
+    card: "summary_large_image",
+    title: "Laneway | Transforming Ideas into Digital Excellence",
+    description:
+      "We craft innovative digital solutions that empower businesses to thrive in the modern world.",
+    images: ["/logo.svg"],
   },
 }
 
@@ -46,9 +74,7 @@ export const viewport: Viewport = {
 
 export default function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode
-}>) {
+}: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" className={`${playfair.variable} ${inter.variable}`}>
       <body className="font-sans antialiased bg-background text-foreground">
