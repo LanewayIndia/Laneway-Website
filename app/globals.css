@@ -241,6 +241,10 @@ html {
   font-size: clamp(14px, 1.4vw + 12px, 18px);
 }
 
+html, body {
+  overflow-x: clip;
+}
+
 /* Global container utility used across layouts */
 .container {
   max-width: var(--container-width);
