@@ -175,9 +175,10 @@ export function ContactForm() {
                       id="firstName"
                       name="firstName"
                       type="text"
+                      tabIndex={-1}
+                      autoComplete="off"
                       placeholder="John"
-                      className="bg-background border-border text-snow placeholder:text-pumice/50 focus:border-gold"
-                      aria-required="true"
+                      className=" hidden bg-background border-border text-snow placeholder:text-pumice/50 focus:border-gold"
                     />
                   </div>
                   <div>
@@ -188,9 +189,10 @@ export function ContactForm() {
                       id="lastName"
                       name="lastName"
                       type="text"
+                      tabIndex={-1}
+                      autoComplete="off"
                       placeholder="Doe"
-                      className="bg-background border-border text-snow placeholder:text-pumice/50 focus:border-gold"
-                      aria-required="true"
+                      className="hidden bg-background border-border text-snow placeholder:text-pumice/50 focus:border-gold"
                     />
                   </div>
                 </div>
@@ -203,9 +205,10 @@ export function ContactForm() {
                     id="email"
                     name="email"
                     type="email"
+                    tabIndex={-1}
+                    autoComplete="off"
                     placeholder="john@example.com"
-                    className="bg-background border-border text-snow placeholder:text-pumice/50 focus:border-gold"
-                    aria-required="true"
+                    className="hidden bg-background border-border text-snow placeholder:text-pumice/50 focus:border-gold"
                   />
                 </div>
 
@@ -217,8 +220,10 @@ export function ContactForm() {
                     id="company"
                     name="company"
                     type="text"
+                    tabIndex={-1}
+                    autoComplete="off"
                     placeholder="Your company name"
-                    className="bg-background border-border text-snow placeholder:text-pumice/50 focus:border-gold"
+                    className="hidden bg-background border-border text-snow placeholder:text-pumice/50 focus:border-gold"
                   />
                 </div>
 
@@ -230,8 +235,10 @@ export function ContactForm() {
                     id="subject"
                     name="subject"
                     type="text"
+                    tabIndex={-1}
+                    autoComplete="off"
                     placeholder="How can we help?"
-                    className="bg-background border-border text-snow placeholder:text-pumice/50 focus:border-gold"
+                    className="hidden bg-background border-border text-snow placeholder:text-pumice/50 focus:border-gold"
                   />
                 </div>
 
