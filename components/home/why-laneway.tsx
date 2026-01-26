@@ -27,24 +27,36 @@ const values = [
 ]
 
 export function WhyLaneway() {
+
   return (
     <section className="py-20 sm:py-32 relative overflow-hidden">
       <div className="absolute inset-0 bg-linear-to-b from-transparent via-gold/2 to-transparent" />
 
-      <div className="relative z-10 mx-auto max-w-7xl px-6 sm:px-8 lg:px-12">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-20"
-        >
-          <span className="text-xs tracking-premium uppercase text-pumice mb-6 block">Why Choose Us</span>
-          <h2 className="font-heading text-4xl sm:text-5xl lg:text-6xl font-bold text-snow text-balance">
-            Why Laneway?
-          </h2>
-        </motion.div>
-
+      <motion.div className="relative z-10 mx-auto max-w-7xl px-6 sm:px-8 lg:px-12">
+        <div className="text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="flex items-center justify-center gap-4 mb-8"
+          >
+            <div className="w-12 h-px bg-gold/30" />
+            <span className="text-xs tracking-premium uppercase text-pumice">Why Choose Us</span>
+            <div className="w-12 h-px bg-gold/30" />
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-20"
+          >
+            <h2 className="font-heading text-4xl sm:text-5xl lg:text-6xl font-bold text-snow text-balance">
+              Why Laneway?
+            </h2>
+          </motion.div>
+        </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-6">
           {values.map((value, index) => (
             <motion.div
@@ -73,7 +85,7 @@ export function WhyLaneway() {
             </motion.div>
           ))}
         </div>
-      </div>
+      </motion.div>
     </section>
   )
 }
