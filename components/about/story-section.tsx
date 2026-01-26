@@ -50,9 +50,9 @@ export function StorySection() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.08 }}
-                className={`flex flex-col lg:flex-row items-center gap-8 ${index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"}`}
+                className={`flex flex-col items-center gap-8 ${index % 2 === 0 ? "md:flex-row lg:flex-row" : "md:flex-row-reverse lg:flex-row-reverse"}`}
               >
-                <div className={`flex-1 ${index % 2 === 0 ? "md:text-right" : "md:text-left"}`}>
+                <div className={`flex-1 ${index % 2 === 0 ? "md:text-right lg:text-right" : "md:text-left lg:text-left"}`}>
                   <div className="glass-card rounded-xl p-6 inline-block transition-all duration-500 hover:border-gold/20">
                     <span className="text-gold font-heading text-2xl font-medium">
                       {milestone.year}
