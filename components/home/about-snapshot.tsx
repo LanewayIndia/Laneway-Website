@@ -26,7 +26,7 @@ export function AboutSnapshot() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="flex items-center justify-center gap-4 mb-12"
+            className="flex items-center justify-center gap-4 mb-8"
           >
             <div className="w-12 h-px bg-gold/30" />
             <span className="text-xs tracking-premium uppercase text-pumice">Who We Are</span>
@@ -50,7 +50,7 @@ export function AboutSnapshot() {
             transition={{ duration: 0.7, delay: 0.3 }}
             className="text-base sm:text-xl text-pumice max-w-3xl sm:max-w-5xl lg:max-w-6xl mx-auto leading-relaxed font-light"
           >
-           Laneway is a next-generation AI-Powered consulting firm that drives business growth through strategy, technology, and media solutions. Founded and led by modern innovators, we partner with businesses to solve today's challenges and build lasting, sustainable value.
+            Laneway is a next-generation AI-Powered consulting firm that drives business growth through strategy, technology, and media solutions. Founded and led by modern innovators, we partner with businesses to solve today's challenges and build lasting, sustainable value.
           </motion.p>
         </div>
       </motion.div>
