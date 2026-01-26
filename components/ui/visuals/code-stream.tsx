@@ -1,18 +1,35 @@
+// "use client"
+// import { motion } from "framer-motion"
+
+// export function CodeStream() {
+//   return (
+//     <motion.div className="relative w-72 h-72">
+//       {[...Array(8)].map((_, i) => (
+//         <motion.div
+//           key={i}
+//           className="absolute w-px h-24 bg-gold/25"
+//           style={{ left: `${i * 12 + 10}%` }}
+//           animate={{ y: [-80, 260] }}
+//           transition={{ duration: 4 + i, repeat: Infinity, ease: "linear" }}
+//         />
+//       ))}
+//     </motion.div>
+//   )
+// }
+
 "use client"
-import { motion } from "framer-motion"
+
+import Lottie from "lottie-react"
+import animationData from "@/public/lottie-Animations/Software-development-services.json"
 
 export function CodeStream() {
   return (
-    <motion.div className="relative w-72 h-72">
-      {[...Array(8)].map((_, i) => (
-        <motion.div
-          key={i}
-          className="absolute w-px h-24 bg-gold/25"
-          style={{ left: `${i * 12 + 10}%` }}
-          animate={{ y: [-80, 260] }}
-          transition={{ duration: 4 + i, repeat: Infinity, ease: "linear" }}
-        />
-      ))}
-    </motion.div>
+    <div className="relative w-full h-full flex items-center justify-center">
+      <Lottie 
+        animationData={animationData} 
+        loop 
+        className="w-full max-w-105"
+      />
+    </div>
   )
 }
