@@ -2,7 +2,7 @@
 
 import Link from "next/link"
 import { motion } from "framer-motion"
-import { MapPin, Phone, Mail, ArrowUpRight } from "lucide-react"
+import { MapPin, Phone, Mail, ArrowUpRight, Instagram, Linkedin, X, Globe, Facebook, Twitter } from "lucide-react"
 import Image from "next/image"
 
 const quickLinks = [
@@ -19,6 +19,29 @@ const services = [
   { name: "Software Development", href: "/services#software" },
   { name: "Business Consulting", href: "/services#consulting" },
   { name: "Startup Incubator", href: "/services#incubator" },
+]
+
+const socialLinks = [
+  {
+    name: "Instagram",
+    href: "https://www.instagram.com/lanewayindia",
+    icon: Instagram,
+  },
+  {
+    name: "Twitter",
+    href: "https://x.com/lanewayindia",
+    icon: Twitter,
+  },
+  {
+    name: "Linkedin",
+    href: "https://www.linkedin.com/company/laneway-india/",
+    icon: Linkedin,
+  },
+  {
+    name: "Website",
+    href: "https://laneway.in",
+    icon: Globe,
+  },
 ]
 
 export function Footer() {
@@ -174,10 +197,33 @@ export function Footer() {
       <div className="border-t border-glass-border">
         <div className="mx-auto max-w-7xl px-6 sm:px-8 lg:px-12 py-6">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-            <p className="text-pumice/60 text-sm">© {new Date().getFullYear()} Laneway India Enterprises Private Limited. All rights reserved.
+            <p className="text-pumice/60 text-sm">© {new Date().getFullYear()} Laneway India Enterprises Private LimitedAlly.       
               <br />
+            All rights reserved.
               GST: 32AAGCL2491R1Z0
             </p>
+
+            <div className="flex items-center justify-center gap-6">
+              {socialLinks.map((social) => {
+                const Icon = social.icon
+                return (
+                  <Link
+                    key={social.name}
+                    href={social.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={social.name}
+                    className="group relative flex h-11 w-11 items-center justify-center rounded-full border border-glass-border text-pumice transition-all duration-300 hover:border-gold/60 hover:text-gold hover:shadow-[0_0_20px_rgba(212,175,55,0.35)]"
+                  >
+                    <Icon
+                      size={18}
+                      className="transition-transform duration-300 group-hover:scale-110"
+                    />
+                  </Link>
+                )
+              })}
+            </div>
+
             <div className="flex items-center gap-8">
               <Link href="/privacy" className="text-pumice/60 hover:text-snow text-sm transition-colors">
                 Privacy Policy
