@@ -57,7 +57,7 @@ export const metadata: Metadata = {
 
   twitter: {
     card: "summary_large_image",
-    title: "Laneway | Transforming Ideas into Digital Excellence",
+    title: "Laneway | Transforming Business with AI powered excellence",
     description:
       "We craft innovative digital solutions that empower businesses to thrive in the modern world.",
     images: ["/logo.svg"],
