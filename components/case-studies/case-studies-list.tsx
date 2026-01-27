@@ -34,6 +34,7 @@ const caseStudies = [
     ],
     logo: "/Vayo.png",
     href: "/case-studies/vayo",
+    showDetails: true,
   },
   {
     id: "samyam",
@@ -50,6 +51,7 @@ const caseStudies = [
     ],
     logo: "/Samyam.png",
     href: "/case-studies/samyam",
+    showDetails: true,
   },
 ]
 
