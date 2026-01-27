@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import { Send, X, Mail, Phone, MessageSquare, ArrowRight } from "lucide-react"
+import { Send, X, Mail, Phone, MessageSquare, ArrowRight, Loader2 } from "lucide-react"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Chatbot } from "../chatbot"
@@ -10,6 +10,61 @@ import { Chatbot } from "../chatbot"
 export function ContactSection() {
   const [isOpen, setIsOpen] = useState(false)
   const [chatbotOpen, setChatbotOpen] = useState(false)
+  const [loading, setLoading] = useState(false) //loading state for form submission
+  const [message, setMessage] = useState("") //success or failed sending message
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    subject: "",
+    message: ""
+  }) //form data state
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { id, value } = e.target
+    setFormData(prev => ({
+      ...prev,
+      [id]: value
+    }))
+  } //handle input changes
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    setLoading(true)
+    setMessage("")
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(formData)
+      }) //send form data to api route
+
+      const data = await response.json()
+
+      if (response.ok && data.success) {
+        setMessage("Message sent successfully! We'll get back to you soon.")
+        setFormData({
+          name: "",
+          email: "",
+          subject: "",
+          message: ""
+        }) 
+        setTimeout(() => {
+          setIsOpen(false)
+          setMessage("")
+        }, 2000)
+      } else {
+        setMessage(data.error || "Failed to send message. Please try again.")
+      }
+    } catch (error) {
+      setMessage("An error occurred. Please try again later.")
+      console.error("Form submission error:", error)
+    } finally {
+      setLoading(false)
+    }
+  } //handle form submission
 
 
   return (
@@ -69,7 +124,7 @@ export function ContactSection() {
                   </button>
                 </div>
 
-                <form className="space-y-6" onSubmit={(e) => e.preventDefault()}>
+                <form className="space-y-6" onSubmit={handleSubmit}>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
                       <label htmlFor="name" className="block text-xs tracking-wide uppercase text-pumice mb-3">
@@ -79,6 +134,9 @@ export function ContactSection() {
                         id="name"
                         type="text"
                         placeholder="Your name"
+                        value={formData.name}
+                        onChange={handleInputChange}
+                        required
                         className="bg-background/50 border-glass-border text-snow placeholder:text-pumice/40 focus:border-gold/50 rounded-xl h-12"
                       />
                     </div>
@@ -90,6 +148,9 @@ export function ContactSection() {
                         id="email"
                         type="email"
                         placeholder="your@email.com"
+                        value={formData.email}
+                        onChange={handleInputChange}
+                        required
                         className="bg-background/50 border-glass-border text-snow placeholder:text-pumice/40 focus:border-gold/50 rounded-xl h-12"
                       />
                     </div>
@@ -103,6 +164,8 @@ export function ContactSection() {
                       id="subject"
                       type="text"
                       placeholder="How can we help?"
+                      value={formData.subject}
+                      onChange={handleInputChange}
                       className="bg-background/50 border-glass-border text-snow placeholder:text-pumice/40 focus:border-gold/50 rounded-xl h-12"
                     />
                   </div>
@@ -114,17 +177,44 @@ export function ContactSection() {
                     <Textarea
                       id="message"
                       placeholder="Tell us about your project..."
+                      value={formData.message}
+                      onChange={handleInputChange}
                       rows={4}
+                      required
                       className="bg-background/50 border-glass-border text-snow placeholder:text-pumice/40 focus:border-gold/50 resize-none rounded-xl"
                     />
                   </div>
 
+                  {message && (
+                    <motion.div
+                      initial={{ opacity: 0, y: -10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      className={`p-4 rounded-lg text-sm font-medium ${
+                        message.includes("successfully")
+                          ? "bg-green-500/10 text-green-400 border border-green-500/20"
+                          : "bg-red-500/10 text-red-400 border border-red-500/20"
+                      }`}
+                    >
+                      {message}
+                    </motion.div>
+                  )}
+
                   <button
                     type="submit"
-                    className="w-full flex items-center justify-center gap-2 bg-snow hover:bg-gold text-background font-medium py-4 rounded-full transition-all duration-300"
+                    disabled={loading}
+                    className="w-full flex items-center justify-center gap-2 bg-snow hover:bg-gold text-background font-medium py-4 rounded-full transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
                   >
-                    <Send size={16} />
-                    <span>Send Message</span>
+                    {loading ? (
+                      <>
+                        <Loader2 size={16} className="animate-spin" />
+                        <span>Sending...</span>
+                      </>
+                    ) : (
+                      <>
+                        <Send size={16} />
+                        <span>Send Message</span>
+                      </>
+                    )}
                   </button>
                 </form>
 
