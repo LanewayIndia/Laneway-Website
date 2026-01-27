@@ -8,6 +8,14 @@ import Image from "next/image"
 
 const caseStudies = [
   {
+    id: "7ZeroMedia",
+    name: "7ZeroMedia",
+    tagline: "Stay Tuned! Coming Soon!",
+    logo: "/7ZeroMedia.png",
+    href: "/case-studies/7zeromedia",
+    showDetails: false,
+  },
+  {
     id: "vayo",
     name: "VAYO",
     tagline: "Building a Hybrid Community Brand for Modern Social Connections",
@@ -101,7 +109,7 @@ export function CaseStudiesList() {
                   {study.tagline}
                 </h2>
 
-                <div className="space-y-6">
+                {/* <div className="space-y-6">
                   <div>
                     <h3 className="text-snow font-semibold mb-2">
                       The Challenge
@@ -149,7 +157,57 @@ export function CaseStudiesList() {
                       />
                     </Link>
                   </Button>
-                </div>
+                </div> */}
+                {study.showDetails !== false && (
+                  <div className="space-y-6">
+                    <div>
+                      <h3 className="text-snow font-semibold mb-2">
+                        The Challenge
+                      </h3>
+                      <p className="text-pumice leading-relaxed">
+                        {study.problem}
+                      </p>
+                    </div>
+
+                    <div>
+                      <h3 className="text-snow font-semibold mb-2">
+                        Our Solution
+                      </h3>
+                      <p className="text-pumice leading-relaxed">
+                        {study.solution}
+                      </p>
+                    </div>
+
+                    <div>
+                      <h3 className="text-snow font-semibold mb-3">
+                        Results
+                      </h3>
+                      <ul className="space-y-2">
+                        {(study.results ?? []).map((result) => (
+                          <li key={result} className="flex items-center gap-3">
+                            <CheckCircle size={18} className="text-gold shrink-0" />
+                            <span className="text-pumice">{result}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                    <Button
+                      asChild
+                      className="bg-gold hover:bg-gold-light text-background font-semibold px-6 py-3 rounded-full group mt-4"
+                    >
+                      <Link href={study.href}>
+                        Read Full Case Study
+                        <ArrowRight
+                          size={18}
+                          className="ml-2 group-hover:translate-x-1 transition-transform"
+                        />
+                      </Link>
+                    </Button>
+                  </div>
+
+                )}
+
+
               </div>
             </motion.div>
           ))}
