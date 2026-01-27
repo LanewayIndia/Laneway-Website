@@ -182,25 +182,7 @@ export function ApplicationForm({
                                 </div>
                             </div>
 
-                            {/* Submit Button */}
-                            <div className="pt-2">
-                                <Button
-                                    disabled={loading}
-                                    className="w-full h-12 bg-gold hover:bg-gold/90 text-background font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
-                                >
-                                    {loading ? (
-                                        <div className="flex items-center gap-2">
-                                            <div className="w-4 h-4 border-2 border-background/30 border-t-background rounded-full animate-spin" />
-                                            Submitting Application...
-                                        </div>
-                                    ) : (
-                                        <div className="flex items-center gap-2">
-                                            <Send size={18} />
-                                            Submit Application
-                                        </div>
-                                    )}
-                                </Button>
-                            </div>
+
                         </div>
 
                         {/* Footer - Fixed at Bottom */}
