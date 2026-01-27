@@ -178,7 +178,7 @@ export function ContactForm() {
                       tabIndex={-1}
                       autoComplete="off"
                       placeholder="John"
-                      className=" hidden bg-background border-border text-snow placeholder:text-pumice/50 focus:border-gold"
+                      className="bg-background border-border text-snow placeholder:text-pumice/50 focus:border-gold"
                     />
                   </div>
                   <div>
@@ -192,7 +192,7 @@ export function ContactForm() {
                       tabIndex={-1}
                       autoComplete="off"
                       placeholder="Doe"
-                      className="hidden bg-background border-border text-snow placeholder:text-pumice/50 focus:border-gold"
+                      className="bg-background border-border text-snow placeholder:text-pumice/50 focus:border-gold"
                     />
                   </div>
                 </div>
@@ -208,7 +208,7 @@ export function ContactForm() {
                     tabIndex={-1}
                     autoComplete="off"
                     placeholder="john@example.com"
-                    className="hidden bg-background border-border text-snow placeholder:text-pumice/50 focus:border-gold"
+                    className="bg-background border-border text-snow placeholder:text-pumice/50 focus:border-gold"
                   />
                 </div>
 
@@ -223,7 +223,7 @@ export function ContactForm() {
                     tabIndex={-1}
                     autoComplete="off"
                     placeholder="Your company name"
-                    className="hidden bg-background border-border text-snow placeholder:text-pumice/50 focus:border-gold"
+                    className="bg-background border-border text-snow placeholder:text-pumice/50 focus:border-gold"
                   />
                 </div>
 
@@ -238,7 +238,7 @@ export function ContactForm() {
                     tabIndex={-1}
                     autoComplete="off"
                     placeholder="How can we help?"
-                    className="hidden bg-background border-border text-snow placeholder:text-pumice/50 focus:border-gold"
+                    className="bg-background border-border text-snow placeholder:text-pumice/50 focus:border-gold"
                   />
                 </div>
 

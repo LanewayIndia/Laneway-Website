@@ -2,21 +2,10 @@
 
 import { motion } from "framer-motion"
 import Link from "next/link"
+import { memo } from "react"
 import { AnimatedServiceIcon } from "@/components/ui/animated-service-icon"
 import { ServiceVisual } from "@/components/ui/service-visual"
-import {
-  Brain,
-  TrendingUp,
-  Code,
-  Rocket,
-  Globe,
-  Building,
-  Settings,
-  ClipboardList,
-  Megaphone,
-  ArrowRight,
-  CheckCircle,
-} from "lucide-react"
+import { Brain, TrendingUp, Code, Rocket, Globe, Building, Settings, ClipboardList, Megaphone, ArrowRight, CheckCircle } from "lucide-react"
 
 const services = [
   {
@@ -151,65 +140,74 @@ const services = [
   },
 ]
 
+// Memoized service card to prevent unnecessary re-renders
+const ServiceCard = memo(function ServiceCard({ service, index }: { service: (typeof services)[0]; index: number }) {
+  return (
+    <motion.div
+      key={service.id}
+      id={service.id}
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-50px" }}
+      transition={{ duration: 0.5 }}
+      className={`flex flex-col lg:flex-row items-start gap-16 ${index % 2 === 1 ? "lg:flex-row-reverse" : ""}`}
+    >
+      {/* Content */}
+      <div className="flex-1">
+        <div className="flex items-center gap-4 mb-8">
+          <div className="w-14 h-14 bg-gold/10 rounded-xl flex items-center justify-center">
+            <AnimatedServiceIcon icon={service.icon} />
+          </div>
+          <h2 className="font-heading text-2xl sm:text-3xl font-bold text-snow">{service.title}</h2>
+        </div>
+
+        <p className="text-pumice text-lg leading-relaxed mb-10 font-light">{service.description}</p>
+
+        <div className="mb-10">
+          <h3 className="text-xs tracking-premium uppercase text-pumice mb-6">Key Use Cases</h3>
+          <ul className="space-y-4">
+            {service.useCases.map((useCase, i) => (
+              <li key={i} className="flex items-start gap-3">
+                <CheckCircle size={18} className="text-gold mt-0.5 shrink-0" strokeWidth={1.5} />
+                <span className="text-snow/80 text-sm">{useCase}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <Link
+          href="/contact"
+          className="group inline-flex items-center gap-2 px-6 py-3 text-sm font-medium text-background bg-snow rounded-full transition-all duration-300 hover:bg-gold"
+        >
+          <span>Get Started</span>
+          <ArrowRight size={16} className="transition-transform duration-300 group-hover:translate-x-1" />
+        </Link>
+      </div>
+
+      {/* Visual Card */}
+      <div className="flex-1 w-full">
+        <div className="relative aspect-4/3 glass-card rounded-2xl overflow-hidden">
+          <div className="absolute inset-0 bg-linear-to-br from-gold/5 via-transparent to-gold-light/5" />
+          <div className="absolute inset-0 bg-[linear-gradient(rgba(201,168,85,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(201,168,85,0.02)_1px,transparent_1px)] bg-size-[40px_40px]" />
+          <div className="absolute inset-0 flex items-center justify-center">
+            <ServiceVisual id={service.id} />
+          </div>
+          <div className="absolute bottom-0 left-0 right-0 h-1/3 bg-linear-to-t from-background to-transparent" />
+        </div>
+      </div>
+    </motion.div>
+  )
+})
+
+ServiceCard.displayName = "ServiceCard"
+
 export function ServicesList() {
   return (
     <section className="py-20 relative">
       <div className="mx-auto max-w-7xl px-6 sm:px-8 lg:px-12">
         <div className="space-y-32">
           {services.map((service, index) => (
-            <motion.div
-              key={service.id}
-              id={service.id}
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-              className={`flex flex-col lg:flex-row items-start gap-16 ${index % 2 === 1 ? "lg:flex-row-reverse" : ""}`}
-            >
-              {/* Content */}
-              <div className="flex-1">
-                <div className="flex items-center gap-4 mb-8">
-                  <div className="w-14 h-14 bg-gold/10 rounded-xl flex items-center justify-center">
-                    <AnimatedServiceIcon icon={service.icon} />
-                  </div>
-                  <h2 className="font-heading text-2xl sm:text-3xl font-bold text-snow">{service.title}</h2>
-                </div>
-
-                <p className="text-pumice text-lg leading-relaxed mb-10 font-light">{service.description}</p>
-
-                <div className="mb-10">
-                  <h3 className="text-xs tracking-premium uppercase text-pumice mb-6">Key Use Cases</h3>
-                  <ul className="space-y-4">
-                    {service.useCases.map((useCase, i) => (
-                      <li key={i} className="flex items-start gap-3">
-                        <CheckCircle size={18} className="text-gold mt-0.5 shrink-0" strokeWidth={1.5} />
-                        <span className="text-snow/80 text-sm">{useCase}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
-                <Link
-                  href="/contact"
-                  className="group inline-flex items-center gap-2 px-6 py-3 text-sm font-medium text-background bg-snow rounded-full transition-all duration-300 hover:bg-gold"
-                >
-                  <span>Get Started</span>
-                  <ArrowRight size={16} className="transition-transform duration-300 group-hover:translate-x-1" />
-                </Link>
-              </div>
-
-              {/* Visual Card */}
-              <div className="flex-1 w-full">
-                <div className="relative aspect-4/3 glass-card rounded-2xl overflow-hidden">
-                  <div className="absolute inset-0 bg-linear-to-br from-gold/5 via-transparent to-gold-light/5" />
-                  <div className="absolute inset-0 bg-[linear-gradient(rgba(201,168,85,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(201,168,85,0.02)_1px,transparent_1px)] bg-size-[40px_40px]" />
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <ServiceVisual id={service.id} />
-                  </div>
-                  <div className="absolute bottom-0 left-0 right-0 h-1/3 bg-linear-to-t from-background to-transparent" />
-                </div>
-              </div>
-            </motion.div>
+            <ServiceCard key={service.id} service={service} index={index} />
           ))}
         </div>
       </div>

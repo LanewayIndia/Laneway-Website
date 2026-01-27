@@ -42,7 +42,7 @@ export function MissionSection() {
             viewport={{ once: true }}
             transition={{ duration: 0.7, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
           >
-            <div className="relative aspect-4/3 sm:aspect-square glass-card rounded-2xl overflow-hidden">
+            <div className="relative aspect-4/3 sm:aspect-square glass-card rounded-2xl overflow-hidden"> {/*glass-card */}
               <div className="absolute inset-0 bg-linear-to-br from-gold/5 via-transparent to-gold-light/5" />
               <div className="absolute inset-0 bg-[linear-gradient(rgba(201,168,85,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(201,168,85,0.02)_1px,transparent_1px)] bg-size-[40px_40px]" />
               <div className="absolute inset-0 flex items-center justify-center">
