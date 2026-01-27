@@ -17,8 +17,10 @@ const inter = Inter({
   variable: "--font-sans",
 })
 
+const siteUrl = "https://laneway.in"
+
 export const metadata: Metadata = {
-  metadataBase: new URL("https://laneway.in"),
+  metadataBase: new URL(siteUrl),
   icons: { icon: "/favicon.ico" },
 
   title: "Laneway | Transforming Business with AI Powered Excellence",
@@ -42,12 +44,12 @@ export const metadata: Metadata = {
     title: "Laneway | Transforming Business with AI Powered Excellence",
     description:
       "We craft innovative digital solutions that empower businesses to thrive in the modern world.",
-    url: "/",
+    url: siteUrl,
     siteName: "Laneway",
     type: "website",
     images: [
       {
-        url: "/logo.svg",
+        url: `${siteUrl}/logo.png`,
         width: 1200,
         height: 630,
         alt: "Laneway OG Image",
@@ -60,7 +62,7 @@ export const metadata: Metadata = {
     title: "Laneway | Transforming Business with AI Powered Excellence",
     description:
       "We craft innovative digital solutions that empower businesses to thrive in the modern world.",
-    images: ["/logo.svg"],
+    images: [`${siteUrl}/public/logo.png`],
   },
 }
 
