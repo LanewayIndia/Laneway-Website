@@ -1,74 +1,75 @@
+
 import { NextResponse } from "next/server"
 import nodemailer from "nodemailer"
 import { rateLimit, getClientIp } from "@/lib/security"
 
+// Simple sanitization to prevent header/content injection
+function sanitize(input: string) {
+  return input.replace(/[<>"'`\\]/g, "").trim();
+}
+
 export async function POST(req: Request) {
   try {
-    const ip = await getClientIp()
-
+    const ip = await getClientIp();
     if (!rateLimit(ip, Number(process.env.RATE_LIMIT_MAX_REQUESTS))) {
-      return NextResponse.json({ error: "Too many requests" }, { status: 429 })
+      return new NextResponse(JSON.stringify({ error: "Too many requests" }), {
+        status: 429,
+        headers: { "Content-Type": "application/json", "Access-Control-Allow-Origin": "*" },
+      });
     }
 
-    const body = await req.json()
+    const body = await req.json();
     if (body.companyWebsite) {
-      return NextResponse.json({ success: true }) //silently ignore 
+      return new NextResponse(JSON.stringify({ success: true }), {
+        status: 200,
+        headers: { "Content-Type": "application/json", "Access-Control-Allow-Origin": "*" },
+      });
     }
 
-    const { name, email, subject, message } = body
-    // Validate required fields
+    // Sanitize and validate required fields
+    const name = sanitize(body.name || "");
+    const email = sanitize(body.email || "");
+    const subject = sanitize(body.subject || "No Subject");
+    const message = sanitize(body.message || "");
+
     if (!name || !email || !message) {
-      return NextResponse.json({ success: false, error: "Missing required fields" }, { status: 400 })
+      return new NextResponse(JSON.stringify({ success: false, error: "Missing required fields" }), {
+        status: 400,
+        headers: { "Content-Type": "application/json", "Access-Control-Allow-Origin": "*" },
+      });
     }
-    // const { name, email, subject, message } = await req.json()
 
-    //console.log('Received contact form data:', { name, email, subject, message })
+    // Create transporter
+    const transporter = nodemailer.createTransport({
+      service: "hostinger",
+      host: process.env.SMTP_HOST || "smtp.hostinger.com",
+      port: Number(process.env.SMTP_PORT || "587"),
+      secure: false,
+      auth: {
+        user: process.env.SMTP_CONTACT_USER,
+        pass: process.env.SMTP_CONTACT_PASS,
+      },
+      tls: { rejectUnauthorized: false },
+    });
 
+    await transporter.verify();
 
-    console.log('Creating transporter with SMTP...')
-    const transporter = nodemailer.createTransport(
-      {
-        host: process.env.SMTP_HOST || "smtp.hostinger.com",
-        port: Number(process.env.SMTP_PORT || "587"),
-        secure: false, // true for 465, false for other ports
-        auth: {
-          user: process.env.SMTP_CONTACT_USER,
-          pass: process.env.SMTP_CONTACT_PASS,
-        },
-        tls: {
-          rejectUnauthorized: false
-        }
-      }
-    )
-
-    console.log('Verifying transporter connection...')
-    await transporter.verify()
-
-    console.log('Sending email...')
-    const mailResult = await transporter.sendMail({
-      from: `"Laneway Website" <${process.env.SMTP_CONTACT_USER}>`, // Use the configured SMTP user as sender
-      to: "info@laneway.in", // Production email address
-      subject: `Contact Form: ${subject || 'No Subject'}`,
+    await transporter.sendMail({
+      from: `"Laneway Website" <${process.env.SMTP_CONTACT_USER}>`,
+      to: "info@laneway.in",
+      subject: `Contact Form: ${subject}`,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
           <h2 style="color: #333; border-bottom: 2px solid #gold; padding-bottom: 10px;">
             New Contact Form Submission
           </h2>
           <div style="background: #f9f9f9; padding: 20px; border-radius: 8px; margin: 20px 0;">
-            <p>
-              <strong>Name:</strong> ${name}
-            </p>
-            <p>
-              <strong>Email:</strong> ${email}
-            </p>
-            <p>
-              <strong>Subject:</strong> ${subject || 'No Subject'}
-            </p>
-            <p>
-              <strong>Message:</strong>
-            </p>
+            <p><strong>Name:</strong> ${name}</p>
+            <p><strong>Email:</strong> ${email}</p>
+            <p><strong>Subject:</strong> ${subject}</p>
+            <p><strong>Message:</strong></p>
             <div style="background: white; padding: 15px; border-left: 4px solid #gold; margin-top: 10px;">
-              ${message ? message.replace(/\n/g, '<br>') : 'No message'}
+              ${message.replace(/\n/g, '<br>')}
             </div>
           </div>
           <p style="color: #666; font-size: 12px; margin-top: 30px;">
@@ -76,18 +77,19 @@ export async function POST(req: Request) {
           </p>
         </div>
       `,
-    })
+    });
 
-    console.log('Email sent successfully:', mailResult.messageId)
-    return NextResponse.json({ success: true, messageId: mailResult.messageId })
-  }
-  catch (error) {
-    console.error("Email sending error:", error)
-    return NextResponse.json(
-      {
-        success: false,
-        error: error instanceof Error ? error.message : "Failed to send email"
-      },
-      { status: 500 })
+    // Never return user data in response
+    return new NextResponse(JSON.stringify({ success: true }), {
+      status: 200,
+      headers: { "Content-Type": "application/json", "Access-Control-Allow-Origin": "*" },
+    });
+  } catch (error) {
+    // Log only generic error server-side
+    console.error("Email sending error");
+    return new NextResponse(JSON.stringify({ success: false, error: "Failed to send message. Please try again later." }), {
+      status: 500,
+      headers: { "Content-Type": "application/json", "Access-Control-Allow-Origin": "*" },
+    });
   }
 }
