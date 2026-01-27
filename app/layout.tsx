@@ -21,7 +21,7 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://laneway.in"),
   icons: { icon: "/favicon.ico" },
 
-  title: "Laneway | Transforming Ideas into Digital Excellence",
+  title: "Laneway | Transforming Business with AI Powered Excellence",
   description:
     "We craft innovative digital solutions that empower businesses to thrive in the modern world. AI-powered technology, marketing, consulting, and software development.",
   keywords: [
@@ -39,7 +39,7 @@ export const metadata: Metadata = {
   authors: [{ name: "Laneway" }],
 
   openGraph: {
-    title: "Laneway | Transforming Ideas into Digital Excellence",
+    title: "Laneway | Transforming Business with AI Powered Excellence",
     description:
       "We craft innovative digital solutions that empower businesses to thrive in the modern world.",
     url: "/",
@@ -57,7 +57,7 @@ export const metadata: Metadata = {
 
   twitter: {
     card: "summary_large_image",
-    title: "Laneway | Transforming Business with AI powered excellence",
+    title: "Laneway | Transforming Business with AI Powered Excellence",
     description:
       "We craft innovative digital solutions that empower businesses to thrive in the modern world.",
     images: ["/logo.svg"],
