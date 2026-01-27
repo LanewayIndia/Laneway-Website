@@ -10,7 +10,7 @@ const caseStudies = [
   {
     id: "7ZeroMedia",
     name: "7ZeroMedia",
-    tagline: "Stay Tuned! Coming Soon!",
+    tagline: "Stay Tuned, Coming Soon!",
     logo: "/7zeromedia.png",
     href: "/case-studies/7zeromedia",
     showDetails: false,
