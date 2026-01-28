@@ -10,10 +10,23 @@ const caseStudies = [
   {
     id: "7ZeroMedia",
     name: "7ZeroMedia",
-    tagline: "Stay Tuned, Coming Soon!",
+    tagline: "Building an AI-Powered, full-scale, next-generation media agency",
+    problem:
+      "7ZeroMedia needed a modern, scalable platform to manage their AI-powered media operations and client relationships.",
+    solution:
+      "We developed a sleek, user-friendly website that highlights 7ZeroMedia's innovative approach to media services, showcasing their AI capabilities and client success stories.",
+    results: [
+      "Branding & Identity",
+      "Content Creation",
+      "Increased event participation by 5 times",
+      "complete media ecosystem",
+      "bringing together content creation",
+      "Social Media Management",
+      "Editing & Post-Production",
+    ],
     logo: "/7zeromedia.png",
     href: "/case-studies/7zeromedia",
-    showDetails: false,
+    showDetails: true,
   },
   {
     id: "vayo",

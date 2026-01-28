@@ -15,7 +15,7 @@ export default function VayoCaseStudy() {
           transition={{ duration: 0.8, ease: "easeOut" }}
           className="relative text-center"
         >
-          <div className="absolute -inset-10 bg-gradient-to-br from-gold/20 to-transparent blur-3xl" />
+          <div className="absolute -inset-10 bg-linear-to-br from-gold/20 to-transparent blur-3xl" />
 
           <Image
             src="/Vayo.png"
