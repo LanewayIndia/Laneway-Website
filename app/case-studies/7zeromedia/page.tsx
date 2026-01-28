@@ -18,7 +18,7 @@ export default function SevenZeroMediaCaseStudy() {
           <div className="absolute -inset-10 bg-linear-to-br from-gold/20 to-transparent blur-3xl" />
 
           <Image
-            src="/7ZeroMedia.png"
+            src="/7zeromedia.png"
             alt="7ZeroMedia logo"
             width={180}
             height={180}
