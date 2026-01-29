@@ -126,7 +126,7 @@ export function Chatbot({ isOpen: isOpenProp, onOpenChange }: { isOpen?: boolean
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
             transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-            className="fixed bottom-8 right-8 z-50 w-95 max-w-[calc(100vw-64px)] glass-card rounded-2xl shadow-2xl shadow-black/50 overflow-hidden"
+            className="fixed bottom-6 right-1 /2 sm:right-8 translate-x-1/2 sm:translate-x-0 z-50 w-[92vw] sm:w-95 lg:w-105 max-w-105 glass-card rounded-2xl shadow-2xl shadow-black/50 overflow-hidden"
           >
             <div className="bg-snow p-5 flex items-center justify-between">
               <div className="flex items-center gap-3">
@@ -160,9 +160,8 @@ export function Chatbot({ isOpen: isOpenProp, onOpenChange }: { isOpen?: boolean
                     className={`flex items-start gap-2 max-w-[85%] ${message.sender === "user" ? "flex-row-reverse" : ""}`}
                   >
                     <div
-                      className={`w-7 h-7 rounded-full flex items-center justify-center shrink-0 ${
-                        message.sender === "user" ? "bg-gold/20" : "bg-glass-border"
-                      }`}
+                      className={`w-7 h-7 rounded-full flex items-center justify-center shrink-0 ${message.sender === "user" ? "bg-gold/20" : "bg-glass-border"
+                        }`}
                     >
                       {message.sender === "user" ? (
                         <User size={14} className="text-gold" strokeWidth={1.5} />
@@ -171,11 +170,10 @@ export function Chatbot({ isOpen: isOpenProp, onOpenChange }: { isOpen?: boolean
                       )}
                     </div>
                     <div
-                      className={`p-3 rounded-2xl ${
-                        message.sender === "user"
-                          ? "bg-snow text-background rounded-tr-sm"
-                          : "bg-card border border-glass-border text-snow rounded-tl-sm"
-                      }`}
+                      className={`p-3 rounded-2xl ${message.sender === "user"
+                        ? "bg-snow text-background rounded-tr-sm"
+                        : "bg-card border border-glass-border text-snow rounded-tl-sm"
+                        }`}
                     >
                       <p className="text-sm leading-relaxed">{message.text}</p>
                     </div>
@@ -246,7 +244,7 @@ export function Chatbot({ isOpen: isOpenProp, onOpenChange }: { isOpen?: boolean
             </form>
           </motion.div>
         )}
-      </AnimatePresence>
+      </AnimatePresence >
     </>
   )
 }
