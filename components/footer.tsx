@@ -197,9 +197,9 @@ export function Footer() {
       <div className="border-t border-glass-border">
         <div className="mx-auto max-w-7xl px-6 sm:px-8 lg:px-12 py-6">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-            <p className="text-pumice/60 text-sm">© {new Date().getFullYear()} Laneway India Enterprises Private Limited.       
+            <p className="text-pumice/60 text-sm">© {new Date().getFullYear()} Laneway India Enterprises Private Limited.
               <br />
-            All rights reserved.
+              All rights reserved.
               GST: 32AAGCL2491R1Z0
             </p>
 
@@ -234,6 +234,17 @@ export function Footer() {
               <Link href="/cookie-policy" className="text-pumice/60 hover:text-snow text-sm transition-colors">
                 Cookie Policy
               </Link>
+
+              {/* Cookie Settings Button
+              <button
+                onClick={() => {
+                  localStorage.removeItem("laneway_cookie_preferences")
+                  window.location.reload()
+                }}
+                className="text-pumice/60 hover:text-snow text-sm transition-colors"
+              >
+                Cookie Settings
+              </button> */}
             </div>
           </div>
         </div>
