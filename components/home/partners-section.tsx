@@ -1,10 +1,13 @@
 "use client"
 
 import { motion } from "framer-motion"
+import { useState } from "react"
 
 const partners = ["LanewayLabs", "7ZeroMedia", "VAYO", "SAMYAM"]
 
 export function PartnersSection() {
+  const [paused, setPaused] = useState(false)
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null)
   return (
     <section className="py-50 border-y border-glass-border overflow-hidden relative">
       <div className="absolute inset-0 bg-linear-to-r from-transparent via-gold/2 to-transparent" />
@@ -33,22 +36,47 @@ export function PartnersSection() {
         </motion.div>
 
         <div className="relative">
-          <motion.div
-            animate={{ x: [0, -1920] }}
-            transition={{ duration: 40, repeat: Number.POSITIVE_INFINITY, ease: "linear" }}
-            className="flex gap-8"
-          >
+          {/* CSS-driven scroll so we can pause on hover and add a glow */}
+          <div className={`partners-track flex gap-8 ${paused ? 'paused' : ''}`} style={{ WebkitOverflowScrolling: "touch" }}>
             {[...partners, ...partners, ...partners, ...partners].map((partner, index) => (
               <div
                 key={index}
-                className="flex items-center justify-center h-12 px-6 sm:h-16 sm:px-10 glass-card rounded-full transition-all duration-500 hover:border-gold/20"
+                onMouseEnter={() => {
+                  setHoveredIndex(index)
+                  setPaused(true)
+                }}
+                onMouseLeave={() => {
+                  setHoveredIndex(null)
+                  setPaused(false)
+                }}
+                className={
+                  `flex items-center justify-center h-12 px-6 sm:h-16 sm:px-10 glass-card rounded-full transition-all duration-300 ` +
+                  (hoveredIndex === index
+                    ? "border-gold/40 text-gold shadow-[0_0_22px_rgba(203,153,50,0.32)]"
+                    : "hover:border-gold/20")
+                }
               >
-                <span className="font-heading text-lg font-medium text-pumice whitespace-nowrap tracking-wide">
+                <span className={`font-heading text-lg font-medium ${hoveredIndex === index ? "text-gold" : "text-pumice"} whitespace-nowrap tracking-wide`}>
                   {partner}
                 </span>
               </div>
             ))}
-          </motion.div>
+          </div>
+
+          {/* Inline styles for keyframes + toggling paused state */}
+          <style>{`
+            @keyframes partners-scroll {
+              0% { transform: translateX(0); }
+              100% { transform: translateX(-1920px); }
+            }
+            .partners-track {
+              display: flex;
+              animation: partners-scroll 40s linear infinite;
+            }
+            .partners-track.paused {
+              animation-play-state: paused;
+            }
+          `}</style>
         </div>
       </div>
     </section>
