@@ -5,9 +5,20 @@ import { motion } from "framer-motion"
 import Link from "next/link"
 import { Calendar, Clock, Play, FileText } from "lucide-react"
 
-const categories = ["All", "AI & Technology", "Marketing", "Startup", "Research", "Video"]
+const categories = ["All", "Business", "AI & Technology", "Marketing", "Startup", "Research", "Video"]
 
 const blogs = [
+
+   {
+    type: "written",
+    title: "Budget 2026 and the Future of Smart Businesses",
+    excerpt: "Budget 2026: A Blueprint for Stable Growth and Smarter Business Strategies in India.",
+    category: "Business",
+    date: "Jan 31, 2026",
+    readTime: "5 min read",
+    href: "/blogs/budget-smart-businesses",
+  },
+
   {
     type: "written",
     title: "The Future of AI in Business Operations",

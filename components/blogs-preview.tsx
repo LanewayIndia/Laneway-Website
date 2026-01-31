@@ -6,6 +6,15 @@ import { motion } from "framer-motion"
 import { ArrowUpRight, Calendar, Clock } from "lucide-react"
 
 const blogs = [
+   {
+    title: "Budget 2026 and the Future of Smart Businesses",
+    excerpt: "Budget 2026: A Blueprint for Stable Growth and Smarter Business Strategies in India.",
+    category: "Business",
+    date: "Jan 31, 2026",
+    readTime: "5 min read",
+    href: "/blogs/budget-smart-businesses",
+  },
+
   {
     title: "The Future of AI in Business Operations",
     excerpt: "Exploring how artificial intelligence is reshaping the way companies operate and make decisions.",
@@ -21,14 +30,6 @@ const blogs = [
     date: "Jan 8, 2026",
     readTime: "8 min read",
     href: "/blogs/scalable-mvps",
-  },
-  {
-    title: "Digital Marketing Trends for 2026",
-    excerpt: "Stay ahead of the curve with our comprehensive analysis of emerging marketing strategies.",
-    category: "Marketing",
-    date: "Jan 5, 2026",
-    readTime: "6 min read",
-    href: "/blogs/marketing-trends-2026",
   },
 ]
 

@@ -8,6 +8,16 @@ import Image from "next/image"
 
 const blogs = [
   {
+    title: "Budget 2026 and the Future of Smart Businesses",
+    excerpt: "Budget 2026: A Blueprint for Stable Growth and Smarter Business Strategies in India.",
+    category: "Business",
+    date: "Jan 31, 2026",
+    readTime: "5 min read",
+    href: "/blogs/budget-smart-businesses",
+    image: "/B2ATFOSB.png",
+  },
+
+  {
     title: "The Future of AI in Business Operations",
     excerpt: "Exploring how artificial intelligence is reshaping the way companies operate and make decisions.",
     category: "AI & Technology",
@@ -24,15 +34,6 @@ const blogs = [
     readTime: "8 min read",
     href: "/blogs/scalable-mvps",
     image: "/BSM.png",
-  },
-  {
-    title: "Digital Marketing Trends for 2026",
-    excerpt: "Stay ahead of the curve with our comprehensive analysis of emerging marketing strategies.",
-    category: "Marketing",
-    date: "Jan 5, 2026",
-    readTime: "6 min read",
-    href: "/blogs/marketing-trends-2026",
-    image: "/DMT.png",
   },
 ]
 
@@ -85,7 +86,7 @@ export function BlogsPreview() {
                       alt={blog.title}
                       fill
                       sizes="(max-width: 768px) 100vw, 33vw"
-                      className="object-cover transition-transform duration-700 group-hover:scale-110"
+                      className="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-110"
                       priority={index === 0}
                     />
 
