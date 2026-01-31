@@ -5,6 +5,15 @@ import { Analytics } from "@vercel/analytics/next"
 import "./globals.css"
 import { CookieConsentBanner } from "@/components/cookie-consent/cookie-consent"
 import { Toaster } from "@/components/ui/toaster"
+import { cookies } from "next/headers"
+import { getCookiePreferences } from "@/lib/cookie-consent"
+
+function AnalyticsWrapper() {
+  const prefs = getCookiePreferences()
+  if (!prefs?.analytics) return null
+  return <Analytics />
+}
+
 
 const playfair = Playfair_Display({
   subsets: ["latin"],
@@ -74,16 +83,31 @@ export const viewport: Viewport = {
   userScalable: false,
 }
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
+  const cookieStore = await cookies()
+  const consent = cookieStore.get("laneway_consent")
+
+  let analyticsAllowed = false
+
+  if (consent) {
+    try {
+      const parsed = JSON.parse(
+        Buffer.from(consent.value, "base64").toString("utf-8")
+      )
+      analyticsAllowed = parsed.analytics === true
+    } catch {
+      analyticsAllowed = false
+    }
+  }
   return (
     <html lang="en" className={`${playfair.variable} ${inter.variable}`}>
       <body className="font-sans antialiased bg-background text-foreground">
         {children}
         <CookieConsentBanner />
         <Toaster />
-        <Analytics />
+        <AnalyticsWrapper />
       </body>
     </html>
   )
