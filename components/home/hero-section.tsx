@@ -4,12 +4,16 @@ import Link from "next/link"
 import { motion, AnimatePresence } from "framer-motion"
 import { ArrowRight } from "lucide-react"
 import { useEffect, useState } from "react"
+import { useRouter } from "next/navigation"
+
+
 
 const words = ["BUILD", "TRANSFORM", "SCALE",]
 
 export function HeroSection() {
 
   const [index, setIndex] = useState(0)
+  const router = useRouter()
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -83,13 +87,16 @@ export function HeroSection() {
               <span>Explore Our Masterpieces</span>
               <ArrowRight size={14} className="sm:w-4 sm:h-4 transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true" />
             </Link>
-            <Link
-              href="/contact"
-              className="group flex items-center gap-2 sm:gap-3 px-4 sm:px-6 py-2.5 sm:py-3 text-xs sm:text-sm font-medium text-snow border border-glass-border rounded-full transition-all duration-300 hover:border-gold/50 hover:bg-gold/5 whitespace-nowrap"
-            >
-              <span>Begin Your Transformation</span>
-              <span className="hidden sm:inline">→</span>
-            </Link>
+
+            <button onClick={() => router.push("/auth")}>
+              <Link
+                href="/contact"
+                className="group flex items-center gap-2 sm:gap-3 px-4 sm:px-6 py-2.5 sm:py-3 text-xs sm:text-sm font-medium text-snow border border-glass-border rounded-full transition-all duration-300 hover:border-gold/50 hover:bg-gold/5 whitespace-nowrap"
+              >
+                <span>Begin Your Transformation</span>
+                <span className="hidden sm:inline">→</span>
+              </Link>
+            </button>
           </motion.div>
         </div>
       </div>

@@ -5,6 +5,8 @@ import Link from "next/link"
 import { motion, AnimatePresence } from "framer-motion"
 import { Menu, X, ArrowUpRight } from "lucide-react"
 import Image from "next/image"
+import { useRouter } from "next/navigation"
+import { Button } from "./ui/button"
 
 const navItems = [
   { name: "Home", href: "/" },
@@ -18,6 +20,7 @@ const navItems = [
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const router = useRouter()
 
   useEffect(() => {
     const handleScroll = () => {
@@ -77,16 +80,19 @@ export function Header() {
           </nav>
 
           <div className="hidden lg:flex items-center">
-            <Link
-              href="/contact"
-              className="group flex items-center gap-2 px-6 py-3 text-sm font-medium text-background bg-snow rounded-full transition-all duration-300 hover:bg-gold"
-            >
-              <span>Begin Your Transformation</span>
-              <ArrowUpRight
-                size={14}
-                className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-              />
-            </Link>
+            <button
+              onClick={() => router.push("/auth")}>
+              <Link
+                href="/contact"
+                className="group flex items-center gap-2 px-6 py-3 text-sm font-medium text-background bg-snow rounded-full transition-all duration-300 hover:bg-gold"
+              >
+                <span>Begin Your Transformation</span>
+                <ArrowUpRight
+                  size={14}
+                  className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                />
+              </Link>
+            </button>
           </div>
 
           {/* Mobile Menu Toggle */}

@@ -10,10 +10,10 @@ export function HeroSection() {
       <div className="absolute inset-0 noise-texture" />
 
       <div className="absolute inset-0">
-        <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-gold/5 rounded-full blur-[120px]" />
+        <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-200 h-100 bg-gold/5 rounded-full blur-[120px]" />
       </div>
 
-      <div className="absolute inset-0 bg-[linear-gradient(rgba(201,168,85,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(201,168,85,0.02)_1px,transparent_1px)] bg-[size:80px_80px]" />
+      <div className="absolute inset-0 bg-[linear-gradient(rgba(201,168,85,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(201,168,85,0.02)_1px,transparent_1px)] bg-size-[80px_80px]" />
 
       <div className="relative z-10 container py-24 sm:py-32">
         <div className="text-center">
@@ -63,7 +63,7 @@ export function HeroSection() {
               href="/contact"
               className="group flex items-center gap-3 px-8 py-4 text-sm font-medium text-snow border border-glass-border rounded-full transition-all duration-300 hover:border-gold/50 hover:bg-gold/5"
             >
-              <span>Get In Touch</span>
+              <span>Begin Your Transformation</span>
             </Link>
           </motion.div>
         </div>
@@ -80,7 +80,7 @@ export function HeroSection() {
           <motion.div
             animate={{ y: [0, 6, 0] }}
             transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }}
-            className="w-px h-12 bg-gradient-to-b from-gold/50 to-transparent"
+            className="w-px h-12 bg-linear-to-b from-gold/50 to-transparent"
           />
         </div>
       </motion.div>
