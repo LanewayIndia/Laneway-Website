@@ -6,6 +6,8 @@ import { Send, X, Mail, Phone, MessageSquare, ArrowRight, Loader2 } from "lucide
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Chatbot } from "../chatbot"
+import { supabase } from "@/lib/supabase"
+import { useRouter } from "next/navigation"
 
 export function ContactSection() {
   const [isOpen, setIsOpen] = useState(false)
@@ -18,6 +20,7 @@ export function ContactSection() {
     subject: "",
     message: ""
   }) //form data state
+  const router = useRouter()
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { id, value } = e.target
@@ -66,6 +69,25 @@ export function ContactSection() {
     }
   } //handle form submission
 
+  const handleContactToggle = async () => {
+    if (isOpen) {
+      setIsOpen(false)
+      return
+    }
+
+    try {
+      const res = await (supabase.auth as any).getSession()
+      const session = res?.data?.session
+      if (session) {
+        setIsOpen(true)
+      } else {
+        router.push("/auth")
+      }
+    } catch (err) {
+      console.error("Error checking session:", err)
+      router.push("/auth")
+    }
+  }
 
   return (
     <section className="py-24 sm:py-40 relative overflow-hidden">
@@ -82,17 +104,17 @@ export function ContactSection() {
           className="text-center"
         >
           <span className="text-xs tracking-premium uppercase text-pumice mb-6 block">Get Started</span>
-          <h2 className="font-heading text-4xl sm:text-5xl lg:text-6xl font-bold text-snow mb-6 text-balance">
+          <h2 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-bold text-snow mb-6 text-balance">
             Ready to Transform
             <br />
             Your Business?
           </h2>
-          <p className="text-lg text-pumice max-w-xl mx-auto mb-12 font-light">
+          <p className="text-base sm:text-lg text-pumice max-w-xl mx-auto mb-12 font-light">
             {`Let's discuss how Laneway can help you achieve your digital goals.`}
           </p>
 
           <motion.button
-            onClick={() => setIsOpen(!isOpen)}
+            onClick={handleContactToggle}
             className={`group inline-flex items-center gap-3 px-8 py-4 rounded-full text-sm font-medium transition-all duration-300 ${isOpen ? "bg-snow text-background hover:bg-pumice" : "bg-snow text-background hover:bg-gold"
               }`}
           >
@@ -112,9 +134,9 @@ export function ContactSection() {
               transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
               className="overflow-hidden"
             >
-              <div className="glass-card rounded-2xl p-8 sm:p-10">
-                <div className="flex items-center justify-between mb-8">
-                  <h3 className="font-heading text-2xl font-medium text-snow">Send us a message</h3>
+              <div className="glass-card rounded-2xl p-6 sm:p-8 lg:p-10">
+                <div className="flex items-center justify-between mb-6 sm:mb-8">
+                  <h3 className="font-heading text-xl sm:text-2xl font-medium text-snow">Send us a message</h3>
                   <button
                     onClick={() => setIsOpen(false)}
                     className="p-2 text-pumice hover:text-snow transition-colors rounded-full hover:bg-glass-highlight"
@@ -124,10 +146,10 @@ export function ContactSection() {
                   </button>
                 </div>
 
-                <form className="space-y-6" onSubmit={handleSubmit}>
+                <form className="space-y-5 sm:space-y-6" onSubmit={handleSubmit}>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
-                      <label htmlFor="name" className="block text-xs tracking-wide uppercase text-pumice mb-3">
+                      <label htmlFor="name" className="block text-xs tracking-wide uppercase text-pumice mb-2 sm:mb-3">
                         Name
                       </label>
                       <Input
@@ -137,11 +159,11 @@ export function ContactSection() {
                         value={formData.name}
                         onChange={handleInputChange}
                         required
-                        className="bg-background/50 border-glass-border text-snow placeholder:text-pumice/40 focus:border-gold/50 rounded-xl h-12"
+                        className="bg-background/50 border-glass-border text-snow placeholder:text-pumice/40 focus:border-gold/50 rounded-xl h-11 sm:h-12 text-base"
                       />
                     </div>
                     <div>
-                      <label htmlFor="email" className="block text-xs tracking-wide uppercase text-pumice mb-3">
+                      <label htmlFor="email" className="block text-xs tracking-wide uppercase text-pumice mb-2 sm:mb-3">
                         Email
                       </label>
                       <Input
@@ -151,13 +173,13 @@ export function ContactSection() {
                         value={formData.email}
                         onChange={handleInputChange}
                         required
-                        className="bg-background/50 border-glass-border text-snow placeholder:text-pumice/40 focus:border-gold/50 rounded-xl h-12"
+                        className="bg-background/50 border-glass-border text-snow placeholder:text-pumice/40 focus:border-gold/50 rounded-xl h-11 sm:h-12 text-base"
                       />
                     </div>
                   </div>
 
                   <div>
-                    <label htmlFor="subject" className="block text-xs tracking-wide uppercase text-pumice mb-3">
+                    <label htmlFor="subject" className="block text-xs tracking-wide uppercase text-pumice mb-2 sm:mb-3">
                       Subject
                     </label>
                     <Input
@@ -166,12 +188,12 @@ export function ContactSection() {
                       placeholder="How can we help?"
                       value={formData.subject}
                       onChange={handleInputChange}
-                      className="bg-background/50 border-glass-border text-snow placeholder:text-pumice/40 focus:border-gold/50 rounded-xl h-12"
+                      className="bg-background/50 border-glass-border text-snow placeholder:text-pumice/40 focus:border-gold/50 rounded-xl h-11 sm:h-12 text-base"
                     />
                   </div>
 
                   <div>
-                    <label htmlFor="message" className="block text-xs tracking-wide uppercase text-pumice mb-3">
+                    <label htmlFor="message" className="block text-xs tracking-wide uppercase text-pumice mb-2 sm:mb-3">
                       Message
                     </label>
                     <Textarea
@@ -181,7 +203,7 @@ export function ContactSection() {
                       onChange={handleInputChange}
                       rows={4}
                       required
-                      className="bg-background/50 border-glass-border text-snow placeholder:text-pumice/40 focus:border-gold/50 resize-none rounded-xl"
+                      className="bg-background/50 border-glass-border text-snow placeholder:text-pumice/40 focus:border-gold/50 resize-none rounded-xl text-base"
                     />
                   </div>
 
@@ -202,16 +224,16 @@ export function ContactSection() {
                   <button
                     type="submit"
                     disabled={loading}
-                    className="w-full flex items-center justify-center gap-2 bg-snow hover:bg-gold text-background font-medium py-4 rounded-full transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="w-full flex items-center justify-center gap-2 bg-snow hover:bg-gold text-background font-medium py-3 sm:py-4 h-11 sm:h-14 rounded-full transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed text-base sm:text-lg"
                   >
                     {loading ? (
                       <>
-                        <Loader2 size={16} className="animate-spin" />
+                        <Loader2 size={16} className="animate-spin sm:w-5 sm:h-5" />
                         <span>Sending...</span>
                       </>
                     ) : (
                       <>
-                        <Send size={16} />
+                        <Send size={16} className="sm:w-5 sm:h-5" />
                         <span>Send Message</span>
                       </>
                     )}

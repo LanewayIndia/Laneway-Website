@@ -5,6 +5,11 @@ import Link from "next/link"
 import { motion, AnimatePresence } from "framer-motion"
 import { Menu, X, ArrowUpRight } from "lucide-react"
 import Image from "next/image"
+import { useRouter } from "next/navigation"
+import { Button } from "./ui/button"
+import { useSession } from "@/hooks/use-session"
+import { UserProfileMenu } from "./user-profile-menu"
+import { supabase } from "@/lib/supabase"
 
 const navItems = [
   { name: "Home", href: "/" },
@@ -18,6 +23,19 @@ const navItems = [
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false)
+  const [editData, setEditData] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    newPassword: "",
+    confirmPassword: "",
+  })
+  const [editLoading, setEditLoading] = useState(false)
+  const [editError, setEditError] = useState<string | null>(null)
+  const [editSuccess, setEditSuccess] = useState(false)
+  const router = useRouter()
+  const { user, loading } = useSession()
 
   useEffect(() => {
     const handleScroll = () => {
@@ -26,6 +44,84 @@ export function Header() {
     window.addEventListener("scroll", handleScroll)
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
+
+  const handleUpdateProfile = async () => {
+    setEditError(null)
+    setEditSuccess(false)
+    setEditLoading(true)
+
+    // Validate passwords match if provided
+    if (editData.newPassword || editData.confirmPassword) {
+      if (editData.newPassword !== editData.confirmPassword) {
+        setEditError("Passwords do not match")
+        setEditLoading(false)
+        return
+      }
+      if (editData.newPassword.length < 6) {
+        setEditError("Password must be at least 6 characters")
+        setEditLoading(false)
+        return
+      }
+    }
+
+    try {
+      // Update email using client auth if changed
+      if (editData.email !== user?.email) {
+        const { error: emailError } = await supabase.auth.updateUser({
+          email: editData.email,
+        })
+        if (emailError) {
+          setEditError(emailError.message || "Failed to update email")
+          setEditLoading(false)
+          return
+        }
+      }
+
+      // Update password using client auth if provided
+      if (editData.newPassword) {
+        const { error: passwordError } = await supabase.auth.updateUser({
+          password: editData.newPassword,
+        })
+        if (passwordError) {
+          setEditError(passwordError.message || "Failed to update password")
+          setEditLoading(false)
+          return
+        }
+      }
+
+      // Update profile (name and phone) directly with RLS protection
+      if (editData.name !== user?.name || editData.phone !== user?.phone) {
+        const { error: profileError } = await supabase
+          .from("profiles")
+          .update({
+            name: editData.name,
+            phone: editData.phone,
+          })
+          .eq("id", user?.id)
+
+        if (profileError) {
+          setEditError(profileError.message || "Failed to update profile")
+          setEditLoading(false)
+          return
+        }
+      }
+
+      setEditSuccess(true)
+      setEditData({
+        ...editData,
+        newPassword: "",
+        confirmPassword: "",
+      })
+      // Close modal after 2 seconds
+      setTimeout(() => {
+        setIsEditModalOpen(false)
+      }, 2000)
+    } catch (err) {
+      setEditError("Error updating profile")
+    } finally {
+      setEditLoading(false)
+    }
+  }
 
   return (
     <motion.header
@@ -76,17 +172,21 @@ export function Header() {
             ))}
           </nav>
 
-          <div className="hidden lg:flex items-center">
-            <Link
-              href="/contact"
-              className="group flex items-center gap-2 px-6 py-3 text-sm font-medium text-background bg-snow rounded-full transition-all duration-300 hover:bg-gold"
-            >
-              <span>Begin Your Transformation</span>
-              <ArrowUpRight
-                size={14}
-                className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-              />
-            </Link>
+          <div className="hidden lg:flex items-center gap-4">
+            {user ? (
+              <UserProfileMenu />
+            ) : (
+              <Link
+                href="/contact"
+                className="group flex items-center gap-2 px-6 py-3 text-sm font-medium text-background bg-snow rounded-full transition-all duration-300 hover:bg-gold"
+              >
+                <span>Begin Your Transformation</span>
+                <ArrowUpRight
+                  size={14}
+                  className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                />
+              </Link>
+            )}
           </div>
 
           {/* Mobile Menu Toggle */}
@@ -108,7 +208,7 @@ export function Header() {
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-            className="lg:hidden bg-background/95 backdrop-blur-xl border-t border-glass-border"
+            className="lg:hidden bg-background/95 backdrop-blur-xl border-t border-glass-border max-h-[calc(100vh-80px)] overflow-y-auto"
           >
             <nav className="flex flex-col px-6 py-8 gap-1">
               {navItems.map((item, index) => (
@@ -133,19 +233,131 @@ export function Header() {
                 transition={{ delay: navItems.length * 0.05, duration: 0.4 }}
                 className="pt-6 mt-4 border-t border-glass-border"
               >
-                <Link
-                  href="/contact"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className="inline-flex items-center gap-2 px-8 py-4 text-sm font-medium text-background bg-snow rounded-full"
-                >
-                  Get In Touch
-                  <ArrowUpRight size={14} />
-                </Link>
+                {user ? (
+                  <div className="space-y-4">
+                    <div className="px-4 py-4 bg-slate-800/50 rounded-lg border border-border">
+                      <p className="text-snow font-semibold text-base">{user.name || "User"}</p>
+                      <p className="text-pumice text-xs break-all mt-1">{user.email}</p>
+                    </div>
+                    <button
+                      onClick={() => {
+                        setEditData({
+                          name: user.name || "",
+                          email: user.email || "",
+                          phone: user.phone || "",
+                          newPassword: "",
+                          confirmPassword: "",
+                        })
+                        setIsEditModalOpen(true)
+                      }}
+                      className="w-full px-4 py-4 h-12 text-snow bg-gold/20 border border-gold/50 hover:bg-gold/30 hover:border-gold transition-all text-base font-semibold rounded-lg"
+                    >
+                      Edit Profile
+                    </button>
+                    <button
+                      onClick={async () => {
+                        await supabase.auth.signOut()
+                        setIsMobileMenuOpen(false)
+                        router.push("/")
+                      }}
+                      className="w-full px-4 py-4 h-12 text-background bg-red-500 hover:bg-red-600 rounded-lg transition-all text-base font-semibold"
+                    >
+                      Logout
+                    </button>
+                  </div>
+                ) : (
+                  <Link
+                    href="/contact"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className="inline-flex items-center gap-2 px-8 py-4 text-sm font-medium text-background bg-snow rounded-full hover:bg-gold transition-all duration-300"
+                  >
+                    Get In Touch
+                    <ArrowUpRight size={14} />
+                  </Link>
+                )}
               </motion.div>
             </nav>
           </motion.div>
         )}
       </AnimatePresence>
+
+      {/* Edit Profile Modal for Mobile */}
+      {isEditModalOpen && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+          <div className="bg-card border border-border rounded-2xl p-6 sm:p-8 w-full max-w-md max-h-[90vh] overflow-y-auto">
+            <h2 className="text-snow text-xl sm:text-2xl font-bold mb-6">Edit Profile</h2>
+
+            {editError && (
+              <p className="text-red-400 text-sm mb-4 p-3 bg-red-500/10 rounded-lg">{editError}</p>
+            )}
+            {editSuccess && (
+              <p className="text-green-400 text-sm mb-4 p-3 bg-green-500/10 rounded-lg">Profile updated successfully!</p>
+            )}
+
+            {/* Name */}
+            <input
+              type="text"
+              placeholder="Name"
+              value={editData.name}
+              onChange={(e) => setEditData({ ...editData, name: e.target.value })}
+              className="w-full mb-4 p-3 sm:p-4 h-11 sm:h-12 rounded-lg bg-background border border-border text-snow placeholder:text-pumice/60 text-base"
+            />
+
+            {/* Email */}
+            <input
+              type="email"
+              placeholder="Email"
+              value={editData.email}
+              onChange={(e) => setEditData({ ...editData, email: e.target.value })}
+              className="w-full mb-4 p-3 sm:p-4 h-11 sm:h-12 rounded-lg bg-background border border-border text-snow placeholder:text-pumice/60 text-base"
+            />
+
+            {/* Phone */}
+            <input
+              type="tel"
+              placeholder="Phone Number"
+              value={editData.phone}
+              onChange={(e) => setEditData({ ...editData, phone: e.target.value })}
+              className="w-full mb-4 p-3 sm:p-4 h-11 sm:h-12 rounded-lg bg-background border border-border text-snow placeholder:text-pumice/60 text-base"
+            />
+
+            {/* New Password */}
+            <input
+              type="password"
+              placeholder="New Password (leave blank to keep current)"
+              value={editData.newPassword}
+              onChange={(e) => setEditData({ ...editData, newPassword: e.target.value })}
+              className="w-full mb-4 p-3 sm:p-4 h-11 sm:h-12 rounded-lg bg-background border border-border text-snow placeholder:text-pumice/60 text-base"
+            />
+
+            {/* Confirm Password */}
+            <input
+              type="password"
+              placeholder="Confirm Password"
+              value={editData.confirmPassword}
+              onChange={(e) => setEditData({ ...editData, confirmPassword: e.target.value })}
+              className="w-full mb-6 p-3 sm:p-4 h-11 sm:h-12 rounded-lg bg-background border border-border text-snow placeholder:text-pumice/60 text-base"
+            />
+
+            {/* Buttons */}
+            <div className="flex gap-3">
+              <button
+                onClick={() => setIsEditModalOpen(false)}
+                className="flex-1 py-3 sm:py-4 h-11 sm:h-12 rounded-lg border border-border text-snow hover:bg-slate-800 transition font-medium text-base sm:text-lg"
+              >
+                Cancel
+              </button>
+              <button
+                onClick={handleUpdateProfile}
+                disabled={editLoading}
+                className="flex-1 py-3 sm:py-4 h-11 sm:h-12 rounded-lg bg-gold text-background font-semibold disabled:opacity-60 transition text-base sm:text-lg"
+              >
+                {editLoading ? "Saving..." : "Save Changes"}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </motion.header>
   )
 }
