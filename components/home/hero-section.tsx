@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion"
 import { ArrowRight } from "lucide-react"
 import { useEffect, useState } from "react"
 import { useRouter } from "next/navigation"
+import { supabase } from "@/lib/supabase"
 
 
 
@@ -78,24 +79,30 @@ export function HeroSection() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6 }}
-            className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 px-2"
+            className="flex flex-col sm:flex-row items-center justify-center gap-4 px-4"
           >
             <Link
               href="/case-studies"
-              className="group flex items-center gap-2 sm:gap-3 px-4 sm:px-6 py-2.5 sm:py-3 text-xs sm:text-sm font-medium text-background bg-snow rounded-full transition-all duration-300 hover:bg-gold whitespace-nowrap"
+              className="group flex items-center justify-center gap-2 sm:gap-3 px-6 sm:px-8 py-3 sm:py-4 h-11 sm:h-14 text-xs sm:text-base font-medium text-background bg-snow rounded-full transition-all duration-300 hover:bg-gold whitespace-nowrap w-full sm:w-auto"
             >
               <span>Explore Our Masterpieces</span>
-              <ArrowRight size={14} className="sm:w-4 sm:h-4 transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true" />
+              <ArrowRight size={16} className="sm:w-5 sm:h-5 transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true" />
             </Link>
 
-            <button onClick={() => router.push("/auth")}>
-              <Link
-                href="/contact"
-                className="group flex items-center gap-2 sm:gap-3 px-4 sm:px-6 py-2.5 sm:py-3 text-xs sm:text-sm font-medium text-snow border border-glass-border rounded-full transition-all duration-300 hover:border-gold/50 hover:bg-gold/5 whitespace-nowrap"
-              >
-                <span>Begin Your Transformation</span>
-                <span className="hidden sm:inline">→</span>
-              </Link>
+            <button
+              onClick={async () => {
+                try {
+                  const { data } = await supabase.auth.getSession()
+                  if (data?.session?.user) router.push("/contact")
+                  else router.push("/auth")
+                } catch (err) {
+                  router.push("/auth")
+                }
+              }}
+              className="group flex items-center justify-center gap-2 sm:gap-3 px-6 sm:px-8 py-3 sm:py-4 h-11 sm:h-14 text-xs sm:text-base font-medium text-snow border border-glass-border rounded-full transition-all duration-300 hover:border-gold/50 hover:bg-gold/5 whitespace-nowrap w-full sm:w-auto"
+            >
+              <span>Begin Your Transformation</span>
+              <span className="hidden sm:inline">→</span>
             </button>
           </motion.div>
         </div>

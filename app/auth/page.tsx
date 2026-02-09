@@ -3,7 +3,8 @@
 import { useState } from "react"
 import { supabase } from "@/lib/supabase"
 import { useRouter } from "next/navigation"
-import { Eye, EyeOff, Mail, Phone, Github, Gitlab, Linkedin, Facebook } from "lucide-react"
+import { Eye, EyeOff, Mail, Phone, Github, Gitlab, Linkedin, Facebook, X } from "lucide-react"
+import { motion } from "framer-motion"
 
 export default function AuthPage() {
   const router = useRouter()
@@ -213,9 +214,25 @@ export default function AuthPage() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-background">
+    <div className="min-h-screen flex items-center justify-center bg-background px-4 py-8">
 
-      <div className="bg-card border border-border p-10 rounded-2xl w-105">
+      <motion.div
+        initial={{ opacity: 0, y: 12, scale: 0.995 }}
+        animate={{ opacity: 1, y: 0, scale: 1 }}
+        transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+        className="relative bg-card border border-border p-8 sm:p-10 rounded-2xl w-full max-w-md"
+      >
+        {/* Close button visible on all devices */}
+        <motion.button
+          onClick={() => router.push("/")}
+          whileHover={{ scale: 1.05, rotate: 20 }}
+          whileTap={{ scale: 0.96 }}
+          transition={{ type: "spring", stiffness: 400, damping: 22 }}
+          aria-label="Close and go back to home"
+          className="absolute -top-4 right-4 sm:-top-5 sm:right-5 z-30 bg-background/70 backdrop-blur rounded-full p-2 sm:p-3 border border-border shadow-md focus:outline-none focus:ring-2 focus:ring-gold"
+        >
+          <X size={18} />
+        </motion.button>
 
         <h1 className="font-heading text-3xl text-snow mb-6 text-center">
           Begin Your Transformation
@@ -402,7 +419,7 @@ export default function AuthPage() {
 
         </div>
 
-      </div>
+      </motion.div>
     </div>
   )
 }
