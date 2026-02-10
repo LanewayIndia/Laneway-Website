@@ -31,7 +31,7 @@ export default function VayoCaseStudy() {
           </span>
 
           <h1 className="font-heading text-4xl sm:text-5xl font-bold text-snow mt-6">
-            VAYO: Building a Hybrid Community Brand for Modern Social Connections
+            VAYO: Building a Social Community Brand for Modern Social Connections
           </h1>
         </motion.div>
 
