@@ -277,6 +277,9 @@ Transform your business with AI-powered business consulting services that delive
 
 function searchKnowledge(message: string): string | null {
   const msg = message.toLowerCase()
+  if (msg.includes("Hey") || msg.includes("Hi") || msg.includes("Hello") || msg.includes("What’s up") || msg.includes("How are you") || msg.includes("How’s it going")) {
+    return "Hello! Welcome to Laneway. How can I assist you today?"
+  }
 
   // Split knowledge into lines
   const lines = KNOWLEDGE.split("\n").map((l) => l.trim()).filter(Boolean)
