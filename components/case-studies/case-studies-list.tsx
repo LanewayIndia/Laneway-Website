@@ -31,7 +31,7 @@ const caseStudies = [
   {
     id: "vayo",
     name: "VAYO",
-    tagline: "Building a Hybrid Community Brand for Modern Social Connections",
+    tagline: "Building a Social Community Brand for Modern Social Connections",
     problem:
       "In a time after 20s where life is fast and hectic, genuine friendships are harder to form. Vayo creates a comfortable, activity driven space where individuals meet new people, share experience and build real connections.",
     solution:
