@@ -45,6 +45,18 @@ export function Header() {
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
+  // Prevent body scroll when modal or mobile menu is open
+  useEffect(() => {
+    if (isEditModalOpen || isMobileMenuOpen) {
+      document.body.style.overflow = "hidden"
+    } else {
+      document.body.style.overflow = "unset"
+    }
+    return () => {
+      document.body.style.overflow = "unset"
+    }
+  }, [isEditModalOpen, isMobileMenuOpen])
+
   const handleUpdateProfile = async () => {
     setEditError(null)
     setEditSuccess(false)
