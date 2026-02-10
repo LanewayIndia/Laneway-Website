@@ -82,59 +82,59 @@ export default function AuthPage() {
     }
   }
 
-  // Send OTP to phone
-  const sendPhoneOtp = async () => {
-    if (!phone) {
-      setErrorMsg("Please enter phone number")
-      return
-    }
-    setOtpLoading(true)
-    setErrorMsg(null)
-    try {
-      const response = await fetch("/api/auth/send-phone-otp", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ phone }),
-      })
-      const result = await response.json()
-      if (response.ok) {
-        setPhoneOtpSent(true)
-      } else {
-        setErrorMsg(result.error || "Failed to send OTP")
-      }
-    } catch (err) {
-      setErrorMsg("Error sending OTP")
-    } finally {
-      setOtpLoading(false)
-    }
-  }
+  // // Send OTP to phone
+  // const sendPhoneOtp = async () => {
+  //   if (!phone) {
+  //     setErrorMsg("Please enter phone number")
+  //     return
+  //   }
+  //   setOtpLoading(true)
+  //   setErrorMsg(null)
+  //   try {
+  //     const response = await fetch("/api/auth/send-phone-otp", {
+  //       method: "POST",
+  //       headers: { "Content-Type": "application/json" },
+  //       body: JSON.stringify({ phone }),
+  //     })
+  //     const result = await response.json()
+  //     if (response.ok) {
+  //       setPhoneOtpSent(true)
+  //     } else {
+  //       setErrorMsg(result.error || "Failed to send OTP")
+  //     }
+  //   } catch (err) {
+  //     setErrorMsg("Error sending OTP")
+  //   } finally {
+  //     setOtpLoading(false)
+  //   }
+  // }
 
-  // Verify phone OTP
-  const verifyPhoneOtp = async () => {
-    if (!phoneOtp || phoneOtp.length !== 6) {
-      setErrorMsg("Please enter valid 6-digit OTP")
-      return
-    }
-    setOtpLoading(true)
-    setErrorMsg(null)
-    try {
-      const response = await fetch("/api/auth/verify-phone-otp", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ phone, otp: phoneOtp }),
-      })
-      const result = await response.json()
-      if (response.ok) {
-        setPhoneOtpVerified(true)
-      } else {
-        setErrorMsg(result.error || "Invalid OTP")
-      }
-    } catch (err) {
-      setErrorMsg("Error verifying OTP")
-    } finally {
-      setOtpLoading(false)
-    }
-  }
+  // // Verify phone OTP
+  // const verifyPhoneOtp = async () => {
+  //   if (!phoneOtp || phoneOtp.length !== 6) {
+  //     setErrorMsg("Please enter valid 6-digit OTP")
+  //     return
+  //   }
+  //   setOtpLoading(true)
+  //   setErrorMsg(null)
+  //   try {
+  //     const response = await fetch("/api/auth/verify-phone-otp", {
+  //       method: "POST",
+  //       headers: { "Content-Type": "application/json" },
+  //       body: JSON.stringify({ phone, otp: phoneOtp }),
+  //     })
+  //     const result = await response.json()
+  //     if (response.ok) {
+  //       setPhoneOtpVerified(true)
+  //     } else {
+  //       setErrorMsg(result.error || "Invalid OTP")
+  //     }
+  //   } catch (err) {
+  //     setErrorMsg("Error verifying OTP")
+  //   } finally {
+  //     setOtpLoading(false)
+  //   }
+  // }
 
   const handleAuth = async () => {
     setErrorMsg(null)
@@ -203,7 +203,6 @@ export default function AuthPage() {
       | "google"
       | "linkedin_oidc"
       | "github"
-      | "facebook"
   ) => {
     await supabase.auth.signInWithOAuth({
       provider,
@@ -292,7 +291,7 @@ export default function AuthPage() {
         )}
 
         {/* Phone */}
-        {mode === "signup" && (
+        {/* {mode === "signup" && (
           <div className="relative mb-3">
             <input
               placeholder="Phone Number"
@@ -310,10 +309,10 @@ export default function AuthPage() {
               {phoneOtpVerified ? "✓" : phoneOtpSent ? "Resend" : "Send OTP"}
             </button>
           </div>
-        )}
+        )} */}
 
         {/* Phone OTP Verification */}
-        {mode === "signup" && phoneOtpSent && !phoneOtpVerified && (
+        {/* {mode === "signup" && phoneOtpSent && !phoneOtpVerified && (
           <input
             placeholder="Phone OTP (6 digits)"
             value={phoneOtp}
@@ -332,7 +331,7 @@ export default function AuthPage() {
           >
             {otpLoading ? "Verifying..." : "Verify Phone OTP"}
           </button>
-        )}
+        )} */}
 
         {/* Password + Eye */}
         <div className="relative mb-4">
@@ -409,13 +408,13 @@ export default function AuthPage() {
             Continue with GitHub
           </button>
 
-          <button
+          {/* <button
             onClick={()=>socialLogin("facebook")}
             className="w-full border border-border py-3 rounded-lg text-snow flex items-center justify-center gap-2 hover:bg-slate-800 transition"
           >
             <Facebook size={20} className="text-blue-500" />
             Continue with Facebook
-          </button>
+          </button> */}
 
         </div>
 
