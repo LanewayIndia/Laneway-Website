@@ -7,6 +7,7 @@ import { CookieConsentBanner } from "@/components/cookie-consent/cookie-consent"
 import { Toaster } from "@/components/ui/toaster"
 import { cookies } from "next/headers"
 import { getCookiePreferences } from "@/lib/cookie-consent"
+import Script from "next/script"
 
 function AnalyticsWrapper() {
   const prefs = getCookiePreferences()
@@ -46,33 +47,33 @@ export const metadata: Metadata = {
     "technology services",
     "AI consulting",
     "marketing solutions",
-    "business consulting services", 
-    "business consulting firm", 
-    "AI business consulting", 
-    "strategic business consulting", 
-    "business consulting India", 
-    "business consulting Bangalore", 
-    "startup business consulting", 
-    "technology business consulting", 
-    "digital business consulting", 
-    "enterprise business consulting", 
-    "MSME business consulting", 
-    "operational business consulting", 
-    "business transformation consulting", 
-    "business growth consulting", 
-    "business strategy consulting", 
-    "business process consulting", 
-    "AI-powered business consulting", 
-    "integrated business consulting", 
-    "comprehensive business consulting", 
-    "professional business consulting", 
-    "expert business consulting", 
-    "best business consulting", 
-    "top business consulting", 
-    "leading business consulting", 
-    "modern business consulting", 
-    "innovative business consulting", 
-    "results-driven business consulting", 
+    "business consulting services",
+    "business consulting firm",
+    "AI business consulting",
+    "strategic business consulting",
+    "business consulting India",
+    "business consulting Bangalore",
+    "startup business consulting",
+    "technology business consulting",
+    "digital business consulting",
+    "enterprise business consulting",
+    "MSME business consulting",
+    "operational business consulting",
+    "business transformation consulting",
+    "business growth consulting",
+    "business strategy consulting",
+    "business process consulting",
+    "AI-powered business consulting",
+    "integrated business consulting",
+    "comprehensive business consulting",
+    "professional business consulting",
+    "expert business consulting",
+    "best business consulting",
+    "top business consulting",
+    "leading business consulting",
+    "modern business consulting",
+    "innovative business consulting",
+    "results-driven business consulting",
     "business consulting solutions"
   ],
   authors: [{ name: "Laneway" }],
@@ -111,6 +112,8 @@ export const viewport: Viewport = {
   userScalable: false,
 }
 
+const GA_ID = process.env.NEXT_PUBLIC_GA_ID;
+
 export default async function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
@@ -131,6 +134,23 @@ export default async function RootLayout({
   }
   return (
     <html lang="en" className={`${playfair.variable} ${inter.variable}`}>
+      <head>
+        {GA_ID && (
+          <>
+             {/* Google tag (gtag.js)  */}
+            <script async src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}/>
+            <script>
+              {
+                `window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+
+                gtag('config', ${GA_ID})`
+              }
+            </script>
+          </>
+        )}
+      </head>
       <body className="font-sans antialiased bg-background text-foreground">
         {children}
         <CookieConsentBanner />
