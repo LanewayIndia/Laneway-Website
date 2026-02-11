@@ -138,8 +138,8 @@ export default async function RootLayout({
         {GA_ID && (
           <>
              {/* Google tag (gtag.js)  */}
-            <script async src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}/>
-            <script>
+            <Script async src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}/>
+            <Script>
               {
                 `window.dataLayer = window.dataLayer || [];
                 function gtag(){dataLayer.push(arguments);}
@@ -147,7 +147,7 @@ export default async function RootLayout({
 
                 gtag('config', ${GA_ID})`
               }
-            </script>
+            </Script>
           </>
         )}
       </head>
