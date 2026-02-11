@@ -35,15 +35,14 @@ const caseStudies = [
     problem:
       "In a time after 20s where life is fast and hectic, genuine friendships are harder to form. Vayo creates a comfortable, activity driven space where individuals meet new people, share experience and build real connections.",
     solution:
-      "We developed a The brand brings together two worlds: Offline meetups like bowling, Cubbon park gatherings, jam sessions and city activities & the online communities including gaming events, Whatsapp groups and digital hangouts.",
-    results: [
+      "The brand brings together two worlds: Offline meetups like bowling, Cubbon park gatherings, jam sessions and city activities & online communities including gaming events, WhatsApp groups and digital hangouts.",    results: [
       "Strong brand identity",
       "Growth of community (online and offline)",
       "Increased event participation by 5 times",
       "High recall within Bangalore's social ecosystem",
       "More activeness in Whatsapp community interactions",
       "Successful launch of online communities",
-      "Scalable funned was made from Instagram → WhatsApp → events",
+      "Scalable funnel was made from Instagram → WhatsApp → events",
     ],
     logo: "/Vayo.png",
     href: "/case-studies/vayo",

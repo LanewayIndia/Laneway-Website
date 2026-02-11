@@ -48,9 +48,9 @@ export default function VayoCaseStudy() {
           <p className="text-pumice leading-relaxed">
             Vayo is a Bangalore based community engagement brand which is designed
             to help people connect, offline and online, meaningfully. In a time
-            after 20s where life is fast and hectic, genuine friendships are harder
+            when people are in their 20s where life is fast and hectic, genuine friendships are harder
             to form. Vayo creates a comfortable, activity driven space where
-            individuals meet new people, share experience and build real
+            individuals meet new people, share experiences and build real
             connections.
           </p>
         </motion.section>
