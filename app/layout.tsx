@@ -135,6 +135,7 @@ export default async function RootLayout({
   return (
     <html lang="en" className={`${playfair.variable} ${inter.variable}`}>
       <head>
+      <meta name="google-site-verification" content="WI9WFVW2gRBSwUqPhXqV8zjDvrVHQ5tDes9kF_28TkQ" />
         {GA_ID && (
           <>
              {/* Google tag (gtag.js)  */}
