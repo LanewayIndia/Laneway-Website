@@ -138,8 +138,7 @@ export default async function RootLayout({
         {GA_ID && (
           <>
              {/* Google tag (gtag.js)  */}
-            <Script async src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}/>
-            <Script>
+            <Script async src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}>
               {
                 `window.dataLayer = window.dataLayer || [];
                 function gtag(){dataLayer.push(arguments);}
@@ -155,6 +154,7 @@ export default async function RootLayout({
         {children}
         <CookieConsentBanner />
         <Toaster />
+        <Analytics/>
         <AnalyticsWrapper />
       </body>
     </html>
