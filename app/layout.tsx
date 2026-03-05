@@ -145,7 +145,7 @@ export default async function RootLayout({
                 function gtag(){dataLayer.push(arguments);}
                 gtag('js', new Date());
 
-                gtag('config', ${GA_ID})`
+                gtag('config', "${GA_ID}")`
               }
             </Script>
           </>
@@ -155,7 +155,6 @@ export default async function RootLayout({
         {children}
         <CookieConsentBanner />
         <Toaster />
-        <Analytics/>
         <AnalyticsWrapper />
       </body>
     </html>
