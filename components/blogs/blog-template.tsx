@@ -1,7 +1,9 @@
 "use client"
 
 import Image from "next/image"
+import { usePathname } from "next/navigation"
 import { motion } from "framer-motion"
+import { BlogLikeShareBar } from "@/components/blogs/blog-like-share-bar"
 
 interface Section {
   heading?: string
@@ -25,6 +27,10 @@ export function BlogTemplate({
   image,
   sections,
 }: BlogTemplateProps) {
+  // Derive slug from the current URL path: /blogs/my-slug → my-slug
+  const pathname = usePathname()
+  const slug = pathname.split("/").filter(Boolean).pop() ?? ""
+
   return (
     <section className="pt-36 pb-28">
       <div className="mx-auto max-w-5xl px-6">
@@ -49,10 +55,11 @@ export function BlogTemplate({
           {title}
         </motion.h1>
 
-        {/* META */}
-        <div className="text-pumice text-sm mb-12 flex gap-6">
+        {/* META + LIKE/SHARE (near title) */}
+        <div className="text-pumice text-sm mb-12 flex flex-wrap items-center gap-6">
           <span>{date}</span>
           <span>{readTime}</span>
+          <BlogLikeShareBar slug={slug} title={title} />
         </div>
 
         {/* HERO IMAGE */}
@@ -90,6 +97,11 @@ export function BlogTemplate({
           ))}
 
         </article>
+
+        {/* LIKE/SHARE at end of article */}
+        <div className="mt-16 pt-8 border-t border-[#1f1f1f]">
+          <BlogLikeShareBar slug={slug} title={title} />
+        </div>
       </div>
     </section>
   )
