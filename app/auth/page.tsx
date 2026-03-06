@@ -392,13 +392,13 @@ export default function AuthPage() {
             Continue with Google
           </button>
 
-          <button
+          {/* <button
             onClick={()=>socialLogin("linkedin_oidc")}
             className="w-full border border-border py-3 rounded-lg text-snow flex items-center justify-center gap-2 hover:bg-slate-800 transition"
           >
             <Linkedin size={20} className="text-blue-600" />
             Continue with LinkedIn
-          </button>
+          </button> */}
 
           <button
             onClick={()=>socialLogin("github")}
