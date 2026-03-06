@@ -1,10 +1,8 @@
 "use client"
 
 import { useCallback, useEffect, useState } from "react"
-import { useRouter } from "next/navigation"
 import { motion } from "framer-motion"
 import { Share2, Link2, Linkedin, Facebook } from "lucide-react"
-import { useSession } from "@/hooks/use-session"
 import { useToast } from "@/hooks/use-toast"
 import {
     DropdownMenu,
@@ -34,9 +32,7 @@ interface BlogLikeShareBarProps {
 }
 
 export function BlogLikeShareBar({ slug, title }: BlogLikeShareBarProps) {
-    const { user } = useSession()
     const { toast } = useToast()
-    const router = useRouter()
 
     // Start false (SSR), detect after hydration to avoid hydration mismatch
     const [supportsNativeShare, setSupportsNativeShare] = useState(false)
@@ -46,19 +42,8 @@ export function BlogLikeShareBar({ slug, title }: BlogLikeShareBarProps) {
         )
     }, [])
 
-    // Redirect to auth page, returning to this blog after login
-    const redirectToAuth = useCallback(() => {
-        const returnUrl = `/blogs/${slug}`
-        router.push(`/auth?redirect=${encodeURIComponent(returnUrl)}`)
-    }, [router, slug])
-
     // ── Share handlers ──────────────────────────────────────────────────────────
     const handleShare = useCallback(async () => {
-        if (!user) {
-            redirectToAuth()
-            return
-        }
-
         const shareUrl = `${window.location.origin}/blogs/${slug}`
         if (typeof navigator !== "undefined" && navigator.share) {
             try {
@@ -68,7 +53,7 @@ export function BlogLikeShareBar({ slug, title }: BlogLikeShareBarProps) {
                 // cancelled or unsupported — fall through to dropdown
             }
         }
-    }, [user, slug, title, redirectToAuth])
+    }, [slug, title])
 
     const handleCopyLink = useCallback(async () => {
         const shareUrl = `${window.location.origin}/blogs/${slug}`
@@ -143,7 +128,6 @@ export function BlogLikeShareBar({ slug, title }: BlogLikeShareBarProps) {
                     <DropdownMenuTrigger asChild>
                         <button
                             id="blog-share-button"
-                            onClick={() => { if (!user) redirectToAuth() }}
                             className="group relative flex items-center gap-2 rounded-full border px-4 py-2 text-sm font-medium transition-all duration-300 select-none"
                             style={shareButtonStyle}
                             aria-label="Share this article"
@@ -154,42 +138,41 @@ export function BlogLikeShareBar({ slug, title }: BlogLikeShareBarProps) {
                         </button>
                     </DropdownMenuTrigger>
 
-                    {user && (
-                        <DropdownMenuContent
-                            align="start"
-                            sideOffset={8}
-                            className="min-w-[180px] rounded-xl border-[#1f1f1f] bg-[#0c0c0c]"
+                    {/* Dropdown always visible — no auth required */}
+                    <DropdownMenuContent
+                        align="start"
+                        sideOffset={8}
+                        className="min-w-[180px] rounded-xl border-[#1f1f1f] bg-[#0c0c0c]"
+                    >
+                        <DropdownMenuItem
+                            onClick={handleCopyLink}
+                            className="cursor-pointer gap-2.5 py-2 text-[#a1a1a1] hover:text-[#F5B513]! focus:text-[#F5B513]!"
                         >
-                            <DropdownMenuItem
-                                onClick={handleCopyLink}
-                                className="cursor-pointer gap-2.5 py-2 text-[#a1a1a1] hover:text-[#F5B513]! focus:text-[#F5B513]!"
-                            >
-                                <Link2 size={15} />
-                                Copy Link
-                            </DropdownMenuItem>
-                            <DropdownMenuItem
-                                onClick={() => handleSocialShare("linkedin")}
-                                className="cursor-pointer gap-2.5 py-2 text-[#a1a1a1] hover:text-[#F5B513]! focus:text-[#F5B513]!"
-                            >
-                                <Linkedin size={15} />
-                                Share on LinkedIn
-                            </DropdownMenuItem>
-                            <DropdownMenuItem
-                                onClick={() => handleSocialShare("x")}
-                                className="cursor-pointer gap-2.5 py-2 text-[#a1a1a1] hover:text-[#F5B513]! focus:text-[#F5B513]!"
-                            >
-                                <XIcon size={15} />
-                                Share on X
-                            </DropdownMenuItem>
-                            <DropdownMenuItem
-                                onClick={() => handleSocialShare("facebook")}
-                                className="cursor-pointer gap-2.5 py-2 text-[#a1a1a1] hover:text-[#F5B513]! focus:text-[#F5B513]!"
-                            >
-                                <Facebook size={15} />
-                                Share on Facebook
-                            </DropdownMenuItem>
-                        </DropdownMenuContent>
-                    )}
+                            <Link2 size={15} />
+                            Copy Link
+                        </DropdownMenuItem>
+                        <DropdownMenuItem
+                            onClick={() => handleSocialShare("linkedin")}
+                            className="cursor-pointer gap-2.5 py-2 text-[#a1a1a1] hover:text-[#F5B513]! focus:text-[#F5B513]!"
+                        >
+                            <Linkedin size={15} />
+                            Share on LinkedIn
+                        </DropdownMenuItem>
+                        <DropdownMenuItem
+                            onClick={() => handleSocialShare("x")}
+                            className="cursor-pointer gap-2.5 py-2 text-[#a1a1a1] hover:text-[#F5B513]! focus:text-[#F5B513]!"
+                        >
+                            <XIcon size={15} />
+                            Share on X
+                        </DropdownMenuItem>
+                        <DropdownMenuItem
+                            onClick={() => handleSocialShare("facebook")}
+                            className="cursor-pointer gap-2.5 py-2 text-[#a1a1a1] hover:text-[#F5B513]! focus:text-[#F5B513]!"
+                        >
+                            <Facebook size={15} />
+                            Share on Facebook
+                        </DropdownMenuItem>
+                    </DropdownMenuContent>
                 </DropdownMenu>
             )}
         </motion.div>

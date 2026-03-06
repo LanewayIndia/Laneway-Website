@@ -3,7 +3,7 @@
 import { useState } from "react"
 import { supabase } from "@/lib/supabase"
 import { useRouter } from "next/navigation"
-import { Eye, EyeOff, Mail, Phone, Github, Gitlab, Linkedin, Facebook, X } from "lucide-react"
+import { Eye, EyeOff,Github, Linkedin, X } from "lucide-react"
 import { motion } from "framer-motion"
 
 export default function AuthPage() {
