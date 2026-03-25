@@ -7,14 +7,56 @@ import { Button } from "@/components/ui/button"
 import Image from "next/image"
 
 const caseStudies = [
+
   {
-    id: "7ZeroMedia",
-    name: "7ZeroMedia",
-    tagline: "Building an AI-Powered, full-scale, next-generation media agency",
+    id: "Currice",
+    name: "Currice",
+    tagline: "Building the Founder. Building the Brand.",
     problem:
-      "7ZeroMedia needed a modern, scalable platform to manage their AI-powered media operations and client relationships.",
+      "Currice had real traction on the ground — events, bookings, and a founder with a clear vision. But the digital presence wasn't keeping pace. Engagement on Instagram and LinkedIn was low, the four verticals weren't being communicated clearly, and the most powerful asset — the founder's story — wasn't being used at all.",
+    solution: (
+      <div className="space-y-4 pt-1">
+        <div>
+          At Laneway, we work with founders — not just brands. For Currice Foods, that meant one clear decision: put Sujay at the centre of the content, and build everything around his story, his events, and his world.
+        </div>
+        <div className="pl-4 border-l-2 border-gold italic opacity-90">
+          Experiences like Currice's aren't sold through scheduled posts. They are sold through presence, story, and a voice people trust before they ever walk through the door.
+        </div>
+        <div className="space-y-1">
+          <div>
+            <span className="text-gold font-bold">01</span> <span className="text-snow font-bold">Instagram</span> — Consistent reels, stories, and community management capturing the energy of every Currice event.
+          </div>
+          <div>
+            <span className="text-gold font-bold">02</span> <span className="text-snow font-bold">LinkedIn</span> — First-person posts written as Sujay — event recaps, founder reflections, milestones — targeting corporate and B2B audiences.
+          </div>
+          <div>
+            <span className="text-gold font-bold">03</span> <span className="text-snow font-bold">Reddit</span> — Active participation in r/bangalore and relevant food communities to build organic reach.
+          </div>
+        </div>
+      </div>
+    ),
+    results: [
+    "Founder-led content strategy live across Instagram, LinkedIn, and Reddit",
+    "Consistent content cadence established for the first time",
+    "Sujay's personal brand being built alongside Currice Foods",
+    "All four verticals clearly represented in the content ecosystem",
+    "Community management running across all platforms",
+    "Social Media Management",
+    "Results compounding — month on month",
+  ],
+  logo: "/currice.png",
+  href: "/case-studies/currice",
+  showDetails: true,
+  },
+
+{
+  id: "7ZeroMedia",
+    name: "7ZeroMedia",
+      tagline: "Building an AI-Powered, full-scale, next-generation media agency",
+        problem:
+  "7ZeroMedia needed a modern, scalable platform to manage their AI-powered media operations and client relationships.",
     solution:
-      "We developed a sleek, user-friendly website that highlights 7ZeroMedia's innovative approach to media services, showcasing their AI capabilities and client success stories.",
+  "We developed a sleek, user-friendly website that highlights 7ZeroMedia's innovative approach to media services, showcasing their AI capabilities and client success stories.",
     results: [
       "Branding & Identity",
       "Content Creation",
@@ -24,46 +66,46 @@ const caseStudies = [
       "Social Media Management",
       "Editing & Post-Production",
     ],
-    logo: "/7zeromedia.png",
-    href: "/case-studies/7zeromedia",
-    showDetails: true,
+      logo: "/7zeromedia.png",
+        href: "/case-studies/7zeromedia",
+          showDetails: true,
   },
-  {
-    id: "vayo",
+{
+  id: "vayo",
     name: "VAYO",
-    tagline: "Building a Social Community Brand for Modern Social Connections",
-    problem:
-      "In a time after 20s where life is fast and hectic, genuine friendships are harder to form. Vayo creates a comfortable, activity driven space where individuals meet new people, share experience and build real connections.",
+      tagline: "Building a Social Community Brand for Modern Social Connections",
+        problem:
+  "In a time after 20s where life is fast and hectic, genuine friendships are harder to form. Vayo creates a comfortable, activity driven space where individuals meet new people, share experience and build real connections.",
     solution:
-      "The brand brings together two worlds: Offline meetups like bowling, Cubbon park gatherings, jam sessions and city activities & online communities including gaming events, WhatsApp groups and digital hangouts.",    results: [
-      "Strong brand identity",
-      "Growth of community (online and offline)",
-      "Increased event participation by 5 times",
-      "High recall within Bangalore's social ecosystem",
-      "More activeness in Whatsapp community interactions",
-      "Successful launch of online communities",
-      "Scalable funnel was made from Instagram → WhatsApp → events",
-    ],
+  "The brand brings together two worlds: Offline meetups like bowling, Cubbon park gatherings, jam sessions and city activities & online communities including gaming events, WhatsApp groups and digital hangouts.", results: [
+    "Strong brand identity",
+    "Growth of community (online and offline)",
+    "Increased event participation by 5 times",
+    "High recall within Bangalore's social ecosystem",
+    "More activeness in Whatsapp community interactions",
+    "Successful launch of online communities",
+    "Scalable funnel was made from Instagram → WhatsApp → events",
+  ],
     logo: "/Vayo.png",
-    href: "/case-studies/vayo",
-    showDetails: true,
+      href: "/case-studies/vayo",
+        showDetails: true,
   },
-  {
-    id: "samyam",
+{
+  id: "samyam",
     name: "Samyam",
-    tagline: "Designing a Digital Sanctuary for India's Luxury Spiritual Tourism Brand",
-    problem:
-      "Samyam identifies that traditional spiritual travel (teerth yatra) often lacks the depth and structure required for true transformation",
+      tagline: "Designing a Digital Sanctuary for India's Luxury Spiritual Tourism Brand",
+        problem:
+  "Samyam identifies that traditional spiritual travel (teerth yatra) often lacks the depth and structure required for true transformation",
     solution:
-      "Samyam has created a transcendental experience that bridges the gap between ancient tradition and modern luxury.",
+  "Samyam has created a transcendental experience that bridges the gap between ancient tradition and modern luxury.",
     results: [
       "Retreat listings and curated tour pages",
       "A dedicated website that offers seekers easy access to these meticulously planned, high-consciousness journeys.",
       "Blog style spiritual content",
     ],
-    logo: "/Samyam.png",
-    href: "/case-studies/samyam",
-    showDetails: true,
+      logo: "/Samyam.png",
+        href: "/case-studies/samyam",
+          showDetails: true,
   },
 ]
 
@@ -178,18 +220,18 @@ export function CaseStudiesList() {
                       <h3 className="text-snow font-semibold mb-2">
                         The Challenge
                       </h3>
-                      <p className="text-pumice leading-relaxed">
+                      <div className="text-pumice leading-relaxed">
                         {study.problem}
-                      </p>
+                      </div>
                     </div>
 
                     <div>
                       <h3 className="text-snow font-semibold mb-2">
                         Our Solution
                       </h3>
-                      <p className="text-pumice leading-relaxed">
+                      <div className="text-pumice leading-relaxed">
                         {study.solution}
-                      </p>
+                      </div>
                     </div>
 
                     <div>
