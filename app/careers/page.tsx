@@ -16,7 +16,7 @@ export default function CareersPage() {
   return (
     <>
       <Header />
-      <main>
+      <main id="main-content">
         <CareersHero />
         <CultureSection />
         <JobsList />

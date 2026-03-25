@@ -13,7 +13,8 @@ export default function HomePage() {
   return (
     <>
       <Header />
-      <main>
+      {/* FIX: main-content ID is on the HeroSection for skip-link targeting */}
+      <main aria-label="Homepage content">
         <HeroSection />
         <AboutSnapshot />
         <WhyLaneway />

@@ -286,3 +286,40 @@ img, picture, svg, iframe {
 
 /* Responsive utility for small buttons */
 .btn-responsive { padding: 0.6rem 1rem; font-size: 0.875rem; }
+
+/* ACCESSIBILITY FIX: Visible focus indicators (WCAG 2.4.7) */
+:focus-visible {
+  outline: 3px solid var(--gold);
+  outline-offset: 3px;
+  border-radius: 3px;
+}
+
+/* ACCESSIBILITY FIX: Remove tap highlight on mobile */
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* RESPONSIVE FIX: Global box model reset */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+/* RESPONSIVE FIX: Minimum touch target size (WCAG 2.5.5) */
+@media (pointer: coarse) {
+  button, a, input, select, textarea, [role="button"] {
+    min-height: 44px;
+  }
+}
+
+/* ACCESSIBILITY FIX: Skip-to-content link styles */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}

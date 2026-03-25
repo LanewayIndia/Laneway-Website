@@ -277,7 +277,8 @@ Transform your business with AI-powered business consulting services that delive
 
 function searchKnowledge(message: string): string | null {
   const msg = message.toLowerCase()
-  if (msg.includes("Hey") || msg.includes("Hi") || msg.includes("Hello") || msg.includes("What’s up") || msg.includes("How are you") || msg.includes("How’s it going")) {
+  // FIX: Greeting matches must be lowercase since msg is already .toLowerCase()
+  if (msg.includes("hey") || msg.includes("hi") || msg.includes("hello") || msg.includes("what's up") || msg.includes("how are you") || msg.includes("how's it going")) {
     return "Hello! Welcome to Laneway. How can I assist you today?"
   }
 
@@ -371,7 +372,7 @@ export function Chatbot({
     if (!text.trim()) return
 
     const userMessage: Message = {
-      id: messages.length + 1,
+      id: Date.now(), // FIX: Use timestamp to avoid key collision
       text: text.trim(),
       sender: "user",
       timestamp: new Date(),
@@ -384,14 +385,15 @@ export function Chatbot({
     setTimeout(async () => {
       const reply = await getBotResponse(text)
 
-      const botMessage: Message = {
-        id: messages.length + 2,
-        text: reply,
-        sender: "bot",
-        timestamp: new Date(),
-      }
-
-      setMessages((prev) => [...prev, botMessage])
+      setMessages((prev) => [
+        ...prev,
+        {
+          id: Date.now() + 1, // FIX: Avoid stale closure for ID generator
+          text: reply,
+          sender: "bot",
+          timestamp: new Date(),
+        },
+      ])
       setIsTyping(false)
     }, 800)
   }

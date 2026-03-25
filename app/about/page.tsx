@@ -17,7 +17,7 @@ export default function AboutPage() {
   return (
     <>
       <Header />
-      <main>
+      <main id="main-content">
         <AboutHero />
         <MissionSection />
         <StorySection />

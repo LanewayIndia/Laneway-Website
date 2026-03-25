@@ -293,21 +293,24 @@ export function Header() {
         )}
       </AnimatePresence>
 
-      {/* Edit Profile Modal for Mobile */}
+      {/* Edit Profile Modal — FIX: Added role='dialog' and aria-modal for accessibility */}
       {isEditModalOpen && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4" role="dialog" aria-modal="true" aria-labelledby="edit-profile-title">
           <div className="bg-card border border-border rounded-2xl p-6 sm:p-8 w-full max-w-md max-h-[90vh] overflow-y-auto">
-            <h2 className="text-snow text-xl sm:text-2xl font-bold mb-6">Edit Profile</h2>
+            <h2 id="edit-profile-title" className="text-snow text-xl sm:text-2xl font-bold mb-6">Edit Profile</h2>
 
             {editError && (
-              <p className="text-red-400 text-sm mb-4 p-3 bg-red-500/10 rounded-lg">{editError}</p>
+              <p className="text-red-400 text-sm mb-4 p-3 bg-red-500/10 rounded-lg" role="alert">{editError}</p>
             )}
             {editSuccess && (
-              <p className="text-green-400 text-sm mb-4 p-3 bg-green-500/10 rounded-lg">Profile updated successfully!</p>
+              <p className="text-green-400 text-sm mb-4 p-3 bg-green-500/10 rounded-lg" role="status">{editSuccess ? "Profile updated successfully!" : ""}</p>
             )}
 
+            {/* FIX: Added labels to all modal inputs for accessibility */}
             {/* Name */}
+            <label htmlFor="edit-name" className="block text-xs text-pumice mb-1">Name</label>
             <input
+              id="edit-name"
               type="text"
               placeholder="Name"
               value={editData.name}
@@ -316,7 +319,9 @@ export function Header() {
             />
 
             {/* Email */}
+            <label htmlFor="edit-email" className="block text-xs text-pumice mb-1">Email</label>
             <input
+              id="edit-email"
               type="email"
               placeholder="Email"
               value={editData.email}
@@ -325,7 +330,9 @@ export function Header() {
             />
 
             {/* Phone */}
+            <label htmlFor="edit-phone" className="block text-xs text-pumice mb-1">Phone Number</label>
             <input
+              id="edit-phone"
               type="tel"
               placeholder="Phone Number"
               value={editData.phone}
@@ -334,7 +341,9 @@ export function Header() {
             />
 
             {/* New Password */}
+            <label htmlFor="edit-new-password" className="block text-xs text-pumice mb-1">New Password</label>
             <input
+              id="edit-new-password"
               type="password"
               placeholder="New Password (leave blank to keep current)"
               value={editData.newPassword}
@@ -343,7 +352,9 @@ export function Header() {
             />
 
             {/* Confirm Password */}
+            <label htmlFor="edit-confirm-password" className="block text-xs text-pumice mb-1">Confirm Password</label>
             <input
+              id="edit-confirm-password"
               type="password"
               placeholder="Confirm Password"
               value={editData.confirmPassword}
@@ -369,7 +380,8 @@ export function Header() {
             </div>
           </div>
         </div>
-      )}
-    </motion.header>
+      )
+      }
+    </motion.header >
   )
 }

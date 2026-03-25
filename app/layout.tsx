@@ -6,14 +6,9 @@ import "./globals.css"
 import { CookieConsentBanner } from "@/components/cookie-consent/cookie-consent"
 import { Toaster } from "@/components/ui/toaster"
 import { cookies } from "next/headers"
-import { getCookiePreferences } from "@/lib/cookie-consent"
 import Script from "next/script"
 
-function AnalyticsWrapper() {
-  const prefs = getCookiePreferences()
-  if (!prefs?.analytics) return null
-  return <Analytics />
-}
+// FIX: Removed AnalyticsWrapper that called getCookiePreferences() (uses localStorage) on server — now conditionally render Analytics based on cookie consent from server cookie
 
 
 const playfair = Playfair_Display({
@@ -32,6 +27,7 @@ const siteUrl = "https://laneway.in"
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   icons: { icon: "/favicon.ico" },
+  manifest: "/manifest.json", // FIX: Added PWA manifest
 
   title: "Laneway | Transforming Business with AI Powered Excellence",
   description:
@@ -100,16 +96,28 @@ export const metadata: Metadata = {
     title: "Laneway | Transforming Business with AI Powered Excellence",
     description:
       "We craft innovative digital solutions that empower businesses to thrive in the modern world.",
-    images: [`${siteUrl}/public/logo.png`],
+    images: [`${siteUrl}/logo.png`], // FIX: Removed incorrect /public/ prefix — Next.js serves public files from root
+  },
+
+  // FIX: Added robots meta tag for SEO
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
   },
 }
 
+// FIX: Removed maximumScale: 1 and userScalable: false — they block pinch-to-zoom, violating WCAG 1.4.4
 export const viewport: Viewport = {
   themeColor: "#050505",
   width: "device-width",
   initialScale: 1,
-  maximumScale: 1,
-  userScalable: false,
 }
 
 const GA_ID = process.env.NEXT_PUBLIC_GA_ID;
@@ -135,27 +143,127 @@ export default async function RootLayout({
   return (
     <html lang="en" className={`${playfair.variable} ${inter.variable}`}>
       <head>
-      <meta name="google-site-verification" content="WI9WFVW2gRBSwUqPhXqV8zjDvrVHQ5tDes9kF_28TkQ" />
-        {GA_ID && (
+        <meta name="google-site-verification" content="WI9WFVW2gRBSwUqPhXqV8zjDvrVHQ5tDes9kF_28TkQ" />
+
+        {/* FIX: Security headers via meta tags */}
+        <meta httpEquiv="X-Frame-Options" content="SAMEORIGIN" />
+        <meta httpEquiv="X-Content-Type-Options" content="nosniff" />
+        <meta name="referrer" content="strict-origin-when-cross-origin" />
+
+        {/* FIX: Preconnect for external resources */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+
+        {/* FIX: GA script loading — separated loader and config scripts */}
+        {GA_ID && analyticsAllowed && (
           <>
-             {/* Google tag (gtag.js)  */}
-            <Script async src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}>
-              {
-                `window.dataLayer = window.dataLayer || [];
+            <Script
+              src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
+              strategy="afterInteractive"
+            />
+            <Script id="gtag-init" strategy="afterInteractive">
+              {`window.dataLayer = window.dataLayer || [];
                 function gtag(){dataLayer.push(arguments);}
                 gtag('js', new Date());
-
-                gtag('config', "${GA_ID}")`
-              }
+                gtag('config', '${GA_ID}');`}
             </Script>
           </>
         )}
+
+        {/* FIX: JSON-LD Organization Schema for SEO */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Organization",
+              name: "Laneway India Enterprises Private Limited",
+              url: siteUrl,
+              logo: `${siteUrl}/Laneway-Logo.png`,
+              description:
+                "AI-powered business consulting firm offering strategic consulting, technology solutions, marketing, software development, and startup incubation.",
+              contactPoint: {
+                "@type": "ContactPoint",
+                telephone: "+91-9961348942",
+                contactType: "customer service",
+                availableLanguage: "English",
+              },
+              address: {
+                "@type": "PostalAddress",
+                streetAddress: "1087 B, Sankranthi, Perumbaikkad",
+                addressLocality: "Kottayam",
+                addressRegion: "Kerala",
+                postalCode: "686016",
+                addressCountry: "IN",
+              },
+              sameAs: [
+                "https://www.instagram.com/lanewayindia",
+                "https://x.com/lanewayindia",
+                "https://www.linkedin.com/company/laneway-india/",
+              ],
+            }),
+          }}
+        />
+
+        {/* FIX: JSON-LD WebSite Schema for homepage search */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "WebSite",
+              name: "Laneway",
+              url: siteUrl,
+            }),
+          }}
+        />
+
+        {/* FIX: JSON-LD LocalBusiness Schema */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "LocalBusiness",
+              name: "Laneway India Enterprises Private Limited",
+              address: [
+                {
+                  "@type": "PostalAddress",
+                  streetAddress: "1087 B, Sankranthi, Perumbaikkad",
+                  addressLocality: "Kottayam",
+                  addressRegion: "Kerala",
+                  postalCode: "686016",
+                  addressCountry: "IN",
+                },
+                {
+                  "@type": "PostalAddress",
+                  streetAddress: "Koramangala 8th Block",
+                  addressLocality: "Bangalore",
+                  addressRegion: "Karnataka",
+                  postalCode: "560095",
+                  addressCountry: "IN",
+                },
+              ],
+              telephone: "+91-9961348942",
+              email: "info@laneway.in",
+              url: siteUrl,
+            }),
+          }}
+        />
       </head>
       <body className="font-sans antialiased bg-background text-foreground">
+        {/* FIX: Skip-to-content link for accessibility (WCAG 2.4.1) */}
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-gold focus:text-background focus:rounded-lg focus:text-sm focus:font-medium"
+        >
+          Skip to main content
+        </a>
         {children}
         <CookieConsentBanner />
         <Toaster />
-        <AnalyticsWrapper />
+        {/* FIX: Conditionally render Analytics based on server-side cookie check instead of crashed AnalyticsWrapper */}
+        {analyticsAllowed && <Analytics />}
       </body>
     </html>
   )

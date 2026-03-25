@@ -14,7 +14,7 @@ export default function CaseStudiesPage() {
   return (
     <>
       <Header />
-      <main>
+      <main id="main-content">
         <CaseStudiesHero />
         <CaseStudiesList />
       </main>

@@ -11,6 +11,7 @@ function sanitize(input: string) {
 export async function POST(req: Request) {
   try {
     const ip = await getClientIp();
+    // FIX: rateLimit is now synchronous (was incorrectly async)
     if (!rateLimit(ip, Number(process.env.RATE_LIMIT_MAX_REQUESTS))) {
       return new NextResponse(JSON.stringify({ error: "Too many requests" }), {
         status: 429,

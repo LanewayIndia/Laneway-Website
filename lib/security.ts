@@ -11,17 +11,19 @@ export async function getClientIp(): Promise<string> {
     )
 }
 
-export async function rateLimit(ip: string, limit = 10, windowMs = 60000){
+// FIX: Rate limit logic was inverted — previously returned false (deny) when under limit and true (allow) when over limit
+export function rateLimit(ip: string, limit = 10, windowMs = 60000){
     const now = Date.now()
     const entry = rateMap.get(ip)
 
     if(!entry || now - entry.time > windowMs){
         rateMap.set(ip,{count: 1, time:now})
-        return true
+        return true // FIX: Allow — first request in window
     }
 
-    if (entry.count < limit) return false
+    entry.count++
 
-    entry.count ++
-    return true
+    if (entry.count > limit) return false // FIX: Deny — over limit
+
+    return true // FIX: Allow — under limit
 }

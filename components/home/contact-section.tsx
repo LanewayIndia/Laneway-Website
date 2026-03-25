@@ -18,15 +18,16 @@ export function ContactSection() {
     name: "",
     email: "",
     subject: "",
-    message: ""
+    message: "",
+    companyWebsite: "", // FIX: Added honeypot field to state
   }) //form data state
   const router = useRouter()
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { id, value } = e.target
+    const { id, name, value } = e.target
     setFormData(prev => ({
       ...prev,
-      [id]: value
+      [id || name]: value // FIX: Accept either id or name for input matching
     }))
   } //handle input changes
 
@@ -52,8 +53,9 @@ export function ContactSection() {
           name: "",
           email: "",
           subject: "",
-          message: ""
-        }) 
+          message: "",
+          companyWebsite: "",
+        })
         setTimeout(() => {
           setIsOpen(false)
           setMessage("")
@@ -115,6 +117,7 @@ export function ContactSection() {
 
           <motion.button
             onClick={handleContactToggle}
+            data-cta="toggle-contact-form"
             className={`group inline-flex items-center gap-3 px-8 py-4 rounded-full text-sm font-medium transition-all duration-300 ${isOpen ? "bg-snow text-background hover:bg-pumice" : "bg-snow text-background hover:bg-gold"
               }`}
           >
@@ -147,6 +150,11 @@ export function ContactSection() {
                 </div>
 
                 <form className="space-y-5 sm:space-y-6" onSubmit={handleSubmit}>
+                  {/* FIX: Honeypot spam protection */}
+                  <div aria-hidden="true" style={{ position: 'absolute', left: '-9999px', opacity: 0, pointerEvents: 'none' }}>
+                    <input type="text" name="companyWebsite" tabIndex={-1} autoComplete="off" value={formData.companyWebsite} onChange={handleInputChange} />
+                  </div>
+
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
                       <label htmlFor="name" className="block text-xs tracking-wide uppercase text-pumice mb-2 sm:mb-3">
@@ -211,11 +219,10 @@ export function ContactSection() {
                     <motion.div
                       initial={{ opacity: 0, y: -10 }}
                       animate={{ opacity: 1, y: 0 }}
-                      className={`p-4 rounded-lg text-sm font-medium ${
-                        message.includes("successfully")
+                      className={`p-4 rounded-lg text-sm font-medium ${message.includes("successfully")
                           ? "bg-green-500/10 text-green-400 border border-green-500/20"
                           : "bg-red-500/10 text-red-400 border border-red-500/20"
-                      }`}
+                        }`}
                     >
                       {message}
                     </motion.div>
