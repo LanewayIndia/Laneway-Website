@@ -2,7 +2,6 @@
 
 import Image from "next/image"
 import { motion } from "framer-motion"
-import { Like } from "@/components/ui/like"
 import { SendIcon } from "@/components/ui/send"
 
 export default function SevenZeroMediaCaseStudy() {
@@ -87,7 +86,6 @@ export default function SevenZeroMediaCaseStudy() {
         </motion.section>
 
         <motion.div className="flex justify-center gap-8">
-          <Like size={32} className="hover:text-gold"/>
           <SendIcon size={28} className="hover:text-gold"/>
         </motion.div>
         

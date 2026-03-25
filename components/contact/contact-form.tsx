@@ -121,9 +121,9 @@ export function ContactForm() {
                 </div>
                 <div>
                   <h3 className="font-semibold text-snow mb-1">Head Office</h3>
-                  <a 
-                    href="https://www.google.com/maps/place/1087%2FB,+Sankranthi,+Kottayam,+Perumbaikad,+Kerala+686016/@9.6250908,76.5343883,17z/data=!3m1!4b1!4m10!1m2!2m1!1s1087+B,+Sankranthi,+Perumbaikkad,++Kottayam+-+686016,+Kerala!3m6!1s0x3b062b506f299b43:0x3c9adcd568e4052e!8m2!3d9.6250908!4d76.5392592!15sCjwxMDg3IEIsIFNhbmtyYW50aGksIFBlcnVtYmFpa2thZCwgIEtvdHRheWFtIC0gNjg2MDE2LCBLZXJhbGGSAQpzdWJwcmVtaXNl4AEA!16s%2Fg%2F11xz04j64r?entry=ttu&g_ep=EgoyMDI2MDExOS4wIKXMDSoKLDEwMDc5MjA3MUgBUAM%3D" 
-                    target="_blank" 
+                  <a
+                    href="https://www.google.com/maps/place/1087%2FB,+Sankranthi,+Kottayam,+Perumbaikad,+Kerala+686016/@9.6250908,76.5343883,17z/data=!3m1!4b1!4m10!1m2!2m1!1s1087+B,+Sankranthi,+Perumbaikkad,++Kottayam+-+686016,+Kerala!3m6!1s0x3b062b506f299b43:0x3c9adcd568e4052e!8m2!3d9.6250908!4d76.5392592!15sCjwxMDg3IEIsIFNhbmtyYW50aGksIFBlcnVtYmFpa2thZCwgIEtvdHRheWFtIC0gNjg2MDE2LCBLZXJhbGGSAQpzdWJwcmVtaXNl4AEA!16s%2Fg%2F11xz04j64r?entry=ttu&g_ep=EgoyMDI2MDExOS4wIKXMDSoKLDEwMDc5MjA3MUgBUAM%3D"
+                    target="_blank"
                     rel="noopener noreferrer"
                     className="text-pumice hover:text-gold transition-colors"
                   >
@@ -140,14 +140,14 @@ export function ContactForm() {
                 </div>
                 <div>
                   <h3 className="font-semibold text-snow mb-1">Operational Office</h3>
-                  <a 
-                    href="https://www.google.com/maps/place/Koramangala+8th+Block,+Koramangala,+Bengaluru,+Karnataka/@12.9410853,77.6127627,16z/data=!3m1!4b1!4m6!3m5!1s0x3bae1448a71f8e4d:0x17f8352eed30fa02!8m2!3d12.9414686!4d77.6178125!16s%2Fg%2F1ts1l25j?entry=ttu&g_ep=EgoyMDI2MDExOS4wIKXMDSoKLDEwMDc5MjA3MUgBUAM%3D" 
-                    target="_blank" 
+                  <a
+                    href="https://www.google.com/maps/place/Koramangala+8th+Block,+Koramangala,+Bengaluru,+Karnataka/@12.9410853,77.6127627,16z/data=!3m1!4b1!4m6!3m5!1s0x3bae1448a71f8e4d:0x17f8352eed30fa02!8m2!3d12.9414686!4d77.6178125!16s%2Fg%2F1ts1l25j?entry=ttu&g_ep=EgoyMDI2MDExOS4wIKXMDSoKLDEwMDc5MjA3MUgBUAM%3D"
+                    target="_blank"
                     rel="noopener noreferrer"
                     className="text-pumice hover:text-gold transition-colors"
                   >
                     Koramangala 8th block
-                    <br/>
+                    <br />
                     Bangalore - 560095, Karnataka
                   </a>
                 </div>
@@ -166,31 +166,39 @@ export function ContactForm() {
               <h2 className="font-heading text-2xl font-semibold text-snow mb-6">Send a Message</h2>
 
               <form className="space-y-6" onSubmit={handleSubmit}>
+                {/* FIX: Honeypot spam protection — hidden from real users, catches bots */}
+                <div aria-hidden="true" style={{ position: 'absolute', left: '-9999px', opacity: 0, pointerEvents: 'none' }}>
+                  <input type="text" name="companyWebsite" tabIndex={-1} autoComplete="off" />
+                </div>
+
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
-                    <label htmlFor="firstName" className="block text-sm font-medium text-pumice mb-2" aria-required="true">
-                      First Name
+                    <label htmlFor="firstName" className="block text-sm font-medium text-pumice mb-2">
+                      First Name <span className="text-destructive">*</span>
                     </label>
+                    {/* FIX: Removed tabIndex={-1} — was preventing keyboard navigation */}
                     <Input
                       id="firstName"
                       name="firstName"
                       type="text"
-                      tabIndex={-1}
-                      autoComplete="off"
+                      required
+                      aria-required="true"
+                      autoComplete="given-name"
                       placeholder="John"
                       className="bg-background border-border text-snow placeholder:text-pumice/50 focus:border-gold"
                     />
                   </div>
                   <div>
-                    <label htmlFor="lastName" className="block text-sm font-medium text-pumice mb-2" aria-required="true">
-                      Last Name
+                    <label htmlFor="lastName" className="block text-sm font-medium text-pumice mb-2">
+                      Last Name <span className="text-destructive">*</span>
                     </label>
                     <Input
                       id="lastName"
                       name="lastName"
                       type="text"
-                      tabIndex={-1}
-                      autoComplete="off"
+                      required
+                      aria-required="true"
+                      autoComplete="family-name"
                       placeholder="Doe"
                       className="bg-background border-border text-snow placeholder:text-pumice/50 focus:border-gold"
                     />
@@ -198,15 +206,16 @@ export function ContactForm() {
                 </div>
 
                 <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-pumice mb-2" aria-required="true">
-                    Email
+                  <label htmlFor="email" className="block text-sm font-medium text-pumice mb-2">
+                    Email <span className="text-destructive">*</span>
                   </label>
                   <Input
                     id="email"
                     name="email"
                     type="email"
-                    tabIndex={-1}
-                    autoComplete="off"
+                    required
+                    aria-required="true"
+                    autoComplete="email"
                     placeholder="john@example.com"
                     className="bg-background border-border text-snow placeholder:text-pumice/50 focus:border-gold"
                   />
@@ -220,8 +229,7 @@ export function ContactForm() {
                     id="company"
                     name="company"
                     type="text"
-                    tabIndex={-1}
-                    autoComplete="off"
+                    autoComplete="organization"
                     placeholder="Your company name"
                     className="bg-background border-border text-snow placeholder:text-pumice/50 focus:border-gold"
                   />
@@ -235,7 +243,6 @@ export function ContactForm() {
                     id="subject"
                     name="subject"
                     type="text"
-                    tabIndex={-1}
                     autoComplete="off"
                     placeholder="How can we help?"
                     className="bg-background border-border text-snow placeholder:text-pumice/50 focus:border-gold"
@@ -244,20 +251,26 @@ export function ContactForm() {
 
                 <div>
                   <label htmlFor="message" className="block text-sm font-medium text-pumice mb-2">
-                    Message
+                    Message <span className="text-destructive">*</span>
                   </label>
                   <Textarea
                     id="message"
                     name="message"
+                    required
+                    aria-required="true"
                     placeholder="Tell us about your project..."
                     rows={5}
                     className="bg-background border-border text-snow placeholder:text-pumice/50 focus:border-gold resize-none"
                   />
                 </div>
 
+                {/* FIX: Added data-cta tracking attributes */}
                 <Button
                   type="submit"
                   disabled={isSubmitting}
+                  data-cta="send-message"
+                  data-section="contact-form"
+                  data-position="below-fold"
                   className="w-full bg-gold hover:bg-gold-light text-background font-semibold py-6 rounded-full disabled:opacity-50"
                 >
                   {isSubmitting ? (

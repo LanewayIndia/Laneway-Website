@@ -16,7 +16,7 @@ export default function BlogsPage() {
   return (
     <>
       <Header />
-      <main>
+      <main id="main-content">
         <BlogsHero />
         <CampaignsSection />
         <AnalyticsSection />

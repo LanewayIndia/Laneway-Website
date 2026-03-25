@@ -19,7 +19,7 @@ export default function Callback() {
         const error: unknown = res?.error ?? null
 
         if (error) {
-          router.push("/auth")
+          router.push("/home")
           return
         }
 

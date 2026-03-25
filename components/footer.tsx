@@ -94,7 +94,7 @@ export function Footer() {
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.1 }}
           >
-            <h4 className="text-xs tracking-premium uppercase text-pumice mb-6">Navigation</h4>
+            <h2 className="text-xs tracking-premium uppercase text-pumice mb-6">Navigation</h2>
             <ul className="space-y-3">
               {quickLinks.map((link) => (
                 <li key={link.name}>
@@ -116,7 +116,7 @@ export function Footer() {
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
-            <h4 className="text-xs tracking-premium uppercase text-pumice mb-6">Services</h4>
+            <h2 className="text-xs tracking-premium uppercase text-pumice mb-6">Services</h2>
             <ul className="space-y-3">
               {services.map((service) => (
                 <li key={service.name}>
@@ -138,7 +138,7 @@ export function Footer() {
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.3 }}
           >
-            <h4 className="text-xs tracking-premium uppercase text-pumice mb-6">Contact</h4>
+            <h2 className="text-xs tracking-premium uppercase text-pumice mb-6">Contact</h2>
             <ul className="space-y-4">
               <li className="flex items-start gap-3">
                 <MapPin size={16} className="text-gold mt-0.5 shrink-0" strokeWidth={1.5} />

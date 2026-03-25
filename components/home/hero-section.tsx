@@ -24,7 +24,8 @@ export function HeroSection() {
   }, [])
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden px-4 sm:px-6 lg:px-8">
+    // FIX: Added id for skip-to-content link
+    <section id="main-content" className="relative min-h-screen flex items-center justify-center overflow-hidden px-4 sm:px-6 lg:px-8">
       <div className="absolute inset-0 noise-texture" aria-hidden="true" />
 
       <div className="absolute inset-0">
@@ -57,14 +58,15 @@ export function HeroSection() {
               </motion.h1>
             </AnimatePresence>
           </div>
-          <motion.h1
+          {/* FIX: Changed from h1 to h2 — only one h1 per page for SEO */}
+          <motion.h2
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
             className="font-heading text-2xl sm:text-3xl md:text-3xl lg:text-4xl text-gradient text-balance"
           >
             Business with AI-Powered Excellence
-          </motion.h1>
+          </motion.h2>
 
           <motion.p
             initial={{ opacity: 0, y: 30 }}
@@ -81,14 +83,19 @@ export function HeroSection() {
             transition={{ duration: 0.8, delay: 0.6 }}
             className="flex flex-col sm:flex-row items-center justify-center gap-4 px-4"
           >
+            {/* FIX: Added data-cta tracking attributes */}
             <Link
               href="/case-studies"
+              data-cta="explore-masterpieces"
+              data-section="hero"
+              data-position="above-fold"
               className="group flex items-center justify-center gap-2 sm:gap-3 px-6 sm:px-8 py-3 sm:py-4 h-11 sm:h-14 text-xs sm:text-base font-medium text-background bg-snow rounded-full transition-all duration-300 hover:bg-gold whitespace-nowrap w-full sm:w-auto"
             >
               <span>Explore Our Masterpieces</span>
               <ArrowRight size={16} className="sm:w-5 sm:h-5 transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true" />
             </Link>
 
+            {/* FIX: Added data-cta tracking attributes */}
             <button
               onClick={async () => {
                 try {
@@ -99,6 +106,9 @@ export function HeroSection() {
                   router.push("/auth")
                 }
               }}
+              data-cta="begin-transformation"
+              data-section="hero"
+              data-position="above-fold"
               className="group flex items-center justify-center gap-2 sm:gap-3 px-6 sm:px-8 py-3 sm:py-4 h-11 sm:h-14 text-xs sm:text-base font-medium text-snow border border-glass-border rounded-full transition-all duration-300 hover:border-gold/50 hover:bg-gold/5 whitespace-nowrap w-full sm:w-auto"
             >
               <span>Begin Your Transformation</span>
@@ -123,6 +133,6 @@ export function HeroSection() {
           />
         </div>
       </motion.div>
-    </section>
+    </section >
   )
 }

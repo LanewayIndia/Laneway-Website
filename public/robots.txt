@@ -1,0 +1,9 @@
+# FIX: Created robots.txt for SEO crawlers
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /auth/
+Disallow: /crm-login/
+Disallow: /(crm)/
+
+Sitemap: https://laneway.in/sitemap.xml

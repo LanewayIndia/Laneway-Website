@@ -16,7 +16,7 @@ export default function ServicesPage() {
   return (
     <>
       <Header />
-      <main>
+      <main id="main-content">
         <ServicesHero />
         <ServicesList />
         <ServicesCTA />
