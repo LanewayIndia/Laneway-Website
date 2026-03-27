@@ -2,14 +2,16 @@
 
 import Link from "next/link"
 import { motion } from "framer-motion"
-import { ArrowRight, CheckCircle } from "lucide-react"
+import { ArrowRight, CheckCircle, Rocket } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import Image from "next/image"
+import { useState } from "react"
 
 const caseStudies = [
 
   {
     id: "Currice",
+    category: "Client projects",
     name: "Currice",
     tagline: "Building the Founder. Building the Brand.",
     problem:
@@ -51,6 +53,7 @@ const caseStudies = [
 
 {
   id: "7ZeroMedia",
+    category: "Our projects",
     name: "7ZeroMedia",
       tagline: "Building an AI-Powered, full-scale, next-generation media agency",
         problem:
@@ -72,6 +75,7 @@ const caseStudies = [
   },
 {
   id: "vayo",
+    category: "Our projects",
     name: "VAYO",
       tagline: "Building a Social Community Brand for Modern Social Connections",
         problem:
@@ -92,6 +96,7 @@ const caseStudies = [
   },
 {
   id: "samyam",
+    category: "Client projects",
     name: "Samyam",
       tagline: "Designing a Digital Sanctuary for India's Luxury Spiritual Tourism Brand",
         problem:
@@ -110,13 +115,40 @@ const caseStudies = [
 ]
 
 export function CaseStudiesList() {
+  const [activeFilter, setActiveFilter] = useState("All");
+
+  const filters = ["All", "Our projects", "Client projects", "Other case studies"];
+
+  const filteredStudies = caseStudies.filter(
+    (study) => activeFilter === "All" || study.category === activeFilter
+  );
+
   return (
     <section className="py-20">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="space-y-16 sm:space-y-24 lg:space-y-32">
-          {caseStudies.map((study, index) => (
-            <motion.div
-              key={study.id}
+        <div className="space-y-12 sm:space-y-16">
+          {/* Filter Bar */}
+          <div className="flex flex-wrap items-center gap-3">
+            {filters.map((filter) => (
+              <button
+                key={filter}
+                onClick={() => setActiveFilter(filter)}
+                className={`px-5 py-2 sm:px-6 sm:py-2.5 rounded-full text-sm sm:text-base font-medium transition-colors ${
+                  activeFilter === filter
+                    ? "bg-gold text-background border border-gold"
+                    : "border border-border text-pumice hover:text-snow hover:border-gold/50"
+                }`}
+              >
+                {filter}
+              </button>
+            ))}
+          </div>
+
+          {/* Case Studies List */}
+          <div className="space-y-16 sm:space-y-24 lg:space-y-32">
+            {filteredStudies.map((study, index) => (
+              <motion.div
+                key={study.id}
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-100px" }}
@@ -266,7 +298,46 @@ export function CaseStudiesList() {
 
               </div>
             </motion.div>
-          ))}
+              ))}
+            </div>
+
+            {filteredStudies.length === 0 && (
+              <motion.div 
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+                className="flex flex-col items-center justify-center py-20 px-4 text-center rounded-2xl border border-dashed border-border/60 bg-card/20 group hover:border-gold/30 transition-colors cursor-default"
+              >
+                <div className="relative mb-6">
+                  {/* Background Glow */}
+                  <div className="absolute inset-0 bg-gold/10 blur-2xl rounded-full scale-150 transition-all group-hover:bg-gold/20 group-hover:scale-[1.75] duration-700" />
+                  
+                  {/* Floating Rocket Icon */}
+                  <motion.div
+                    animate={{ 
+                      y: [0, -12, 0],
+                      x: [0, 6, 0],
+                      rotate: [-5, 8, -5] 
+                    }}
+                    transition={{ 
+                      duration: 5, 
+                      repeat: Infinity, 
+                      ease: "easeInOut" 
+                    }}
+                    className="relative text-gold drop-shadow-[0_0_15px_rgba(255,215,0,0.3)]"
+                  >
+                    <Rocket size={64} strokeWidth={1} />
+                  </motion.div>
+                </div>
+                
+                <h3 className="text-2xl sm:text-3xl font-heading font-bold text-snow mb-3">
+                  Coming Soon
+                </h3>
+                <p className="text-pumice max-w-sm">
+                  We are actively preparing new experiences and case studies for this section. Ready for liftoff soon!
+                </p>
+              </motion.div>
+            )}
         </div>
       </div>
     </section>
