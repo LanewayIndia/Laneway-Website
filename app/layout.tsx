@@ -26,7 +26,7 @@ const siteUrl = "https://laneway.in"
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
-  icons: { icon: "/favicon.ico" },
+  icons: { icon: "/logo.svg", apple: "/logo.png" },
   manifest: "/manifest.json", // FIX: Added PWA manifest
 
   title: "Laneway | Transforming Business with AI Powered Excellence",
