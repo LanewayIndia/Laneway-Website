@@ -176,7 +176,7 @@ const ServiceCard = memo(function ServiceCard({ service, index }: { service: (ty
         </div>
 
         <Link
-          href="/contact"
+          href={`/contact?service=${service.id}`}
           className="group inline-flex items-center gap-2 px-6 py-3 text-sm font-medium text-background bg-snow rounded-full transition-all duration-300 hover:bg-gold"
         >
           <span>Get Started</span>
