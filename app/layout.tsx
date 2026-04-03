@@ -113,13 +113,13 @@ export const metadata: Metadata = {
   },
 }
 
-// FIX: Removed maximumScale: 1 and userScalable: false — they block pinch-to-zoom, violating WCAG 1.4.4
 export const viewport: Viewport = {
   themeColor: "#050505",
   width: "device-width",
   initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
 }
-
 const GA_ID = process.env.NEXT_PUBLIC_GA_ID;
 
 export default async function RootLayout({
@@ -255,7 +255,7 @@ export default async function RootLayout({
         {/* FIX: Skip-to-content link for accessibility (WCAG 2.4.1) */}
         <a
           href="#main-content"
-          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-gold focus:text-background focus:rounded-lg focus:text-sm focus:font-medium"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-100 focus:px-4 focus:py-2 focus:bg-gold focus:text-background focus:rounded-lg focus:text-sm focus:font-medium"
         >
           Skip to main content
         </a>
