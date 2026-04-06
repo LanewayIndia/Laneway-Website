@@ -31,7 +31,7 @@ export const metadata: Metadata = {
 
   title: "Laneway | Transforming Business with AI Powered Excellence",
   description:
-    "We craft innovative digital solutions that empower businesses to thrive in the modern world. AI-powered technology, marketing, consulting, and software development.",
+    "Laneway is a next-generation AI-powered business consulting firm that drives growth by integrating consulting, technology, and media services. It leverages innovative digital solutions and artificial intelligence to help businesses adapt and thrive in the modern economy. By combining strategic insight with cutting-edge tools, Laneway empowers organizations to optimize operations, enhance marketing efforts, and scale effectively",
   keywords: [
     "digital agency",
     "AI solutions",
@@ -77,7 +77,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Laneway | Transforming Business with AI Powered Excellence",
     description:
-      "We craft innovative digital solutions that empower businesses to thrive in the modern world.",
+      "Laneway is a next-generation AI-powered business consulting firm that drives growth by integrating consulting, technology, and media services. It leverages innovative digital solutions and artificial intelligence to help businesses adapt and thrive in the modern economy. By combining strategic insight with cutting-edge tools, Laneway empowers organizations to optimize operations, enhance marketing efforts, and scale effectively",
     url: siteUrl,
     siteName: "Laneway",
     type: "website",
@@ -95,7 +95,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Laneway | Transforming Business with AI Powered Excellence",
     description:
-      "We craft innovative digital solutions that empower businesses to thrive in the modern world.",
+      "Laneway is a next-generation AI-powered business consulting firm that drives growth by integrating consulting, technology, and media services. It leverages innovative digital solutions and artificial intelligence to help businesses adapt and thrive in the modern economy. By combining strategic insight with cutting-edge tools, Laneway empowers organizations to optimize operations, enhance marketing efforts, and scale effectively",
     images: [`${siteUrl}/logo.png`], // FIX: Removed incorrect /public/ prefix — Next.js serves public files from root
   },
 
