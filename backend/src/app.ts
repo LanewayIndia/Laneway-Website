@@ -14,6 +14,7 @@ import interactionsRoutes from './modules/interactions/interactions.routes';
 import dashboardRoutes from './modules/dashboard/dashboard.routes';
 import usersRoutes from './modules/users/users.routes';
 import activityLogRoutes from './modules/activity-log/activity-log.routes';
+import blogRoutes from './modules/blogs/blog.routes';
 
 const app: Application = express();
 
@@ -52,6 +53,7 @@ app.use('/api/interactions', interactionsRoutes);
 app.use('/api/dashboard', dashboardRoutes);
 app.use('/api/users', usersRoutes);
 app.use('/api/activity-logs', activityLogRoutes);
+app.use('/api/blogs', blogRoutes);
 
 // ─── 404 Handler ───────────────────────────────────────────────────
 app.use((req: Request, res: Response) => {
@@ -66,7 +68,6 @@ app.use(errorHandler);
 
 // ─── Start Server ──────────────────────────────────────────────────
 async function start() {
-  // Test database connection
   const dbConnected = await testConnection();
 
   if (!dbConnected) {
@@ -80,7 +81,6 @@ async function start() {
     process.exit(1);
   }
 
-  // Start automation engine
   startAutomationEngine();
 
   app.listen(env.port, () => {
