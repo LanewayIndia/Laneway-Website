@@ -1,9 +1,9 @@
 import { Router } from 'express';
-import { createBlogController } from './blog.controller';
-import { authenticate } from '../../middleware/auth';
+import { createBlogController, getBlogsController } from './blog.controller';
 
 const router = Router();
 
-router.post('/', authenticate, createBlogController);
+router.get('/', getBlogsController);
+router.post('/', createBlogController);
 
 export default router;

@@ -22,7 +22,7 @@ export default function CreateBlogPage() {
   async function handleSaveDraft() {
     setSaving(true);
     try {
-      const res = await fetch('/api/blogs', {
+      const res = await fetch('http://localhost:5000/api/blogs', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
