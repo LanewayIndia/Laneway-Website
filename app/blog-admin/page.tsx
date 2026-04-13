@@ -4,18 +4,36 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 
 export default function BlogAdminPage() {
- const [blogs, setBlogs] = useState<any[]>([]);
+  const [blogs, setBlogs] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    async function fetchBlogs() {
-      const res = await fetch('http://localhost:5000/api/blogs');
-     const data = await res.json();
-setBlogs(Array.isArray(data) ? data : []);
-      setLoading(false);
-    }
     fetchBlogs();
   }, []);
+
+  async function fetchBlogs() {
+    setLoading(true);
+    const res = await fetch('http://localhost:5000/api/blogs');
+    const data = await res.json();
+    setBlogs(Array.isArray(data) ? data : []);
+    setLoading(false);
+  }
+
+  async function handlePublish(id: string, currentStatus: string) {
+    const endpoint = currentStatus === 'published' ? 'unpublish' : 'publish';
+    await fetch(`http://localhost:5000/api/blogs/${id}/${endpoint}`, {
+      method: 'PATCH',
+    });
+    fetchBlogs();
+  }
+
+  async function handleDelete(id: string) {
+    if (!confirm('Are you sure you want to delete this blog?')) return;
+    await fetch(`http://localhost:5000/api/blogs/${id}`, {
+      method: 'DELETE',
+    });
+    fetchBlogs();
+  }
 
   return (
     <div style={{ background: '#F5F7F3', minHeight: '100vh', padding: '40px 0' }}>
@@ -80,10 +98,29 @@ setBlogs(Array.isArray(data) ? data : []);
                     </span>
                   </div>
                 </div>
+
+                {/* Action Buttons */}
                 <div style={{ display: 'flex', gap: '8px' }}>
                   <Link href={`/blog-admin/edit/${blog.id}`}>
-                    <button style={{
-                      background: '#f5f5f5',
+                  <button style={{
+  background: '#000',
+  color: '#fff',
+  border: 'none',
+  borderRadius: '6px',
+  padding: '8px 16px',
+  fontSize: '13px',
+  cursor: 'pointer',
+  fontWeight: '500'
+}}>
+  Edit
+</button>
+                  </Link>
+
+                  <button
+                    onClick={() => handlePublish(blog.id, blog.status)}
+                    style={{
+                      background: blog.status === 'published' ? '#fff8e6' : '#e6f4ea',
+                      color: blog.status === 'published' ? '#AE772A' : '#2d7a3a',
                       border: 'none',
                       borderRadius: '6px',
                       padding: '8px 16px',
@@ -91,9 +128,23 @@ setBlogs(Array.isArray(data) ? data : []);
                       cursor: 'pointer',
                       fontWeight: '500'
                     }}>
-                      Edit
-                    </button>
-                  </Link>
+                    {blog.status === 'published' ? 'Unpublish' : 'Publish'}
+                  </button>
+
+                  <button
+                    onClick={() => handleDelete(blog.id)}
+                    style={{
+                      background: '#fdecea',
+                      color: '#c0392b',
+                      border: 'none',
+                      borderRadius: '6px',
+                      padding: '8px 16px',
+                      fontSize: '13px',
+                      cursor: 'pointer',
+                      fontWeight: '500'
+                    }}>
+                    Delete
+                  </button>
                 </div>
               </div>
             ))}
