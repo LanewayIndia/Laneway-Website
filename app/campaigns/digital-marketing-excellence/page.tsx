@@ -1,3 +1,10 @@
+import type { Metadata } from "next"
+
+export const metadata: Metadata = {
+  title: "Digital Marketing Excellence | Laneway Campaign",
+  description: "Redefine your brand's digital presence with cutting edge marketing strategies, analytics and targeted campaigns.",
+}
+
 export default function DigitalMarketingExcellencePage() {
   return (
     <section className="py-20 bg-background">

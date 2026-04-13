@@ -1,4 +1,10 @@
 import { BlogTemplate } from "@/components/blogs/blog-template"
+import type { Metadata } from "next"
+
+export const metadata: Metadata = {
+  title: "The Future of AI in Business Transformation | Laneway",
+  description: "Explore the shift from AI automation to AI augmentation and its profound impact on business strategies and growth.",
+}
 
 export default function BlogAI() {
     return (

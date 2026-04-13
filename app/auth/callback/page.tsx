@@ -26,7 +26,7 @@ export default function Callback() {
         // session established
         router.push("/")
       } catch (err) {
-        router.push("/auth")
+        router.push("/")
       }
     }
 
