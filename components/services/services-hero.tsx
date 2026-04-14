@@ -6,7 +6,7 @@ import Link from "next/link"
 const categoryNav = [
   { number: "01", label: "Business Consulting", href: "#business-consulting" },
   { number: "02", label: "AI & Tech Services", href: "#ai-tech-services" },
-  { number: "03", label: "Media & Marketing", href: "#media-marketing" },
+  { number: "03", label: "Media & Marketing", href: "#media-marketing-category" },
 ]
 
 export function ServicesHero() {

@@ -19,7 +19,7 @@ const serviceCategories = [
     label: "Business Consulting",
     href: "/services#business-consulting",
     items: [
-      { name: "Business Consulting", href: "/services#ai-consulting" },
+      { name: "Business Consulting", href: "/services#consulting" },
       { name: "Business Administration", href: "/services#admin" },
       { name: "Operations Management", href: "/services#operations" },
       { name: "Startup Incubator", href: "/services#incubator" },
@@ -37,7 +37,7 @@ const serviceCategories = [
   },
   {
     label: "Media & Marketing",
-    href: "/services#media-marketing",
+    href: "/services#media-marketing-category",
     items: [
       { name: "Media & Marketing", href: "/services#media-marketing" },
       { name: "Branding & Media", href: "/services#branding" },

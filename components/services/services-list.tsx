@@ -148,7 +148,7 @@ const categories = [
     ],
   },
   {
-    id: "media-marketing",
+    id: "media-marketing-category",
     title: "Media & Marketing",
     description: "Comprehensive marketing strategies and media production to amplify your brand.",
     services: [
