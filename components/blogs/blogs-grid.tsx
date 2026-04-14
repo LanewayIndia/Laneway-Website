@@ -86,7 +86,8 @@ export function BlogsGrid() {
   useEffect(() => {
     async function fetchPublishedBlogs() {
       try {
-        const res = await fetch('http://localhost:5000/api/blogs');
+// after
+const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || ''}/api/blogs`);
         const data = await res.json();
         const published = Array.isArray(data)
           ? data.filter((b: any) => b.status === 'published')

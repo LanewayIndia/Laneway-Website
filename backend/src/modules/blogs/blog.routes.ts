@@ -1,4 +1,5 @@
 import { Router } from 'express';
+import { authenticate } from '../../middleware/auth';
 import {
   createBlogController,
   getBlogsController,
@@ -12,11 +13,11 @@ import {
 const router = Router();
 
 router.get('/', getBlogsController);
-router.post('/', createBlogController);
+router.post('/', authenticate, createBlogController);
 router.get('/:id', getBlogByIdController);
-router.patch('/:id', updateBlogController);
-router.patch('/:id/publish', publishBlogController);
-router.patch('/:id/unpublish', unpublishBlogController);
-router.delete('/:id', deleteBlogController);
+router.patch('/:id', authenticate, updateBlogController);
+router.patch('/:id/publish', authenticate, publishBlogController);
+router.patch('/:id/unpublish', authenticate, unpublishBlogController);
+router.delete('/:id', authenticate, deleteBlogController);
 
 export default router;

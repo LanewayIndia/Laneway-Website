@@ -16,6 +16,7 @@ export default function EditBlogPage() {
   const [saving, setSaving] = useState(false);
   const [message, setMessage] = useState('');
   const [loading, setLoading] = useState(true);
+  const [fetchedContent, setFetchedContent] = useState<any>(null);
 
   const editor = useEditor({
     immediatelyRender: false,
@@ -23,26 +24,35 @@ export default function EditBlogPage() {
     content: '',
   });
 
+  // Effect 1: fetch blog data — editor NOT in deps
   useEffect(() => {
     async function fetchBlog() {
-      const res = await fetch(`http://localhost:5000/api/blogs/${id}`);
-      const blog = await res.json();
-      setTitle(blog.title || '');
-      setCoverImage(blog.cover_image || '');
-      setTags((blog.tags || []).join(', '));
-      setSeoTitle(blog.seo_title || '');
-      setSeoDesc(blog.seo_description || '');
-      if (editor && blog.content) {
-        if (typeof blog.content === 'object') {
-          editor.commands.setContent(blog.content);
-        } else {
-          editor.commands.setContent(blog.content);
-        }
+      try {
+        const res = await fetch(`http://localhost:5000/api/blogs/${id}`);
+        if (!res.ok) throw new Error(`Failed to fetch blog: ${res.status}`);
+        const blog = await res.json();
+        setTitle(blog.title || '');
+        setCoverImage(blog.cover_image || '');
+        setTags((blog.tags || []).join(', '));
+        setSeoTitle(blog.seo_title || '');
+        setSeoDesc(blog.seo_description || '');
+        if (blog.content) setFetchedContent(blog.content);
+      } catch (err) {
+        console.error('Error fetching blog:', err);
+        setMessage('❌ Failed to load blog.');
+      } finally {
+        setLoading(false);
       }
-      setLoading(false);
     }
     if (id) fetchBlog();
-  }, [id, editor]);
+  }, [id]);
+
+  // Effect 2: set editor content only when both are ready
+  useEffect(() => {
+    if (editor && fetchedContent) {
+      editor.commands.setContent(fetchedContent);
+    }
+  }, [editor, fetchedContent]);
 
   async function handleUpdate() {
     setSaving(true);

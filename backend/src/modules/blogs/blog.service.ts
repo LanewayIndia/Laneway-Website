@@ -1,16 +1,19 @@
+// after
 import { createClient } from '@supabase/supabase-js';
+import { env } from '../../config/env';
 
-const supabase = createClient(
-  process.env.SUPABASE_URL!,
-  process.env.SUPABASE_ANON_KEY!
-);
+const supabase = createClient(env.supabase.url, env.supabase.anonKey);
 
+// after
 function generateSlug(title: string): string {
-  return title
+  const base = title
     .toLowerCase()
     .replace(/\s+/g, '-')
     .replace(/[^a-z0-9-]/g, '')
-    .slice(0, 100);
+    .slice(0, 90) || 'post';
+
+  const suffix = Date.now().toString(36);
+  return `${base}-${suffix}`.slice(0, 100);
 }
 
 export async function getBlogs() {
@@ -23,8 +26,11 @@ export async function getBlogs() {
   return data;
 }
 
+// after
 export async function createBlog(data: any, authorId: string | null) {
   const slug = data.slug || generateSlug(data.title);
+
+  if (!slug) throw new Error('Failed to generate a valid slug for the blog post');
 
   const { data: blog, error } = await supabase
     .from('blogs')
