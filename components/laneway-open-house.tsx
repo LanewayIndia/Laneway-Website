@@ -213,8 +213,8 @@ export default function LanewayOpenHouse() {
               transition={{ duration: 0.8, delay: 0.3 }}
               className="text-[15px] font-medium text-[#999999] leading-relaxed max-w-[420px] mb-10"
             >
-              We work with a small group of businesses each cohort. Fill out the application so we can understand where you are, what you&apos;re building, and whether this week is the right fit for you.
-            </motion.p>
+              A year ago we started LANEWAY with one purpose — to help founders build, scale, and transform their businesses. A year later, that hasn't changed. Laneway's Open House is our way of living that mission out loud. A select few founders get a full week of hands-on consulting, marketing, and tech support from our team.
+              We only have a few spots. If this sounds like something your business needs, claim yours now.            </motion.p>
 
             <motion.div
               initial={{ opacity: 0, y: 24 }}

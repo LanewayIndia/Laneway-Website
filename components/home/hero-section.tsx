@@ -119,7 +119,7 @@ export function HeroSection() {
           >
             {/* FIX: Added data-cta tracking attributes */}
             <Link
-              href="/case-studies"
+              href="/our-projects"
               data-cta="explore-masterpieces"
               data-section="hero"
               data-position="above-fold"
