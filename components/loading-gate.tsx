@@ -11,18 +11,18 @@ export default function LoadingGate({ children, initialHasSeen }: { children: Re
   // Optional: Only show once per session so it's not annoying
   useEffect(() => {
     // Check sessionStorage as a fallback in case cookies weren't sent or just set
-    const hasSeenSession = sessionStorage.getItem("anniversary_seen");
+    const hasSeenSession = sessionStorage.getItem("anniversary_seen") === "true";
     if (initialHasSeen || hasSeenSession) {
       if (hasSeenSession && !initialHasSeen) {
-         document.cookie = "anniversary_seen=false; path=/";
+         document.cookie = "anniversary_seen=true; path=/";
       }
-      setLoading(true);
+      setLoading(false);
     }
   }, [initialHasSeen]);
 
   const handleComplete = () => {
-    sessionStorage.setItem("anniversary_seen", "false");
-    document.cookie = "anniversary_seen=false; path=/";
+    sessionStorage.setItem("anniversary_seen", "true");
+    document.cookie = "anniversary_seen=true; path=/";
     setLoading(false);
   };
 
