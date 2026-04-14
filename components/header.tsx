@@ -283,7 +283,7 @@ export function Header() {
                     onClick={() => setIsMobileMenuOpen(false)}
                     className="inline-flex items-center gap-2 px-8 py-4 text-sm font-medium text-background bg-snow rounded-full hover:bg-gold transition-all duration-300"
                   >
-                    Begin Your Transformation
+                    Get in Touch
                     <ArrowUpRight size={14} />
                   </Link>
                 )}
