@@ -1,16 +1,14 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { motion } from "framer-motion"
 import Link from "next/link"
-import { Calendar, Clock, Play, FileText } from "lucide-react"
+import { Calendar, Play } from "lucide-react"
 import Image from "next/image"
-
 
 const categories = ["All", "Business", "AI & Technology", "Marketing", "Startup", "Research", "Video"]
 
-const blogs = [
-
+const staticBlogs = [
   {
     type: "written",
     title: "Budget 2026 and the Future of Smart Businesses",
@@ -21,7 +19,6 @@ const blogs = [
     href: "/blogs/budget-smart-businesses",
     image: "/B2ATFOSB.png",
   },
-
   {
     type: "written",
     title: "The Future of AI in Business Operations",
@@ -84,8 +81,41 @@ const blogs = [
 
 export function BlogsGrid() {
   const [activeCategory, setActiveCategory] = useState("All")
+  const [dynamicBlogs, setDynamicBlogs] = useState<any[]>([])
 
-  const filteredBlogs = blogs.filter((blog) => {
+  useEffect(() => {
+    async function fetchPublishedBlogs() {
+      try {
+// after
+const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || ''}/api/blogs`);
+        const data = await res.json();
+        const published = Array.isArray(data)
+          ? data.filter((b: any) => b.status === 'published')
+          : [];
+        setDynamicBlogs(published);
+      } catch {
+        console.error('Failed to fetch blogs');
+      }
+    }
+    fetchPublishedBlogs();
+  }, []);
+
+  const allBlogs = [
+    ...dynamicBlogs.map((b: any) => ({
+      type: 'written',
+      title: b.title,
+      excerpt: b.seo_description || '',
+      category: (b.tags && b.tags[0]) || 'Business',
+      date: new Date(b.published_at || b.created_at).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }),
+      readTime: '5 min read',
+      href: `/blogs/${b.slug}`,
+      image: b.cover_image || '/B2ATFOSB.png',
+      isDynamic: true,
+    })),
+    ...staticBlogs,
+  ];
+
+  const filteredBlogs = allBlogs.filter((blog) => {
     if (activeCategory === "All") return true
     if (activeCategory === "Video") return blog.type === "video"
     return blog.category === activeCategory
@@ -110,8 +140,8 @@ export function BlogsGrid() {
                 key={category}
                 onClick={() => setActiveCategory(category)}
                 className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 ${activeCategory === category
-                    ? "bg-gold text-background"
-                    : "bg-background border border-border text-pumice hover:border-gold/50 hover:text-snow"
+                  ? "bg-gold text-background"
+                  : "bg-background border border-border text-pumice hover:border-gold/50 hover:text-snow"
                   }`}
               >
                 {category}
@@ -139,24 +169,17 @@ export function BlogsGrid() {
                       fill
                       className="object-cover transition-transform duration-300 group-hover:scale-105"
                     />
-
-                    {/* Overlay gradient */}
                     <div className="absolute inset-0 bg-linear-to-br from-black/40 via-black/10 to-black/40" />
-
-                    {/* Category + Video Badge */}
                     <div className="absolute top-4 left-4 flex items-center gap-2 z-10">
                       <span className="px-3 py-1 bg-gold/90 text-background text-xs font-medium rounded-full">
                         {blog.category}
                       </span>
-
                       {blog.type === "video" && (
                         <span className="p-1.5 bg-background/90 rounded-full">
                           <Play size={12} className="text-gold" fill="currentColor" />
                         </span>
                       )}
                     </div>
-
-                    {/* Video Play Button Overlay */}
                     {blog.type === "video" && (
                       <div className="absolute inset-0 flex items-center justify-center z-10">
                         <div className="w-16 h-16 bg-gold/90 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
@@ -165,7 +188,6 @@ export function BlogsGrid() {
                       </div>
                     )}
                   </div>
-
                   <div className="p-6">
                     <h3 className="font-heading text-lg font-semibold text-snow mb-3 group-hover:text-gold transition-colors line-clamp-2">
                       {blog.title}
@@ -176,10 +198,7 @@ export function BlogsGrid() {
                         <Calendar size={14} />
                         {blog.date}
                       </span>
-                      <span className="flex items-center gap-1">
-                        {/* <Clock size={14} /> */}
-                        {blog.readTime}
-                      </span>
+                      <span>{blog.readTime}</span>
                     </div>
                   </div>
                 </div>
