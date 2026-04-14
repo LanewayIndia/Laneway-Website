@@ -99,7 +99,7 @@ export function BlogsGrid() {
         setDynamicBlogs(validBlogs);
       } catch (err) {
         console.error('Failed to fetch blogs', err);
-        setError('No new blogs is published yet');
+        setError('No new blogs are published yet');
       } finally {
         setIsLoading(false);
       }
