@@ -52,7 +52,7 @@ export default function CreateBlogPage() {
 
     setSaving(true);
     try {
-      const res = await fetch('/api/blogs', {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || ''}/api/blogs`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -89,7 +89,7 @@ export default function CreateBlogPage() {
 
     setSaving(true);
     try {
-      const res = await fetch('/api/blogs', {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || ''}/api/blogs`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
