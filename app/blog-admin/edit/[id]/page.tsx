@@ -1,9 +1,16 @@
 'use client';
 
+// after
 import { useState, useEffect } from 'react';
 import { useEditor, EditorContent } from '@tiptap/react';
 import StarterKit from '@tiptap/starter-kit';
 import { useParams, useRouter } from 'next/navigation';
+import { createClient } from '@supabase/supabase-js';
+
+const supabase = createClient(
+  process.env.NEXT_PUBLIC_SUPABASE_URL!,
+  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+);
 
 export default function EditBlogPage() {
   const { id } = useParams();
@@ -17,18 +24,31 @@ export default function EditBlogPage() {
   const [message, setMessage] = useState('');
   const [loading, setLoading] = useState(true);
   const [fetchedContent, setFetchedContent] = useState<any>(null);
+  const [session, setSession] = useState<any>(null);
 
   const editor = useEditor({
     immediatelyRender: false,
     extensions: [StarterKit],
     content: '',
   });
+useEffect(() => {
+  supabase.auth.getSession().then(({ data: { session } }) => {
+    setSession(session);
+    if (!session) router.push('/login');
+  });
 
+  const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+    setSession(session);
+    if (!session) router.push('/login');
+  });
+
+  return () => subscription.unsubscribe();
+}, []);
   // Effect 1: fetch blog data — editor NOT in deps
   useEffect(() => {
     async function fetchBlog() {
       try {
-        const res = await fetch(`http://localhost:5000/api/blogs/${id}`);
+const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || ''}/api/blogs/${id}`);
         if (!res.ok) throw new Error(`Failed to fetch blog: ${res.status}`);
         const blog = await res.json();
         setTitle(blog.title || '');
@@ -57,9 +77,13 @@ export default function EditBlogPage() {
   async function handleUpdate() {
     setSaving(true);
     try {
-      const res = await fetch(`http://localhost:5000/api/blogs/${id}`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || ''}/api/blogs/${id}`, {
         method: 'PATCH',
-        headers: { 'Content-Type': 'application/json' },
+   // after
+headers: {
+  'Content-Type': 'application/json',
+  'Authorization': `Bearer ${session?.access_token}`,
+},
         body: JSON.stringify({
           title,
           cover_image: coverImage,
