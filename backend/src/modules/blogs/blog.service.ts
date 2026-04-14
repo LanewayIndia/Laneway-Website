@@ -40,7 +40,8 @@ export async function createBlog(data: any, authorId: string | null) {
   const maxAttempts = 5;
 
   while (attempts < maxAttempts) {
-    const slug = attempts === 0 ? baseSlug : `${baseSlug}-${attempts}`;
+    const randomToken = Math.random().toString(36).substring(2, 8);
+    const slug = attempts === 0 ? baseSlug : `${baseSlug}-${randomToken}`;
     const { data: result, error } = await supabase
       .from('blogs')
       .insert({

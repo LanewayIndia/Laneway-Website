@@ -56,6 +56,13 @@ export default function AnniversaryLoader({ onComplete }: Props) {
   };
 
   useGSAP(() => {
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    if (prefersReducedMotion) {
+      onComplete();
+      return;
+    }
+
     const tl = gsap.timeline({
       onComplete: () => {
         onComplete();

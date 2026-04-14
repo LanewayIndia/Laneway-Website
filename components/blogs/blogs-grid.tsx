@@ -93,7 +93,10 @@ export function BlogsGrid() {
         const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || ''}/api/blogs?status=published`);
         if (!res.ok) throw new Error('Failed to fetch blogs');
         const data = await res.json();
-        setDynamicBlogs(Array.isArray(data) ? data : []);
+        const validBlogs = Array.isArray(data) 
+          ? data.filter((item: any) => item.status === 'published' || item.published === true)
+          : [];
+        setDynamicBlogs(validBlogs);
       } catch (err) {
         console.error('Failed to fetch blogs', err);
         setError('Failed to load published blogs.');
@@ -157,7 +160,6 @@ export function BlogsGrid() {
         {isLoading && <p className="text-pumice mb-8">Loading blogs...</p>}
         {error && <p className="text-red-500 mb-8">{error}</p>}
 
-        {!isLoading && !error && (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {filteredBlogs.map((blog, index) => (
             <motion.article
@@ -214,7 +216,6 @@ export function BlogsGrid() {
             </motion.article>
           ))}
         </div>
-        )}
       </div>
     </section>
   )
