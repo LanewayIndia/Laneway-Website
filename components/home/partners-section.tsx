@@ -3,7 +3,7 @@
 import { motion } from "framer-motion"
 import { useState } from "react"
 
-const partners = ["LanewayLabs", "7ZeroMedia", "VAYO", "SAMYAM"]
+const partners = ["LanewayLabs", "7ZeroMedia", "VAYO", "SAMYAM", "CURRICE"]
 
 export function PartnersSection() {
   const [paused, setPaused] = useState(false)

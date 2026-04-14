@@ -9,7 +9,7 @@ export async function up(pool: Pool): Promise<void> {
       content          JSONB,
       cover_image      TEXT,
       status           TEXT CHECK (status IN ('draft', 'published')) DEFAULT 'draft',
-      author_id        UUID REFERENCES users(id),
+      author_id        UUID REFERENCES users(id) ON DELETE SET NULL,
       created_at       TIMESTAMPTZ DEFAULT NOW(),
       updated_at       TIMESTAMPTZ DEFAULT NOW(),
       published_at     TIMESTAMPTZ,
@@ -19,7 +19,7 @@ export async function up(pool: Pool): Promise<void> {
     );
 
     CREATE INDEX IF NOT EXISTS idx_blogs_status ON blogs(status);
-    CREATE INDEX IF NOT EXISTS idx_blogs_slug ON blogs(slug);
+
     CREATE INDEX IF NOT EXISTS idx_blogs_author_id ON blogs(author_id);
     CREATE INDEX IF NOT EXISTS idx_blogs_created_at ON blogs(created_at);
 

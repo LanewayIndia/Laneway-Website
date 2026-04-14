@@ -1,8 +1,8 @@
 import type { Metadata } from "next"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
-import { CaseStudiesHero } from "@/components/case-studies/case-studies-hero"
-import { CaseStudiesList } from "@/components/case-studies/case-studies-list"
+import { CaseStudiesHero } from "@/components/our-projects/case-studies-hero"
+import { CaseStudiesList } from "@/components/our-projects/case-studies-list"
 import { Chatbot } from "@/components/chatbot"
 
 export const metadata: Metadata = {

@@ -3,9 +3,20 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 
+interface Blog {
+  id: string;
+  title: string;
+  status: 'draft' | 'published';
+  created_at: string;
+  [key: string]: any;
+}
+
 export default function BlogAdminPage() {
-  const [blogs, setBlogs] = useState<any[]>([]);
+  const [blogs, setBlogs] = useState<Blog[]>([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+  const [isPublishing, setIsPublishing] = useState<Record<string, boolean>>({});
+  const [isDeleting, setIsDeleting] = useState<Record<string, boolean>>({});
 
   useEffect(() => {
     fetchBlogs();
@@ -13,26 +24,66 @@ export default function BlogAdminPage() {
 
   async function fetchBlogs() {
     setLoading(true);
-    const res = await fetch('http://localhost:5000/api/blogs');
-    const data = await res.json();
-    setBlogs(Array.isArray(data) ? data : []);
-    setLoading(false);
+    setError(null);
+    try {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || ''}/api/blogs`);
+      if (!res.ok) {
+        console.error(`Failed to fetch blogs: ${res.status}`);
+        setBlogs([]);
+        return;
+      }
+      const data = await res.json();
+      setBlogs(Array.isArray(data) ? data : []);
+    } catch (err) {
+      console.error(err);
+      setBlogs([]);
+    } finally {
+      setLoading(false);
+    }
   }
 
   async function handlePublish(id: string, currentStatus: string) {
-    const endpoint = currentStatus === 'published' ? 'unpublish' : 'publish';
-    await fetch(`http://localhost:5000/api/blogs/${id}/${endpoint}`, {
-      method: 'PATCH',
-    });
-    fetchBlogs();
+    setIsPublishing(prev => ({ ...prev, [id]: true }));
+    setError(null);
+    try {
+      const endpoint = currentStatus === 'published' ? 'unpublish' : 'publish';
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || ''}/api/blogs/${id}/${endpoint}`, {
+        method: 'PATCH',
+      });
+      if (!res.ok) {
+        const errorData = await res.json().catch(() => ({}));
+        setError(errorData.error || 'Failed to update blog status');
+        return;
+      }
+      await fetchBlogs();
+    } catch (err) {
+      console.error(err);
+      setError('Network error occurred while updating status');
+    } finally {
+      setIsPublishing(prev => ({ ...prev, [id]: false }));
+    }
   }
 
   async function handleDelete(id: string) {
     if (!confirm('Are you sure you want to delete this blog?')) return;
-    await fetch(`http://localhost:5000/api/blogs/${id}`, {
-      method: 'DELETE',
-    });
-    fetchBlogs();
+    setIsDeleting(prev => ({ ...prev, [id]: true }));
+    setError(null);
+    try {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || ''}/api/blogs/${id}`, {
+        method: 'DELETE',
+      });
+      if (!res.ok) {
+        const errorData = await res.json().catch(() => ({}));
+        setError(errorData.error || 'Failed to delete blog');
+        return;
+      }
+      await fetchBlogs();
+    } catch (err) {
+      console.error(err);
+      setError('Network error occurred while deleting blog');
+    } finally {
+      setIsDeleting(prev => ({ ...prev, [id]: false }));
+    }
   }
 
   return (
@@ -61,6 +112,12 @@ export default function BlogAdminPage() {
           </Link>
         </div>
 
+        {error && (
+          <div style={{ marginBottom: '24px', padding: '12px 16px', background: '#fdecea', border: '1px solid #f5c6cb', borderRadius: '8px', color: '#c0392b', fontSize: '14px' }}>
+            {error}
+          </div>
+        )}
+
         {/* Blog List */}
         {loading ? (
           <p style={{ color: '#666' }}>Loading blogs...</p>
@@ -68,7 +125,7 @@ export default function BlogAdminPage() {
           <p style={{ color: '#666' }}>No blogs yet. Create your first one!</p>
         ) : (
           <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-            {blogs.map((blog: any) => (
+            {blogs.map((blog: Blog) => (
               <div key={blog.id} style={{
                 background: '#fff',
                 borderRadius: '12px',
@@ -117,6 +174,7 @@ export default function BlogAdminPage() {
                   </Link>
 
                   <button
+                    disabled={isPublishing[blog.id] || isDeleting[blog.id]}
                     onClick={() => handlePublish(blog.id, blog.status)}
                     style={{
                       background: blog.status === 'published' ? '#fff8e6' : '#e6f4ea',
@@ -125,13 +183,15 @@ export default function BlogAdminPage() {
                       borderRadius: '6px',
                       padding: '8px 16px',
                       fontSize: '13px',
-                      cursor: 'pointer',
-                      fontWeight: '500'
+                      cursor: (isPublishing[blog.id] || isDeleting[blog.id]) ? 'not-allowed' : 'pointer',
+                      fontWeight: '500',
+                      opacity: isPublishing[blog.id] ? 0.6 : 1
                     }}>
-                    {blog.status === 'published' ? 'Unpublish' : 'Publish'}
+                    {isPublishing[blog.id] ? 'Updating...' : blog.status === 'published' ? 'Unpublish' : 'Publish'}
                   </button>
 
                   <button
+                    disabled={isPublishing[blog.id] || isDeleting[blog.id]}
                     onClick={() => handleDelete(blog.id)}
                     style={{
                       background: '#fdecea',
@@ -140,10 +200,11 @@ export default function BlogAdminPage() {
                       borderRadius: '6px',
                       padding: '8px 16px',
                       fontSize: '13px',
-                      cursor: 'pointer',
-                      fontWeight: '500'
+                      cursor: (isPublishing[blog.id] || isDeleting[blog.id]) ? 'not-allowed' : 'pointer',
+                      fontWeight: '500',
+                      opacity: isDeleting[blog.id] ? 0.6 : 1
                     }}>
-                    Delete
+                    {isDeleting[blog.id] ? 'Deleting...' : 'Delete'}
                   </button>
                 </div>
               </div>

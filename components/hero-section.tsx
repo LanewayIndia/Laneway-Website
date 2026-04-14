@@ -23,7 +23,7 @@ export function HeroSection() {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="mb-8"
           >
-            <span className="text-xs tracking-premium uppercase text-pumice">Digital Excellence Redefined</span>
+            <span className="text-xs tracking-premium uppercase text-pumice">Business Excellence Redefined</span>
           </motion.div>
 
           <motion.h1

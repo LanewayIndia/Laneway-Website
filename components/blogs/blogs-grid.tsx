@@ -82,19 +82,23 @@ const staticBlogs = [
 export function BlogsGrid() {
   const [activeCategory, setActiveCategory] = useState("All")
   const [dynamicBlogs, setDynamicBlogs] = useState<any[]>([])
+  const [isLoading, setIsLoading] = useState(false)
+  const [error, setError] = useState<string | null>(null)
 
   useEffect(() => {
     async function fetchPublishedBlogs() {
+      setIsLoading(true);
+      setError(null);
       try {
-// after
-const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || ''}/api/blogs`);
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || ''}/api/blogs?status=published`);
+        if (!res.ok) throw new Error('Failed to fetch blogs');
         const data = await res.json();
-        const published = Array.isArray(data)
-          ? data.filter((b: any) => b.status === 'published')
-          : [];
-        setDynamicBlogs(published);
-      } catch {
-        console.error('Failed to fetch blogs');
+        setDynamicBlogs(Array.isArray(data) ? data : []);
+      } catch (err) {
+        console.error('Failed to fetch blogs', err);
+        setError('Failed to load published blogs.');
+      } finally {
+        setIsLoading(false);
       }
     }
     fetchPublishedBlogs();
@@ -150,6 +154,10 @@ const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || ''}/api/blogs`);
           </div>
         </motion.div>
 
+        {isLoading && <p className="text-pumice mb-8">Loading blogs...</p>}
+        {error && <p className="text-red-500 mb-8">{error}</p>}
+
+        {!isLoading && !error && (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {filteredBlogs.map((blog, index) => (
             <motion.article
@@ -206,6 +214,7 @@ const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || ''}/api/blogs`);
             </motion.article>
           ))}
         </div>
+        )}
       </div>
     </section>
   )

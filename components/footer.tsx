@@ -84,7 +84,7 @@ export function Footer() {
             className="lg:col-span-1"
           >
             <Link href="/" className="inline-block mb-6">
-              <span className="flex flex-col font-heading text-2xl font-bold text-snow">
+              <span className="flex flex-col font-heading text-2xl font-extrabold text-gold">
                 <Image
                   src="/Laneway-Logo.png"
                   alt="Laneway Logo"
@@ -93,7 +93,7 @@ export function Footer() {
                   className="h-5 w-auto"
                   priority
                 />
-                Laneway
+                LANEWAY 
               </span>
             </Link>
             <p className="text-pumice text-sm leading-relaxed mb-6">

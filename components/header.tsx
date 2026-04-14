@@ -15,7 +15,7 @@ const navItems = [
   { name: "Home", href: "/" },
   { name: "Services", href: "/services" },
   { name: "Blogs", href: "/blogs" },
-  { name: "Case Studies", href: "/case-studies" },
+  { name: "Our Projects", href: "/our-projects" },
   { name: "Careers", href: "/careers" },
   { name: "About Us", href: "/about" },
 ]
@@ -143,7 +143,7 @@ export function Header() {
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${isScrolled ? "bg-background/80 backdrop-blur-xl border-b border-glass-border" : "bg-transparent"
         }`}
     >
-      <div className="mx-auto max-w-7xl px-6 sm:px-8 lg:px-12">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-4 xl:px-12">
         <div className="flex h-20 sm:h-24 items-center justify-between">
           <Link href="/" className="group flex items-center gap-2">
             <motion.span
@@ -153,7 +153,7 @@ export function Header() {
             >
 
               <motion.span
-                className="font-heading text-2xl font-bold tracking-tight text-gold flex items-center gap-2"
+                className="font-heading text-2xl font-extrabold tracking-tight text-gold flex items-center gap-2"
                 whileHover={{ opacity: 0.8 }}
                 transition={{ duration: 0.3 }}
               >
@@ -171,12 +171,12 @@ export function Header() {
             </motion.span>
           </Link>
 
-          <nav className="hidden lg:flex items-center gap-10">
+          <nav className="hidden lg:flex items-center gap-5 xl:gap-10">
             {navItems.map((item) => (
               <Link
                 key={item.name}
                 href={item.href}
-                className="relative text-sm font-normal text-pumice hover:text-snow transition-colors duration-300 group"
+                className="relative text-[13px] xl:text-sm font-normal text-pumice hover:text-snow transition-colors duration-300 group whitespace-nowrap"
               >
                 <span className="tracking-wide">{item.name}</span>
                 <span className="absolute -bottom-1 left-0 w-0 h-px bg-gold transition-all duration-500 ease-out group-hover:w-full" />
@@ -189,8 +189,8 @@ export function Header() {
               <UserProfileMenu />
             ) : (
               <Link
-                href="/contact"
-                className="group flex items-center gap-2 px-6 py-3 text-sm font-medium text-background bg-snow rounded-full transition-all duration-300 hover:bg-gold"
+                href="/auth"
+                className="group flex items-center justify-center gap-1.5 xl:gap-2 px-4 xl:px-6 py-2.5 xl:py-3 text-[13px] xl:text-sm font-medium text-background bg-snow rounded-full transition-all duration-300 hover:bg-gold whitespace-nowrap shrink-0"
               >
                 <span>Begin Your Transformation</span>
                 <ArrowUpRight

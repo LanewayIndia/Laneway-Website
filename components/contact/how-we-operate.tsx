@@ -90,9 +90,9 @@ const howWeOperateData: Record<string, { title: string; desc: string }[]> = {
 };
 
 const serviceNames: Record<string, string> = {
-  "consulting": "Consulting",
+  "ai-consulting": "AI Consulting",
   "ai-tech": "AI Technology",
-  "media-marketing": "Media & Marketing",
+  "ai-marketing": "AI Marketing",
   "software": "Software Development",
   "mvp": "MVP Building",
   "web": "Website Development",
