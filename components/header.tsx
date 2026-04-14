@@ -220,9 +220,9 @@ export function Header() {
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-            className="lg:hidden bg-background/95 backdrop-blur-xl border-t border-glass-border max-h-[calc(100vh-80px)] overflow-y-auto"
+            className="lg:hidden bg-background/95 backdrop-blur-xl border-t border-glass-border max-h-[calc(100dvh-80px)] overflow-y-auto"
           >
-            <nav className="flex flex-col px-6 py-8 gap-1">
+            <nav className="flex flex-col px-6 pt-8 pb-32 gap-1">
               {navItems.map((item, index) => (
                 <motion.div
                   key={item.name}
@@ -279,11 +279,11 @@ export function Header() {
                   </div>
                 ) : (
                   <Link
-                    href="/contact"
+                    href="/auth"
                     onClick={() => setIsMobileMenuOpen(false)}
                     className="inline-flex items-center gap-2 px-8 py-4 text-sm font-medium text-background bg-snow rounded-full hover:bg-gold transition-all duration-300"
                   >
-                    Get In Touch
+                    Begin Your Transformation
                     <ArrowUpRight size={14} />
                   </Link>
                 )}
