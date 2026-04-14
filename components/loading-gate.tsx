@@ -1,10 +1,11 @@
 "use client";
 
+import type { ReactNode } from "react";
 import { useState, useEffect } from "react";
 import { AnimatePresence } from "framer-motion";
 import AnniversaryLoader from "@/components/anniversary-loader";
 
-export default function LoadingGate({ children, initialHasSeen }: { children: React.ReactNode, initialHasSeen?: boolean }) {
+export default function LoadingGate({ children, initialHasSeen }: { children: ReactNode; initialHasSeen?: boolean }) {
   const [loading, setLoading] = useState(!initialHasSeen);
 
   // Optional: Only show once per session so it's not annoying
