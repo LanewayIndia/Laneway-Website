@@ -70,16 +70,9 @@ app.use(errorHandler);
 async function start() {
   const dbConnected = await testConnection();
 
-  if (!dbConnected) {
-    console.error('Cannot start server without database connection');
-    console.log('\nTo set up the database:');
-    console.log('   1. Install PostgreSQL');
-    console.log('   2. Create database: CREATE DATABASE outreachdesk;');
-    console.log('   3. Copy .env.example to .env and update DB credentials');
-    console.log('   4. Run migrations: npm run migrate');
-    console.log('   5. Run seeds: npm run seed');
-    process.exit(1);
-  }
+if (!dbConnected) {
+  console.warn('⚠️ PostgreSQL direct connection failed - continuing with Supabase client only');
+}
 
   startAutomationEngine();
 
