@@ -164,7 +164,7 @@ const ServiceCard = memo(function ServiceCard({ service, index }: { service: (ty
         <p className="text-pumice text-lg leading-relaxed mb-10 font-light">{service.description}</p>
 
         <div className="mb-10">
-          <h3 className="text-xs tracking-premium uppercase text-pumice mb-6">Key Use Cases</h3>
+          <h3 className="text-xs tracking-premium uppercase text-pumice mb-6">Pain Points</h3>
           <ul className="space-y-4">
             {service.useCases.map((useCase, i) => (
               <li key={i} className="flex items-start gap-3">

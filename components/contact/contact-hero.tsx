@@ -31,7 +31,7 @@ export function ContactHero() {
           </h1>
 
           <p className="text-lg sm:text-xl text-pumice max-w-2xl mx-auto text-pretty font-light leading-relaxed">
-            Ready to transform your business? Our team is here to help you navigate your digital journey.
+            Ready to transform your business? Our team is here to help you navigate your business journey.
           </p>
         </motion.div>
       </div>

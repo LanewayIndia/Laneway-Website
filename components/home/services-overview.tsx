@@ -18,6 +18,12 @@ import {
 
 const services = [
   {
+    icon: Briefcase,
+    title: "Consulting",
+    description: "Strategic guidance for complex challenges.",
+    href: "/services#consulting",
+  },
+  {
     icon: Brain,
     title: "AI Technology",
     description: "Transform operations with artificial intelligence.",
@@ -28,12 +34,6 @@ const services = [
     title: "AI Marketing",
     description: "Data-driven strategies powered by AI.",
     href: "/services#ai-marketing",
-  },
-  {
-    icon: Briefcase,
-    title: "Consulting",
-    description: "Strategic guidance for complex challenges.",
-    href: "/services#consulting",
   },
   {
     icon: Code,

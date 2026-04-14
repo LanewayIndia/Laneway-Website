@@ -67,7 +67,7 @@ export function ContactSection() {
             Your Business?
           </h2>
           <p className="text-lg text-pumice max-w-xl mx-auto mb-12 font-light">
-            {`Let's discuss how Laneway can help you achieve your digital goals.`}
+            {`Let's discuss how Laneway can help you achieve your business goals.`}
           </p>
 
           <motion.button

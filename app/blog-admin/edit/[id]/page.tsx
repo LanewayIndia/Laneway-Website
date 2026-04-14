@@ -90,7 +90,7 @@ headers: {
           content: editor?.getJSON(),
           seo_title: seoTitle,
           seo_description: seoDesc,
-          tags: tags.split(',').map(t => t.trim()),
+          tags: tags.split(',').map(t => t.trim()).filter(Boolean),
         }),
       });
       if (res.ok) {

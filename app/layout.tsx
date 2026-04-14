@@ -3,6 +3,7 @@ import type { Metadata, Viewport } from "next"
 import { Playfair_Display, Inter } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
 import "./globals.css"
+import LoadingGate from "@/components/loading-gate"
 import { CookieConsentBanner } from "@/components/cookie-consent/cookie-consent"
 import { Toaster } from "@/components/ui/toaster"
 import { cookies } from "next/headers"
@@ -251,7 +252,7 @@ export default async function RootLayout({
           }}
         />
       </head>
-      <body className="font-sans antialiased bg-background text-foreground">
+      <body className="font-sans antialiased bg-background text-foreground" suppressHydrationWarning>
         {/* FIX: Skip-to-content link for accessibility (WCAG 2.4.1) */}
         <a
           href="#main-content"
@@ -259,7 +260,9 @@ export default async function RootLayout({
         >
           Skip to main content
         </a>
-        {children}
+        <LoadingGate initialHasSeen={cookieStore.get("anniversary_seen")?.value === "true"}>
+          {children}
+        </LoadingGate>
         <CookieConsentBanner />
         <Toaster />
         {/* FIX: Conditionally render Analytics based on server-side cookie check instead of crashed AnalyticsWrapper */}

@@ -70,11 +70,11 @@ app.use(errorHandler);
 async function start() {
   const dbConnected = await testConnection();
 
-if (!dbConnected) {
-  console.warn('⚠️ PostgreSQL direct connection failed - continuing with Supabase client only');
-}
-
-  startAutomationEngine();
+  if (!dbConnected) {
+    console.warn('⚠️ PostgreSQL direct connection failed - continuing with Supabase client only');
+  } else {
+    startAutomationEngine();
+  }
 
   app.listen(env.port, () => {
     console.log(`

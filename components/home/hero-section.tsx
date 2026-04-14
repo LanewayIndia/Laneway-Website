@@ -8,7 +8,6 @@ import { useRouter } from "next/navigation"
 import { supabase } from "@/lib/supabase"
 
 
-
 const words = ["BUILD", "TRANSFORM", "SCALE",]
 
 export function HeroSection() {
@@ -36,13 +35,48 @@ export function HeroSection() {
 
       <div className="relative z-10 container py-16 sm:py-20 md:py-28 lg:py-32">
         <div className="text-center">
+          {/* 1 Year Anniversary Scrolling Banner - Full Width */}
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.1, ease: "easeOut" }}
+            className="w-screen relative left-1/2 -translate-x-1/2 mb-8 sm:mb-12 border-y border-gold/30 bg-[#050505]/60 backdrop-blur-md py-2.5 sm:py-3.5 shadow-[0_0_30px_rgba(245,181,19,0.1)] overflow-hidden"
+          >
+            {/* Left/Right Fade Mask for edge softness */}
+            <div className="pointer-events-none absolute inset-y-0 left-0 w-12 sm:w-24 border-none bg-linear-to-r from-[#050505] to-transparent z-10" />
+            <div className="pointer-events-none absolute inset-y-0 right-0 w-12 sm:w-24 border-none bg-linear-to-l from-[#050505] to-transparent z-10" />
+
+            <motion.div
+              animate={{ x: ["-50%", "0%"] }}
+              transition={{
+                repeat: Infinity,
+                ease: "linear",
+                duration: 30, // Adjusted duration for full width
+              }}
+              className="flex w-fit whitespace-nowrap"
+            >
+              {[...Array(16)].map((_, i) => (
+                <div key={i} className="flex items-center">
+                  <span className="text-[11px] sm:text-xs md:text-sm font-bold tracking-[0.2em] text-transparent bg-clip-text bg-linear-to-r from-[#F5B513] via-[#ffffff] to-[#F5B513] uppercase px-5 sm:px-8 drop-shadow-[0_0_8px_rgba(245,181,19,0.5)]">
+                    CELEBRATING 1 YEAR ANNIVERSARY
+                  </span>
+                  <span className="text-[24px] sm:text-xl text-[#F5B513] font-extrabold">•</span>
+                  <span className="text-[11px] sm:text-xs md:text-sm font-bold tracking-[0.2em] text-transparent bg-clip-text bg-linear-to-r from-[#F5B513] via-[#ffffff] to-[#F5B513] uppercase px-5 sm:px-8 drop-shadow-[0_0_8px_rgba(245,181,19,0.5)]">
+                    LANEWAY
+                  </span>
+                  <span className="text-[24px] sm:text-xl text-[#F5B513] font-extrabold">•</span>
+                </div>
+              ))}
+            </motion.div>
+          </motion.div>
+
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
             className="mb-6 sm:mb-8"
           >
-            <span className="text-xs sm:text-sm tracking-premium uppercase text-pumice">Digital Excellence Redefined</span>
+            <span className="text-xs sm:text-sm tracking-premium uppercase text-pumice">Business Excellence Redefined</span>
           </motion.div>
           <div className="relative flex items-center justify-center h-9 sm:h-12 md:h-14 lg:h-18 mx-auto mb-4 sm:mb-6 md:mb-8 w-full">
             <AnimatePresence mode="wait">
@@ -100,7 +134,7 @@ export function HeroSection() {
               onClick={async () => {
                 try {
                   const { data } = await supabase.auth.getSession()
-                  if (data?.session?.user) router.push("/contact")
+                  if (data?.session?.user) router.push("/laneway-open-house")
                   else router.push("/auth")
                 } catch (err) {
                   router.push("/auth")
@@ -111,14 +145,15 @@ export function HeroSection() {
               data-position="above-fold"
               className="group flex items-center justify-center gap-2 sm:gap-3 px-6 sm:px-8 py-3 sm:py-4 h-11 sm:h-14 text-xs sm:text-base font-medium text-snow border border-glass-border rounded-full transition-all duration-300 hover:border-gold/50 hover:bg-gold/5 whitespace-nowrap w-full sm:w-auto"
             >
-              <span>Begin Your Transformation</span>
-              <span className="hidden sm:inline">→</span>
+              <span>Start Your Free Trial</span>
+              <ArrowRight size={16} className="sm:w-5 sm:h-5 transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true" />
+              {/* <span className="hidden sm:inline-block transition-transform duration-300 group-hover:scale-125">→</span> */}
             </button>
           </motion.div>
         </div>
       </div>
 
-      <motion.div
+      {/* <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.2, duration: 0.8 }}
@@ -132,7 +167,7 @@ export function HeroSection() {
             className="w-px h-8 sm:h-12 bg-linear-to-b from-gold/50 to-transparent"
           />
         </div>
-      </motion.div>
+      </motion.div> */}
     </section >
   )
 }

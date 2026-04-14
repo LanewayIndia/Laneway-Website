@@ -105,14 +105,14 @@ export function ContactSection() {
           transition={{ duration: 0.6 }}
           className="text-center"
         >
-          <span className="text-xs tracking-premium uppercase text-pumice mb-6 block">Get Started</span>
+          <span className="text-xs tracking-premium uppercase text-gold mb-6 block">Get Started</span>
           <h2 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-bold text-snow mb-6 text-balance">
             Ready to Transform
             <br />
             Your Business?
           </h2>
           <p className="text-base sm:text-lg text-pumice max-w-xl mx-auto mb-12 font-light">
-            {`Let's discuss how Laneway can help you achieve your digital goals.`}
+            Let's discuss how Laneway can help you achieve your business goals.
           </p>
 
           <motion.button

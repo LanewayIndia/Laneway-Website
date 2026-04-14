@@ -25,9 +25,9 @@ export function CaseStudiesHero() {
           </div>
 
           <h1 className="font-heading text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-snow mb-8 text-balance leading-[1.1]">
-            Case
+            Our
             <br />
-            <span className="text-gradient">Studies</span>
+            <span className="text-gradient">Projects</span>
           </h1>
 
           <p className="text-lg sm:text-xl text-pumice max-w-2xl mx-auto text-pretty font-light leading-relaxed">

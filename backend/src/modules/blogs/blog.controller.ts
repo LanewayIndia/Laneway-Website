@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { createBlogSchema } from './blog.validation';
+import { createBlogSchema, updateBlogSchema } from './blog.validation';
 import { createBlog, getBlogs, getBlogById, updateBlog, publishBlog, unpublishBlog, deleteBlog } from './blog.service';
 
 export async function getBlogsController(req: Request, res: Response) {
@@ -16,6 +16,9 @@ export async function getBlogByIdController(req: Request, res: Response) {
   try {
     const id = req.params.id as string;
     const blog = await getBlogById(id);
+    if (!blog) {
+      return res.status(404).json({ error: 'Blog not found' });
+    }
     return res.status(200).json(blog);
   } catch (error) {
     console.error('Get blog error:', error);
@@ -39,8 +42,12 @@ export async function createBlogController(req: Request, res: Response) {
 
 export async function updateBlogController(req: Request, res: Response) {
   try {
+    const parsed = updateBlogSchema.safeParse(req.body);
+    if (!parsed.success) {
+      return res.status(400).json({ error: parsed.error.flatten() });
+    }
     const id = req.params.id as string;
-    const blog = await updateBlog(id, req.body);
+    const blog = await updateBlog(id, parsed.data);
     return res.status(200).json(blog);
   } catch (error) {
     console.error('Update blog error:', error);

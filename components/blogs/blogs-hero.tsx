@@ -24,7 +24,7 @@ export function BlogsHero() {
             <div className="w-12 h-px bg-gold/30" />
           </div>
 
-          <h1 className="font-heading text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-medium text-snow mb-8 text-balance leading-[1.1]">
+          <h1 className="font-heading text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-snow mb-8 text-balance leading-[1.1]">
             Blogs &
             <br />
             <span className="text-gradient">Analytics</span>

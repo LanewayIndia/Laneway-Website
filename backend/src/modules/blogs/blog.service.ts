@@ -2,6 +2,9 @@
 import { createClient } from '@supabase/supabase-js';
 import { env } from '../../config/env';
 
+if (!env.supabase.url || !env.supabase.anonKey) {
+  throw new Error('Missing SUPABASE_URL or SUPABASE_ANON_KEY config variables');
+}
 const supabase = createClient(env.supabase.url, env.supabase.anonKey);
 
 // after
@@ -28,27 +31,43 @@ export async function getBlogs() {
 
 // after
 export async function createBlog(data: any, authorId: string | null) {
-  const slug = data.slug || generateSlug(data.title);
+  const baseSlug = data.slug || generateSlug(data.title);
 
-  if (!slug) throw new Error('Failed to generate a valid slug for the blog post');
+  if (!baseSlug) throw new Error('Failed to generate a valid slug for the blog post');
 
-  const { data: blog, error } = await supabase
-    .from('blogs')
-    .insert({
-      title: data.title,
-      slug,
-      content: data.content,
-      cover_image: data.cover_image || null,
-      status: 'draft',
-      author_id: authorId,
-      seo_title: data.seo_title || null,
-      seo_description: data.seo_description || null,
-      tags: data.tags || [],
-    })
-    .select()
-    .single();
+  let blog: any = null;
+  let attempts = 0;
+  const maxAttempts = 5;
 
-  if (error) throw error;
+  while (attempts < maxAttempts) {
+    const slug = attempts === 0 ? baseSlug : `${baseSlug}-${attempts}`;
+    const { data: result, error } = await supabase
+      .from('blogs')
+      .insert({
+        title: data.title,
+        slug,
+        content: data.content,
+        cover_image: data.cover_image || null,
+        status: 'draft',
+        author_id: authorId,
+        seo_title: data.seo_title || null,
+        seo_description: data.seo_description || null,
+        tags: data.tags || [],
+      })
+      .select()
+      .single();
+
+    if (error) {
+      if (error.code === '23505' || error.message?.toLowerCase().includes('duplicate')) {
+        attempts++;
+        if (attempts >= maxAttempts) throw new Error('Failed to generate unique slug after multiple attempts');
+        continue;
+      }
+      throw error;
+    }
+    blog = result;
+    break;
+  }
   return blog;
 }
 
@@ -90,7 +109,7 @@ export async function getBlogById(id: string) {
     .from('blogs')
     .select('*')
     .eq('id', id)
-    .single();
+    .maybeSingle();
 
   if (error) throw error;
   return data;

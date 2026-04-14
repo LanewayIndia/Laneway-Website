@@ -311,7 +311,7 @@ function StepCard({ step, index }: { step: { title: string; desc: string }, inde
         <div className="glass-card rounded-3xl p-6 sm:p-10 hover:border-gold/20 transition-all duration-500 overflow-hidden relative">
           
           {/* Subtle gradient overlay */}
-          <div className="absolute inset-0 bg-linear-to-br from-white/[0.02] to-transparent pointer-events-none" />
+          <div className="absolute inset-0 bg-linear-to-br from-white/2 to-transparent pointer-events-none" />
 
           {/* Mobile number indicator */}
           <div className="sm:hidden w-10 h-10 rounded-xl bg-gold/10 border border-gold/20 flex items-center justify-center font-heading text-sm font-bold text-gold mb-5 number-indicator shadow-[0_0_15px_rgba(201,168,85,0.15)]">
