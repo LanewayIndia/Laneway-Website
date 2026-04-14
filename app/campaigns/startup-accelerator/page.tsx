@@ -1,3 +1,10 @@
+import type { Metadata } from "next"
+
+export const metadata: Metadata = {
+  title: "Startup Growth Accelerator | Laneway",
+  description: "Join Laneway's startup accelerator program to scale your early stage business with strategic mentorship and funding.",
+}
+
 export default function StartupGrowthAcceleratorPage() {
   return (
     <section className="py-20 bg-background">

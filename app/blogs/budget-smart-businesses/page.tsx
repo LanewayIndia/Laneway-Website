@@ -1,4 +1,10 @@
 import { BlogTemplate } from "@/components/blogs/blog-template"
+import type { Metadata } from "next"
+
+export const metadata: Metadata = {
+  title: "Budget 2026 and the Future of Smart Businesses | Laneway",
+  description: "Analyze the implications of the 2026 budget on the technology and financial strategies of modern smart businesses.",
+}
 
 export default function BlogBudgetSmartBusinesses() {
   return (

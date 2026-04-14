@@ -1,4 +1,10 @@
 import { BlogTemplate } from "@/components/blogs/blog-template"
+import type { Metadata } from "next"
+
+export const metadata: Metadata = {
+  title: "Research: AI Adoption in SMBs — Opportunities, Risks, and Competitive Advantage | Laneway",
+  description: "Discover how Small and Medium-sized Businesses are leveraging Artificial Intelligence for productivity, customer experience, and competitive advantage.",
+}
 
 export default function BlogAIAdoptionSMBs() {
   return (

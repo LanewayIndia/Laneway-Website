@@ -1,3 +1,10 @@
+import type { Metadata } from "next"
+
+export const metadata: Metadata = {
+  title: "AI Transformation Initiative 2026 | Laneway",
+  description: "A strategic initiative focused on empowering enterprises through artificial intelligence and automation.",
+}
+
 export default function CampaignPage() {
   return (
     <section className="py-20 bg-background">
