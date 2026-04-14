@@ -14,6 +14,7 @@ import interactionsRoutes from './modules/interactions/interactions.routes';
 import dashboardRoutes from './modules/dashboard/dashboard.routes';
 import usersRoutes from './modules/users/users.routes';
 import activityLogRoutes from './modules/activity-log/activity-log.routes';
+import blogRoutes from './modules/blogs/blog.routes';
 
 const app: Application = express();
 
@@ -52,6 +53,7 @@ app.use('/api/interactions', interactionsRoutes);
 app.use('/api/dashboard', dashboardRoutes);
 app.use('/api/users', usersRoutes);
 app.use('/api/activity-logs', activityLogRoutes);
+app.use('/api/blogs', blogRoutes);
 
 // ─── 404 Handler ───────────────────────────────────────────────────
 app.use((req: Request, res: Response) => {
@@ -66,21 +68,12 @@ app.use(errorHandler);
 
 // ─── Start Server ──────────────────────────────────────────────────
 async function start() {
-  // Test database connection
   const dbConnected = await testConnection();
 
-  if (!dbConnected) {
-    console.error('Cannot start server without database connection');
-    console.log('\nTo set up the database:');
-    console.log('   1. Install PostgreSQL');
-    console.log('   2. Create database: CREATE DATABASE outreachdesk;');
-    console.log('   3. Copy .env.example to .env and update DB credentials');
-    console.log('   4. Run migrations: npm run migrate');
-    console.log('   5. Run seeds: npm run seed');
-    process.exit(1);
-  }
+if (!dbConnected) {
+  console.warn('⚠️ PostgreSQL direct connection failed - continuing with Supabase client only');
+}
 
-  // Start automation engine
   startAutomationEngine();
 
   app.listen(env.port, () => {

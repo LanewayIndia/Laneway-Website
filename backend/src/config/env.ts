@@ -38,4 +38,16 @@ export const env = {
   cron: {
     overdueCheck: process.env.CRON_OVERDUE_CHECK || '0 */6 * * *',
   },
+  supabase: {
+    url: (() => {
+      if (!process.env.SUPABASE_URL)
+        throw new Error('Missing required environment variable: SUPABASE_URL');
+      return process.env.SUPABASE_URL;
+    })(),
+    anonKey: (() => {
+      if (!process.env.SUPABASE_ANON_KEY)
+        throw new Error('Missing required environment variable: SUPABASE_ANON_KEY');
+      return process.env.SUPABASE_ANON_KEY;
+    })(),
+  },
 } as const;
