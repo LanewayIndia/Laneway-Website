@@ -14,11 +14,35 @@ const quickLinks = [
   { name: "About Us", href: "/about" },
 ]
 
-const services = [
-  { name: "AI Solutions", href: "/services#ai-solutions" },
-  { name: "Software Development", href: "/services#software" },
-  { name: "Business Consulting", href: "/services#consulting" },
-  { name: "Startup Incubator", href: "/services#incubator" },
+const serviceCategories = [
+  {
+    label: "Business Consulting",
+    href: "/services#business-consulting",
+    items: [
+      { name: "Business Consulting", href: "/services#consulting" },
+      { name: "Business Administration", href: "/services#admin" },
+      { name: "Operations Management", href: "/services#operations" },
+      { name: "Startup Incubator", href: "/services#incubator" },
+    ],
+  },
+  {
+    label: "AI & Tech Services",
+    href: "/services#ai-tech-services",
+    items: [
+      { name: "AI Technology Solutions", href: "/services#ai-tech" },
+      { name: "Software Development", href: "/services#software" },
+      { name: "MVP Building", href: "/services#mvp" },
+      { name: "Website Development", href: "/services#web" },
+    ],
+  },
+  {
+    label: "Media & Marketing",
+    href: "/services#media-marketing-category",
+    items: [
+      { name: "Media & Marketing", href: "/services#media-marketing" },
+      { name: "Branding & Media", href: "/services#branding" },
+    ],
+  },
 ]
 
 const socialLinks = [
@@ -117,18 +141,30 @@ export function Footer() {
             transition={{ duration: 0.5, delay: 0.2 }}
           >
             <h2 className="text-xs tracking-premium uppercase text-pumice mb-6">Services</h2>
-            <ul className="space-y-3">
-              {services.map((service) => (
-                <li key={service.name}>
+            <div className="space-y-5">
+              {serviceCategories.map((cat) => (
+                <div key={cat.label}>
                   <Link
-                    href={service.href}
-                    className="text-snow/70 hover:text-snow transition-colors duration-300 text-sm"
+                    href={cat.href}
+                    className="text-snow/90 hover:text-gold text-xs tracking-wide uppercase font-medium transition-colors duration-300 block mb-2"
                   >
-                    {service.name}
+                    {cat.label}
                   </Link>
-                </li>
+                  <ul className="space-y-1.5 pl-2 border-l border-glass-border">
+                    {cat.items.map((item) => (
+                      <li key={item.name}>
+                        <Link
+                          href={item.href}
+                          className="text-snow/50 hover:text-snow/80 transition-colors duration-300 text-xs"
+                        >
+                          {item.name}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               ))}
-            </ul>
+            </div>
           </motion.div>
 
           {/* Contact Info */}
