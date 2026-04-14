@@ -18,16 +18,16 @@ import {
 
 const services = [
   {
-    id: "ai-consulting",
+    id: "consulting",
     icon: Brain,
-    title: "AI Powered Business Consulting",
+    title: "Business Consulting",
     description:
-      "Transform your business strategy with data-driven insights and AI-powered analytics. Our consultants help you identify opportunities and optimize operations.",
+      "We work closely with you to unlock growth, refine operations, and position your business for long-term success. Our approach blends strategic insight with precise execution to deliver measurable impact.",
     useCases: [
-      "Strategic planning with predictive analytics",
-      "Process optimization and automation",
-      "Data-driven decision making frameworks",
-      "AI readiness assessments",
+      "Growth strategy & market positioning",
+      "Operational excellence & efficiency",
+      "Insight-driven decision systems",
+      "AI & technology transformation",
     ],
   },
   {
