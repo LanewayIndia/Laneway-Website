@@ -11,13 +11,13 @@ if (typeof window !== "undefined") {
 }
 
 const howWeOperateData: Record<string, { title: string; desc: string }[]> = {
-  "ai-consulting": [
-    { title: "Discovery & Analysis", desc: "We deep-dive into your business operations and data landscape." },
-    { title: "Strategy Formulation", desc: "Developing a tailored AI roadmap aligned with your goals." },
-    { title: "Feasibility Study", desc: "Evaluating technical and economic viability of proposed solutions." },
-    { title: "Pilot Implementation", desc: "Testing targeted AI solutions to measure ROI." },
-    { title: "Scale & Optimize", desc: "Deploying successful models enterprise-wide." },
-    { title: "Continuous Monitoring", desc: "Ensuring long-term success and adaptation to new data." }
+  "consulting": [
+    { title: "Business Deep Dive", desc: "We start by understanding your goals, challenges, and current performance to identify high-impact opportunities." },
+    { title: "Opportunity Mapping", desc: "We pinpoint where strategy, operations, or technology can drive the most value for your business." },
+    { title: "Strategic Roadmapping", desc: "We design a clear, tailored plan that aligns initiatives with your growth objectives." },
+    { title: "Targeted Execution", desc: "We implement focused solutions that deliver quick wins while building long-term capability." },
+    { title: "Scale & Integration", desc: "Proven solutions are expanded across your business for maximum efficiency and consistency." },
+    { title: "Ongoing Optimization", desc: "We continuously refine strategies and systems to keep you ahead in a changing market." }
   ],
   "ai-tech": [
     { title: "Requirements Gathering", desc: "Defining technical specs and use cases for the AI solution." },
@@ -26,12 +26,12 @@ const howWeOperateData: Record<string, { title: string; desc: string }[]> = {
     { title: "Model Development", desc: "Building, training, and testing the custom AI/ML model." },
     { title: "Integration", desc: "Seamlessly deploying the solution into your existing ecosystem." }
   ],
-  "ai-marketing": [
-    { title: "Audience Profiling", desc: "Leveraging predictive analytics to segment your audience." },
-    { title: "Campaign Strategy", desc: "Designing AI-driven, hyper-targeted marketing campaigns." },
-    { title: "Content Generation", desc: "Creating personalized assets using AI models." },
-    { title: "Execution & Automation", desc: "Deploying automated content and ads across channels." },
-    { title: "Performance Analysis", desc: "Optimizing campaigns in real-time based on data." }
+  "media-marketing": [
+    { title: "Audience & Brand Analysis", desc: "We understand your audience, positioning, and current marketing effectiveness." },
+    { title: "Campaign Strategy Design", desc: "We craft tailored marketing strategies aligned with your brand and business goals." },
+    { title: "Content & Channel Optimization", desc: "We refine messaging and select the most effective platforms for maximum reach." },
+    { title: "Execution & Performance Tracking", desc: "We launch campaigns and continuously monitor performance metrics." },
+    { title: "Refinement & Scaling", desc: "We optimize what works and scale campaigns to maximize ROI and brand impact." }
   ],
   "software": [
     { title: "Requirements Analysis", desc: "Gathering and documenting detailed software requirements." },
@@ -240,8 +240,8 @@ function HowWeOperateInner() {
   return (
     <section ref={sectionRef} className="pt-32 pb-24 relative bg-background" id="how-we-operate">
       {/* Background Ambience */}
-      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-gold/5 blur-[120px] rounded-full pointer-events-none" />
-      <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-gold-light/5 blur-[120px] rounded-full pointer-events-none" />
+      <div className="absolute top-0 right-0 w-125 h-125 bg-gold/5 blur-[120px] rounded-full pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-125 h-125 bg-gold-light/5 blur-[120px] rounded-full pointer-events-none" />
 
       <div className="mx-auto max-w-7xl px-6 sm:px-8 lg:px-12 relative z-10">
         <div className="flex flex-col lg:flex-row gap-16 lg:gap-24 relative">
@@ -267,10 +267,10 @@ function HowWeOperateInner() {
             <div className="space-y-6 sm:space-y-12 relative pt-8 lg:pt-20">
               
               {/* Central Progress Line Background */}
-              <div className="absolute left-[24px] top-12 bottom-12 w-[2px] bg-glass-border hidden sm:block" />
+              <div className="absolute left-6 top-12 bottom-12 w-0.5 bg-glass-border hidden sm:block" />
               
               {/* Growing Progress Line Fill */}
-              <div className="absolute left-[24px] top-12 bottom-12 w-[2px] bg-linear-to-b from-gold to-gold-light hidden sm:block origin-top scale-y-0 progress-line-fill z-0" />
+              <div className="absolute left-6 top-12 bottom-12 w-0.5 bg-linear-to-b from-gold to-gold-light hidden sm:block origin-top scale-y-0 progress-line-fill z-0" />
               
               {serviceData.map((step, index) => (
                 <StepCard 

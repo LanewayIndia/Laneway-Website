@@ -13,11 +13,11 @@ import { MediaWave } from "@/components/ui/visuals/media-wave"
 
 export function ServiceVisual({ id }: { id: string }) {
   switch (id) {
-    case "ai-consulting":
+    case "consulting":
       return <AIBrainPulse />
     case "ai-tech":
       return <AICoreReactor />
-    case "ai-marketing":
+    case "media-marketing":
       return <MarketingRadar />
     case "software":
       return <CodeStream />
