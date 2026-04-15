@@ -12,8 +12,15 @@ export function StartConversationLink() {
 
   return (
     <Link
-      href={loading ? "#" : href}
-      className="inline-flex items-center gap-2 px-8 py-3.5 bg-snow text-black font-semibold rounded-full hover:bg-[#F5B513] transition-all duration-300 text-sm"
+      href={href}
+      onClick={(e) => {
+        if (loading) e.preventDefault()
+      }}
+      aria-disabled={loading}
+      tabIndex={loading ? -1 : undefined}
+      className={`inline-flex items-center gap-2 px-8 py-3.5 bg-snow text-black font-semibold rounded-full hover:bg-[#F5B513] transition-all duration-300 text-sm ${
+        loading ? "pointer-events-none opacity-50" : ""
+      }`}
     >
       Start a Conversation
     </Link>
