@@ -15,7 +15,7 @@ function createTransporter() {
       user: (process.env.SMTP_HR_USER || "").trim(),
       pass: (process.env.SMTP_HR_PASS || "").trim(),
     },
-    tls: { rejectUnauthorized: false },
+    tls: { rejectUnauthorized: process.env.NODE_ENV === "production" },
     connectionTimeout: 10000,
     greetingTimeout: 10000,
     socketTimeout: 15000,
