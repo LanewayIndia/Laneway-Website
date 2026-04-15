@@ -33,7 +33,8 @@ const platforms = [
         `https://twitter.com/intent/tweet?text=${encodeURIComponent(
           SHARE_TEXT
         )}&url=${encodeURIComponent(SHARE_URL)}`,
-        "_blank"
+        "_blank",
+        "noopener,noreferrer"
       ),
   },
   {
