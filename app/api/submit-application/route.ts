@@ -90,7 +90,8 @@ export async function POST(request: NextRequest) {
       : undefined
 
     // Log application regardless of email outcome
-    console.log(`[APPLICATION] ${new Date().toISOString()} | ${position} | ${fullName} | ${email}`)
+    const maskedEmail = email.replace(/(.{2})(.*)(@.*)/, "$1***$3")
+    console.log(`[APPLICATION] ${new Date().toISOString()} | ${position} | ${fullName} | ${maskedEmail}`)
 
     const hrEmail = (process.env.SMTP_HR_USER || "").trim()
     const hrHtml = `
