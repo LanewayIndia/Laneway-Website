@@ -8,6 +8,15 @@ import Image from "next/image"
 
 const blogs = [
   {
+    title: "The First Year of Laneway",
+    excerpt: "One year of building with intention — how Laneway began with a simple intention to help, and where it is heading next.",
+    category: "Company",
+    date: "Apr 15, 2026",
+    readTime: "8 min read",
+    href: "/blogs/first-year-laneway",
+    image: "/1.svg",
+  },
+  {
     title: "Budget 2026 and the Future of Smart Businesses",
     excerpt: "Budget 2026: A Blueprint for Stable Growth and Smarter Business Strategies in India.",
     category: "Business",
@@ -16,7 +25,6 @@ const blogs = [
     href: "/blogs/budget-smart-businesses",
     image: "/B2ATFOSB.png",
   },
-
   {
     title: "The Future of AI in Business Operations",
     excerpt: "Exploring how artificial intelligence is reshaping the way companies operate and make decisions.",
@@ -25,15 +33,6 @@ const blogs = [
     readTime: "5 min read",
     href: "/blogs/ai-business-operations",
     image: "/FABO.png",
-  },
-  {
-    title: "Building Scalable MVPs: A Complete Guide",
-    excerpt: "Learn the essential strategies for creating minimum viable products that can grow with your vision.",
-    category: "Startup",
-    date: "Jan 8, 2026",
-    readTime: "8 min read",
-    href: "/blogs/scalable-mvps",
-    image: "/BSM.png",
   },
 ]
 
@@ -86,7 +85,7 @@ export function BlogsPreview() {
                       alt={blog.title}
                       fill
                       sizes="(max-width: 768px) 100vw, 33vw"
-                      className="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-110"
+                      className={`w-full h-auto transition-transform duration-700 group-hover:scale-110 ${blog.image.endsWith('.svg') ? 'object-contain p-3' : 'object-cover'}`}
                       priority={index === 0}
                     />
 

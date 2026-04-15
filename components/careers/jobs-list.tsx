@@ -1,22 +1,13 @@
 "use client"
 
-import { motion } from "framer-motion"
-import Link from "next/link"
+import { motion, AnimatePresence } from "framer-motion"
 import { MapPin, Clock, ArrowRight } from "lucide-react"
 import { jobs, Job } from "@/lib/jobs"
 import { useState } from "react"
 import { ApplicationForm } from "@/components/careers/application-form"
 
-
 export function JobsList() {
-  const [isOpen, setIsOpen] = useState(false)
   const [selectedJob, setSelectedJob] = useState<Job | null>(null)
-
-  // Unused function, can be removed or used as needed
-  const handleJobClick = (job: Job) => {
-    setSelectedJob(job);
-    setIsOpen(true);
-  };
 
   return (
     <section className="py-20">
@@ -42,12 +33,12 @@ export function JobsList() {
               key={job.slug}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              whileHover={{scale: 1.02}}
+              whileHover={{ scale: 1.02 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: index * 0.05 }}>
-
-              <div
-                className="group block"
+              transition={{ duration: 0.4, delay: index * 0.05 }}
+            >
+              <button
+                className="group block w-full text-left cursor-pointer"
                 onClick={() => setSelectedJob(job)}
               >
                 <div className="bg-card border border-border rounded-xl p-6 transition-all duration-300 hover:border-gold/50 hover:shadow-lg hover:shadow-gold/5">
@@ -57,9 +48,6 @@ export function JobsList() {
                         {job.title}
                       </h3>
                       <div className="flex flex-wrap items-center gap-4 text-sm text-pumice">
-                        {/* <span className="px-3 py-1 bg-gold/10 border border-gold/20 rounded-full text-gold">
-                          {job.department}
-                        </span> */}
                         <span className="flex items-center gap-1">
                           <MapPin size={14} />
                           {job.location}
@@ -76,13 +64,21 @@ export function JobsList() {
                     />
                   </div>
                 </div>
-              </div>
+              </button>
             </motion.div>
           ))}
         </div>
-        {selectedJob && (
-          <ApplicationForm jobTitle={selectedJob} open={isOpen} onClose={()=>setSelectedJob(null)}/>
-        )}
+
+        {/* AnimatePresence here so exit animation fires when modal closes */}
+        <AnimatePresence>
+          {selectedJob && (
+            <ApplicationForm
+              key={selectedJob.slug}
+              jobTitle={selectedJob}
+              onClose={() => setSelectedJob(null)}
+            />
+          )}
+        </AnimatePresence>
       </div>
     </section>
   )

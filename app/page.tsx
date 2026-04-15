@@ -2,6 +2,7 @@ import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { Chatbot } from "@/components/chatbot"
 import { HeroSection } from "@/components/home/hero-section"
+import { FounderNoteSection } from "@/components/home/founder-note-section"
 import { AboutSnapshot } from "@/components/home/about-snapshot"
 import { WhyLaneway } from "@/components/home/why-laneway"
 import { PartnersSection } from "@/components/home/partners-section"
@@ -16,6 +17,7 @@ export default function HomePage() {
       {/* FIX: main-content ID is on the HeroSection for skip-link targeting */}
       <main aria-label="Homepage content">
         <HeroSection />
+        <FounderNoteSection />
         <AboutSnapshot />
         <WhyLaneway />
         <PartnersSection />

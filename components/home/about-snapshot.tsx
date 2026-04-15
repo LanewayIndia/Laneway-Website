@@ -14,7 +14,7 @@ export function AboutSnapshot() {
   const y = useTransform(scrollYProgress, [0, 0.3, 0.7, 1], [60, 0, 0, -60])
 
   return (
-    <section ref={sectionRef} className="py-20 sm:py-40 overflow-hidden relative">
+    <section ref={sectionRef} className="py-4 sm:py-8 overflow-hidden relative">
       <div className="absolute inset-0">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-150 h-75 bg-gold/3 rounded-full blur-[100px]" />
       </div>

@@ -11,6 +11,16 @@ const categories = ["All", "Business", "AI & Technology", "Marketing", "Startup"
 const staticBlogs = [
   {
     type: "written",
+    title: "The First Year of Laneway",
+    excerpt: "One year of building with intention — how Laneway began with a simple intention to help, and where it is heading next.",
+    category: "Company",
+    date: "Apr 15, 2026",
+    readTime: "8 min read",
+    href: "/blogs/first-year-laneway",
+    image: "/1.svg",
+  },
+  {
+    type: "written",
     title: "Budget 2026 and the Future of Smart Businesses",
     excerpt: "Budget 2026: A Blueprint for Stable Growth and Smarter Business Strategies in India.",
     category: "Business",
@@ -86,19 +96,21 @@ export function BlogsGrid() {
   const [error, setError] = useState<string | null>(null)
 
   useEffect(() => {
+    const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+    if (!apiUrl) return; // no backend configured — use static blogs only
+
     async function fetchPublishedBlogs() {
       setIsLoading(true);
       setError(null);
       try {
-        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || ''}/api/blogs?status=published`);
+        const res = await fetch(`${apiUrl}/api/blogs?status=published`);
         if (!res.ok) throw new Error('Failed to fetch blogs');
         const data = await res.json();
-        const validBlogs = Array.isArray(data) 
+        const validBlogs = Array.isArray(data)
           ? data.filter((item: any) => item.status === 'published' || item.published === true)
           : [];
         setDynamicBlogs(validBlogs);
       } catch (err) {
-        console.error('Failed to fetch blogs', err);
         setError('No new blogs are published yet');
       } finally {
         setIsLoading(false);
@@ -177,7 +189,7 @@ export function BlogsGrid() {
                       src={blog.image}
                       alt={blog.title}
                       fill
-                      className="object-cover transition-transform duration-300 group-hover:scale-105"
+                      className={`transition-transform duration-300 group-hover:scale-105 ${blog.image.endsWith('.svg') ? 'object-contain p-3' : 'object-cover'}`}
                     />
                     <div className="absolute inset-0 bg-linear-to-br from-black/40 via-black/10 to-black/40" />
                     <div className="absolute top-4 left-4 flex items-center gap-2 z-10">
