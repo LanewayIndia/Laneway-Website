@@ -11,15 +11,16 @@ export default function JobPage({ params }: { params: { slug: string } }) {
 
   const [isOpen, setIsOpen] = useState(false);
 
-  const handleClose = () => setIsOpen(false);
-
   return (
     <main>
       <h1 className="text-4xl font-heading">{job.title}</h1>
       <p className="mt-4">{job.description}</p>
 
-      {/* Button + Modal logic lives here */}
-      <ApplicationForm open={isOpen} onClose={handleClose} jobTitle={job} />
+      <button onClick={() => setIsOpen(true)}>Apply Now</button>
+
+      {isOpen && (
+        <ApplicationForm onClose={() => setIsOpen(false)} jobTitle={job} />
+      )}
     </main>
   )
 }
