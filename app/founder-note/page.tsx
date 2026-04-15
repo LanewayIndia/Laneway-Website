@@ -4,6 +4,7 @@ import Image from "next/image"
 import { ArrowLeft } from "lucide-react"
 import Link from "next/link"
 import { ShareButton } from "@/components/founder-note/share-button"
+import { StartConversationLink } from "@/components/founder-note/start-conversation-link"
 import type { Metadata } from "next"
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://www.laneway.in"
@@ -313,12 +314,7 @@ export default function FounderNotePage() {
             <p className="text-pumice/70 mb-10 max-w-md mx-auto text-base leading-relaxed">
               Let&apos;s discuss how Laneway can help you scale with clarity, structure, and intelligence.
             </p>
-            <Link
-              href="/contact"
-              className="inline-flex items-center gap-2 px-8 py-3.5 bg-snow text-black font-semibold rounded-full hover:bg-[#F5B513] transition-all duration-300 text-sm"
-            >
-              Start a Conversation
-            </Link>
+            <StartConversationLink />
           </div>
         </section>
 
