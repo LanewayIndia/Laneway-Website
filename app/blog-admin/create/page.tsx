@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useEditor, EditorContent } from '@tiptap/react';
 import StarterKit from '@tiptap/starter-kit';
+import { getSupabase } from "@/lib/supabase"
 
 export default function CreateBlogPage() {
   const router = useRouter();
@@ -25,9 +26,16 @@ export default function CreateBlogPage() {
   async function handleSaveDraft() {
     setSaving(true);
     try {
+      const supabase = await getSupabase();
+      const sessionData = await supabase?.auth.getSession();
+      const token = sessionData?.data?.session?.access_token || '';
+
       const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || ''}/api/blogs`, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}` 
+        },
         body: JSON.stringify({
           title,
           cover_image: coverImage,
@@ -57,9 +65,16 @@ export default function CreateBlogPage() {
   async function handlePublish() {
     setSaving(true);
     try {
+      const supabase = await getSupabase();
+      const sessionData = await supabase?.auth.getSession();
+      const token = sessionData?.data?.session?.access_token || '';
+
       const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || ''}/api/blogs`, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}` 
+        },
         body: JSON.stringify({
           title,
           cover_image: coverImage,

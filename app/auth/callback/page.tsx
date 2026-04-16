@@ -15,6 +15,7 @@ export default function Callback() {
     const handleCallback = async () => {
       try {
         const supabase = await getSupabase();
+        if (!supabase) throw new Error("Failed to initialize authentication.");
         const res = await (supabase.auth as any).getSessionFromUrl();
         const data: unknown = res?.data ?? null
         const error: unknown = res?.error ?? null
