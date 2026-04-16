@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from "framer-motion"
 import { ArrowRight } from "lucide-react"
 import { useEffect, useState } from "react"
 import { useRouter } from "next/navigation"
-import { supabase } from "@/lib/supabase"
+import { getSupabase } from "@/lib/supabase"
 
 
 const words = ["BUILD", "TRANSFORM", "SCALE",]
@@ -133,6 +133,8 @@ export function HeroSection() {
             <button
               onClick={async () => {
                 try {
+                  const supabase = await getSupabase();
+                  if (!supabase) throw new Error("Supabase internal error");
                   const { data } = await supabase.auth.getSession()
                   if (data?.session?.user) router.push("/laneway-open-house")
                   else router.push("/auth")

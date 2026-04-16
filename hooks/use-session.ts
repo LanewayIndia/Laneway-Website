@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { supabase } from "@/lib/supabase"
+import { getSupabase } from "@/lib/supabase"
 import { useRouter } from "next/navigation"
 
 interface User {
@@ -15,7 +15,15 @@ export function useSession() {
   const router = useRouter()
 
   useEffect(() => {
-    const getSession = async () => {
+    let subscription: any = null;
+
+    const initAuth = async () => {
+      const supabase = await getSupabase();
+      if (!supabase) {
+        setLoading(false);
+        return;
+      }
+      
       try {
         const { data } = await supabase.auth.getSession()
         
@@ -23,7 +31,7 @@ export function useSession() {
           const authUser = data.session.user
           
           // Fetch user profile from profiles table
-          const { data: profileData } = await supabase
+          const { data: profileData } = await (supabase as any)
             .from("profiles")
             .select("name, phone")
             .eq("id", authUser.id)
@@ -44,25 +52,28 @@ export function useSession() {
       } finally {
         setLoading(false)
       }
+
+      // Listen for auth changes
+      const { data: authData } = supabase.auth.onAuthStateChange((_event, session) => {
+        if (session?.user) {
+          setUser({
+            id: session.user.id,
+            email: session.user.email,
+          })
+        } else {
+          setUser(null)
+        }
+      })
+      subscription = authData.subscription;
     }
 
-    getSession()
+    initAuth();
 
-    // Listen for auth changes
-    const {
-      data: { subscription },
-    } = supabase.auth.onAuthStateChange((_event, session) => {
-      if (session?.user) {
-        setUser({
-          id: session.user.id,
-          email: session.user.email,
-        })
-      } else {
-        setUser(null)
+    return () => {
+      if (subscription) {
+        subscription.unsubscribe()
       }
-    })
-
-    return () => subscription?.unsubscribe()
+    }
   }, [])
 
   return { user, loading }

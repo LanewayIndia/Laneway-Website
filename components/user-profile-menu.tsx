@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 import { useSession } from "@/hooks/use-session"
-import { supabase } from "@/lib/supabase"
+import { getSupabase } from "@/lib/supabase"
 import { useRouter } from "next/navigation"
 import { ChevronDown, LogOut, Settings } from "lucide-react"
 
@@ -31,7 +31,8 @@ export function UserProfileMenu() {
   }
 
   const handleLogout = async () => {
-    await supabase.auth.signOut()
+    const supabase = await getSupabase();
+    if (supabase) await supabase.auth.signOut()
     router.push("/auth")
   }
 
@@ -39,6 +40,13 @@ export function UserProfileMenu() {
     setEditError(null)
     setEditSuccess(false)
     setEditLoading(true)
+
+    const supabase = await getSupabase();
+    if (!supabase || !user?.id) {
+      setEditError("Authentication context not properly established.");
+      setEditLoading(false);
+      return;
+    }
 
     // Validate passwords match if provided
     if (editData.newPassword || editData.confirmPassword) {
@@ -81,7 +89,7 @@ export function UserProfileMenu() {
 
       // Update profile (name and phone) directly with RLS protection
       if (editData.name !== user.name || editData.phone !== user.phone) {
-        const { error: profileError } = await supabase
+        const { error: profileError } = await (supabase as any)
           .from("profiles")
           .update({
             name: editData.name,

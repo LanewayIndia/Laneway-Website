@@ -1,27 +1,31 @@
 import { createClient } from "@supabase/supabase-js"
+import { getPublicEnv } from './env';
 
-// Workaround for Supabase 'Refresh Token Not Found' annoying dev overlay error
-if (typeof window !== "undefined") {
-  const originalConsoleError = console.error;
-  console.error = (...args: any[]) => {
-    const firstArg = args[0];
-    
-    // Check if the error is the specific Supabase Refresh Token error
-    const isSupabaseRefreshError = 
-      (typeof firstArg === 'string' && firstArg.includes('Refresh Token Not Found')) ||
-      (firstArg && typeof firstArg === 'object' && firstArg.message?.includes('Refresh Token Not Found'));
+let supabaseClient: ReturnType<typeof createClient> | null = null;
+let inFlightInitPromise: Promise<ReturnType<typeof createClient> | null> | null = null;
 
-    if (isSupabaseRefreshError) {
-      // Safely ignore this known benign error that occurs when local sessions expire
-      return;
+export { supabaseClient as supabase };
+
+export async function getSupabase() {
+  if (supabaseClient) return supabaseClient;
+  if (inFlightInitPromise) return inFlightInitPromise;
+
+  inFlightInitPromise = (async () => {
+    try {
+      const env = await getPublicEnv();
+      if (!env) {
+        console.error('Failed to load environment configuration: Missing env payload');
+        return null;
+      }
+      supabaseClient = createClient(env.supabaseUrl, env.supabaseAnonKey);
+      return supabaseClient;
+    } catch (err) {
+      console.error('Error during Supabase initialization:', err);
+      return null;
+    } finally {
+      inFlightInitPromise = null;
     }
-    
-    // Otherwise, call the original console.error
-    originalConsoleError(...args);
-  };
-}
+  })();
 
-export const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-)
+  return inFlightInitPromise;
+}
