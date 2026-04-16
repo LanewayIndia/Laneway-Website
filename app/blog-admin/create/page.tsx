@@ -1,21 +1,15 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { createClient } from '@supabase/supabase-js';
 import { useEditor, EditorContent } from '@tiptap/react';
 import StarterKit from '@tiptap/starter-kit';
 
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-);
-
 export default function CreateBlogPage() {
   const router = useRouter();
-  const [session, setSession] = useState<any>(null);
   const [title, setTitle] = useState('');
   const [coverImage, setCoverImage] = useState('');
+  const [coverPage, setCoverPage] = useState(''); // Added cover page state
   const [tags, setTags] = useState('');
   const [seoTitle, setSeoTitle] = useState('');
   const [seoDesc, setSeoDesc] = useState('');
@@ -28,51 +22,22 @@ export default function CreateBlogPage() {
     content: '<p>Start writing your blog here...</p>',
   });
 
-  useEffect(() => {
-    // Get current session on mount
-    supabase.auth.getSession().then(({ data: { session } }) => {
-      setSession(session);
-      if (!session) router.push('/login');
-    });
-
-    // Listen for auth changes
-    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
-      setSession(session);
-      if (!session) router.push('/login');
-    });
-
-    return () => subscription.unsubscribe();
-  }, []);
-
   async function handleSaveDraft() {
-    if (!session) {
-      router.push('/login');
-      return;
-    }
-
     setSaving(true);
     try {
       const res = await fetch('/api/blogs', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          // Pass Supabase JWT so the backend can verify it
-          'Authorization': `Bearer ${session.access_token}`,
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           title,
           cover_image: coverImage,
+          cover_page: coverPage, // Added cover page to payload
           content: editor?.getJSON(),
           seo_title: seoTitle,
           seo_description: seoDesc,
           tags: tags.split(',').map(t => t.trim()),
         }),
       });
-
-      if (res.status === 401) {
-        router.push('/login');
-        return;
-      }
 
       if (res.ok) setMessage('✅ Draft saved successfully!');
       else setMessage('❌ Something went wrong.');
@@ -81,23 +46,17 @@ export default function CreateBlogPage() {
     }
     setSaving(false);
   }
-  async function handlePublish() {
-    if (!session) {
-      router.push('/login');
-      return;
-    }
 
+  async function handlePublish() {
     setSaving(true);
     try {
       const res = await fetch('/api/blogs', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${session.access_token}`,
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           title,
           cover_image: coverImage,
+          cover_page: coverPage, // Added cover page to payload
           content: editor?.getJSON(),
           seo_title: seoTitle,
           seo_description: seoDesc,
@@ -105,11 +64,6 @@ export default function CreateBlogPage() {
           status: 'published',
         }),
       });
-
-      if (res.status === 401) {
-        router.push('/login');
-        return;
-      }
 
       if (res.ok) {
         setMessage('✅ Blog published successfully!');
@@ -151,6 +105,18 @@ export default function CreateBlogPage() {
               value={coverImage}
               onChange={e => setCoverImage(e.target.value)}
               placeholder="https://..."
+              className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-yellow-500"
+            />
+          </div>
+
+          {/* Added Cover Page field */}
+          <div>
+            <label className="block text-sm font-medium text-gray-300 mb-2">Cover Page URL</label>
+            <input
+              type="text"
+              value={coverPage}
+              onChange={e => setCoverPage(e.target.value)}
+              placeholder="https://... (optional cover page)"
               className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-yellow-500"
             />
           </div>

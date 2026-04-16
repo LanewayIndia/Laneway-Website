@@ -2,6 +2,7 @@ import dotenv from 'dotenv';
 import path from 'path';
 
 dotenv.config({ path: path.resolve(__dirname, '../../.env') });
+dotenv.config({ path: path.resolve(__dirname, '../../.env.local') });
 
 export const env = {
   port: parseInt(process.env.PORT || '4000', 10),
@@ -50,4 +51,42 @@ export const env = {
       return process.env.SUPABASE_ANON_KEY;
     })(),
   },
+
+  // Frontend public vars (exposed via API)
+  public: {
+    supabaseUrl: process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    supabaseAnonKey: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+    siteUrl: process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000',
+    apiUrl: process.env.NEXT_PUBLIC_API_URL || `http://localhost:${process.env.PORT || '4000'}`,
+  },
+
+  // Cloudinary
+  cloudinary: {
+    cloudName: process.env.CLOUDINARY_CLOUD_NAME!,
+    apiKey: process.env.CLOUDINARY_API_KEY!,
+    apiSecret: process.env.CLOUDINARY_API_SECRET!,
+  },
+
+  // SMTP
+  smtp: {
+    host: process.env.SMTP_HOST!,
+    port: parseInt(process.env.SMTP_PORT || '587'),
+    contact: {
+      user: process.env.SMTP_CONTACT_USER!,
+      pass: process.env.SMTP_CONTACT_PASS!,
+    },
+    hr: {
+      user: process.env.SMTP_HR_USER!,
+      pass: process.env.SMTP_HR_PASS!,
+    },
+  },
+
+  // Rate limiting
+  rateLimit: {
+    windowMs: parseInt(process.env.RATE_LIMIT_WINDOW_MS || '60000'),
+    max: parseInt(process.env.RATE_LIMIT_MAX_REQUESTS || '10'),
+  },
+
+  // Service role (server-side)
+  supabaseServiceRoleKey: process.env.SUPABASE_SERVICE_ROLE_KEY!,
 } as const;

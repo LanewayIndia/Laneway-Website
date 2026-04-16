@@ -16,6 +16,7 @@ import usersRoutes from './modules/users/users.routes';
 import activityLogRoutes from './modules/activity-log/activity-log.routes';
 import blogRoutes from './modules/blogs/blog.routes';
 
+
 const app: Application = express();
 
 // ─── Security & Parsing ────────────────────────────────────────────
@@ -47,6 +48,9 @@ app.get('/api/health', (req: Request, res: Response) => {
 });
 
 // ─── API Routes ────────────────────────────────────────────────────
+// Public env endpoint
+import publicEnvRoutes from './modules/public-env/public-env.routes';
+app.use('/api', publicEnvRoutes);
 app.use('/api/auth', authRoutes);
 app.use('/api/leads', leadsRoutes);
 app.use('/api/interactions', interactionsRoutes);
