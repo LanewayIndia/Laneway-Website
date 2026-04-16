@@ -47,7 +47,7 @@ const caseStudies = [
     "Results compounding — month on month",
   ],
   logo: "/currice.png",
-  href: "/case-studies/currice",
+  href: "/our-projects/currice",
   showDetails: true,
   },
 
@@ -70,7 +70,7 @@ const caseStudies = [
       "Editing & Post-Production",
     ],
       logo: "/7zeromedia.png",
-        href: "/case-studies/7zeromedia",
+        href: "/our-projects/7zeromedia",
           showDetails: true,
   },
 {
@@ -91,7 +91,7 @@ const caseStudies = [
     "Scalable funnel was made from Instagram → WhatsApp → events",
   ],
     logo: "/Vayo.png",
-      href: "/case-studies/vayo",
+      href: "/our-projects/vayo",
         showDetails: true,
   },
 {
@@ -109,7 +109,7 @@ const caseStudies = [
       "Blog style spiritual content",
     ],
       logo: "/Samyam.png",
-        href: "/case-studies/samyam",
+        href: "/our-projects/samyam",
           showDetails: true,
   },
 ]
