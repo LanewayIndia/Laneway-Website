@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import { supabase } from "@/lib/supabase"
+import { getSupabase } from "@/lib/supabase"
 import { useRouter } from "next/navigation"
 import { Eye, EyeOff,Github, Linkedin, X } from "lucide-react"
 import { motion } from "framer-motion"
@@ -139,6 +139,13 @@ export default function AuthPage() {
   const handleAuth = async () => {
     setErrorMsg(null)
     setLoading(true)
+    const supabase = await getSupabase();
+    if (!supabase) {
+      setErrorMsg("Failed to initialize authentication client.");
+      setLoading(false);
+      return;
+    }
+    
     if (mode==="signup") {
       const { data, error } = await supabase.auth.signUp({
         email,
@@ -163,7 +170,7 @@ export default function AuthPage() {
       if (user) {
         // create or update a profile row in Supabase (table: profiles)
         try {
-          await supabase.from('profiles').upsert({ id: user.id, email: user.email, name, phone })
+          await (supabase as any).from('profiles').upsert({ id: user.id, email: user.email, name, phone })
         } catch (e) {
           // non-fatal: continue
         }
@@ -188,7 +195,7 @@ export default function AuthPage() {
       const user = data?.user
       if (user) {
         try {
-          await supabase.from('profiles').upsert({ id: user.id, email: user.email, name, phone })
+          await (supabase as any).from('profiles').upsert({ id: user.id, email: user.email, name, phone })
         } catch (e) {}
       }
 
@@ -204,6 +211,11 @@ export default function AuthPage() {
       | "linkedin_oidc"
       | "github"
   ) => {
+    const supabase = await getSupabase();
+    if (!supabase) {
+      setErrorMsg("Failed to initialize authentication client.");
+      return;
+    }
     await supabase.auth.signInWithOAuth({
       provider,
       options: {

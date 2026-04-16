@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import { supabase } from "@/lib/supabase"
+import { getSupabase } from "@/lib/supabase"
 
 export default function AuthModal({
   open,
@@ -19,6 +19,13 @@ export default function AuthModal({
 
   const handleAuth = async () => {
     setLoading(true)
+
+    const supabase = await getSupabase();
+    if (!supabase) {
+      alert("Failed to initialize authentication.");
+      setLoading(false);
+      return;
+    }
 
     if (mode === "signup") {
       const { error } = await supabase.auth.signUp({

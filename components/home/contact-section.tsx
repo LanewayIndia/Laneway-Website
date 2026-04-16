@@ -6,7 +6,7 @@ import { Send, X, Mail, Phone, MessageSquare, ArrowRight, Loader2 } from "lucide
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Chatbot } from "../chatbot"
-import { supabase } from "@/lib/supabase"
+import { getSupabase } from "@/lib/supabase"
 import { useRouter } from "next/navigation"
 
 export function ContactSection() {
@@ -78,6 +78,8 @@ export function ContactSection() {
     }
 
     try {
+      const supabase = await getSupabase();
+      if (!supabase) throw new Error("Failed to initialize authentication.");
       const res = await (supabase.auth as any).getSession()
       const session = res?.data?.session
       if (session) {

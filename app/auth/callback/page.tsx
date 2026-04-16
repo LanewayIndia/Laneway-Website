@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect } from "react"
-import { supabase } from "@/lib/supabase"
+import { getSupabase } from "@/lib/supabase"
 import { useRouter } from "next/navigation"
 
 export default function Callback() {
@@ -14,6 +14,7 @@ export default function Callback() {
     // and handle the result with proper typing to avoid TS errors.
     const handleCallback = async () => {
       try {
+        const supabase = await getSupabase();
         const res = await (supabase.auth as any).getSessionFromUrl();
         const data: unknown = res?.data ?? null
         const error: unknown = res?.error ?? null

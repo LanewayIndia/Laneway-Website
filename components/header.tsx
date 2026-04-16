@@ -9,7 +9,7 @@ import { useRouter } from "next/navigation"
 import { Button } from "./ui/button"
 import { useSession } from "@/hooks/use-session"
 import { UserProfileMenu } from "./user-profile-menu"
-import { supabase } from "@/lib/supabase"
+import { getSupabase } from "@/lib/supabase"
 
 const navItems = [
   { name: "Home", href: "/" },
@@ -62,6 +62,13 @@ export function Header() {
     setEditSuccess(false)
     setEditLoading(true)
 
+    const supabase = await getSupabase();
+    if (!supabase || !user?.id) {
+      setEditError("Failed to verify authentication context")
+      setEditLoading(false)
+      return
+    }
+
     // Validate passwords match if provided
     if (editData.newPassword || editData.confirmPassword) {
       if (editData.newPassword !== editData.confirmPassword) {
@@ -103,13 +110,13 @@ export function Header() {
 
       // Update profile (name and phone) directly with RLS protection
       if (editData.name !== user?.name || editData.phone !== user?.phone) {
-        const { error: profileError } = await supabase
+        const { error: profileError } = await (supabase as any)
           .from("profiles")
           .update({
             name: editData.name,
             phone: editData.phone,
           })
-          .eq("id", user?.id)
+          .eq("id", user.id)
 
         if (profileError) {
           setEditError(profileError.message || "Failed to update profile")
@@ -268,7 +275,8 @@ export function Header() {
                     </button>
                     <button
                       onClick={async () => {
-                        await supabase.auth.signOut()
+                        const supabase = await getSupabase()
+                        if (supabase) await supabase.auth.signOut()
                         setIsMobileMenuOpen(false)
                         router.push("/")
                       }}
