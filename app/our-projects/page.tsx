@@ -6,7 +6,7 @@ import { CaseStudiesList } from "@/components/our-projects/case-studies-list"
 import { Chatbot } from "@/components/chatbot"
 
 export const metadata: Metadata = {
-  title: "Case Studies | Laneway",
+  title: "Our Projects | Laneway",
   description: "Explore our successful projects and see how we have helped businesses transform and grow.",
 }
 

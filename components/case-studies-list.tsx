@@ -21,7 +21,7 @@ const caseStudies = [
       "99.9% uptime reliability",
       "2x fleet efficiency improvement",
     ],
-    href: "/case-studies/vayo",
+    href: "/our-projects/vayo",
   },
   {
     id: "samyam",
@@ -38,7 +38,7 @@ const caseStudies = [
       "3x increase in doctor reach",
       "40% reduction in wait times",
     ],
-    href: "/case-studies/samyam",
+    href: "/our-projects/samyam",
   },
 ]
 

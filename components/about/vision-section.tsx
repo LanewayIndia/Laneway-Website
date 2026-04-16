@@ -4,8 +4,11 @@ import Link from "next/link"
 import { motion } from "framer-motion"
 import { ArrowRight, Telescope } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { useSession } from "@/hooks/use-session"
 
 export function VisionSection() {
+  const { user, loading } = useSession()
+
   return (
     <section className="py-32">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -33,11 +36,19 @@ export function VisionSection() {
           <Button
             asChild
             size="lg"
-            className="bg-gold hover:bg-gold-light text-background font-semibold px-10 py-6 rounded-full text-lg group"
+            disabled={loading}
+            className={`bg-white hover:bg-gold-light text-background font-medium px-10 py-6 rounded-full text-lg group ${loading ? "pointer-events-none opacity-50" : ""}`}
           >
-            <Link href="/contact">
+            <Link 
+              href={user ? "/contact" : "/auth"}
+              onClick={(e) => {
+                if (loading) e.preventDefault()
+              }}
+              aria-disabled={loading}
+              tabIndex={loading ? -1 : undefined}
+            >
               Start Your Journey
-              <ArrowRight size={20} className="ml-2 group-hover:translate-x-1 transition-transform" />
+              <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
             </Link>
           </Button>
         </motion.div>

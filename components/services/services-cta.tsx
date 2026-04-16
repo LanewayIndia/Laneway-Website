@@ -3,8 +3,11 @@
 import Link from "next/link"
 import { motion } from "framer-motion"
 import { ArrowRight } from "lucide-react"
+import { useSession } from "@/hooks/use-session"
 
 export function ServicesCTA() {
+  const { user, loading } = useSession()
+
   return (
     <section className="py-40 relative overflow-hidden">
       <div className="absolute inset-0">
@@ -28,8 +31,13 @@ export function ServicesCTA() {
             {`Let's discuss how our services can help you achieve your business goals.`}
           </p>
           <Link
-            href="/contact"
-            className="group inline-flex items-center gap-3 px-8 py-4 text-sm font-medium text-background bg-snow rounded-full transition-all duration-300 hover:bg-gold"
+            href={user ? "/contact" : "/auth"}
+            onClick={(e) => {
+              if (loading) e.preventDefault()
+            }}
+            aria-disabled={loading}
+            tabIndex={loading ? -1 : undefined}
+            className={`group inline-flex items-center gap-3 px-8 py-4 text-sm font-medium text-background bg-snow rounded-full transition-all duration-300 hover:bg-gold ${loading ? "pointer-events-none opacity-50" : ""}`}
           >
             <span>Schedule a Consultation</span>
             <ArrowRight size={16} className="transition-transform duration-300 group-hover:translate-x-1" />
