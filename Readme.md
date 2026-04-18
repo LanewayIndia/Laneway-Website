@@ -2,7 +2,7 @@
   <img src="public/logo.png" alt="Laneway India Logo" width="200" />
 </div>
 
-# Laneway India — Agency Website & OutreachDesk CRM
+# Laneway India — Agency Website
 
 Welcome to the Laneway India monorepo! This project contains both the public-facing Agency Website and the internal OutreachDesk CRM Backend. 
 
