@@ -1,11 +1,10 @@
 import dotenv from "dotenv";
 import path from "path";
 
-dotenv.config({ path: path.resolve(__dirname, "../../.env") });
-dotenv.config({
-  path: path.resolve(__dirname, "../../.env.local"),
-  override: true,
-});
+dotenv.config({ path: path.resolve(__dirname, "../../.env"), override: true });
+// dotenv.config({
+//   path: path.resolve(__dirname, "../../.env.local"),
+// });
 
 const requireEnv = (name: string): string => {
   const value = process.env[name];
