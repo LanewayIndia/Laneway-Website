@@ -24,7 +24,7 @@ This project is a modern full-stack web application built using a monorepo struc
 
 Ensure you have the following installed to run the project locally:
 - Node.js (v20+ recommended)
-- `npm` or `pnpm`
+- `pnpm`
 - A PostgreSQL instance (or a Supabase project)
 - Cloudinary, Hostinger SMTP, and Upstash Redis credentials
 
@@ -34,7 +34,7 @@ Install dependencies for both the frontend and the backend.
 
 ```bash
 # Install frontend dependencies (from root)
-npm install
+pnpm install
 
 # Install backend dependencies
 cd backend
@@ -78,7 +78,7 @@ npm run dev
 
 **Terminal 2: Start Frontend (Port 3000)**
 ```bash
-npm run dev
+pnpm dev
 ```
 
 The application will be accessible at `http://localhost:3000/`.
