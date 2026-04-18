@@ -11,10 +11,10 @@ Welcome to the Laneway India monorepo! This project contains both the public-fac
 This project is a modern full-stack web application built using a monorepo structure.
 
 - **Frontend (`/`)**: Next.js 16 (App Router), React 19, TailwindCSS v4, Framer Motion, and Radix UI Primitives.
-- **Backend (`/backend`)**: Express 5 REST API running on Node.js, acting as the CRM and Blog engine.
+- **Backend (`/backend`)**: Express 5 REST API running on Node.js, acting as the Blog engine.
 - **Database**: PostgreSQL (managed via Supabase).
-- **Authentication**: Dual-auth system. Supabase Auth (email/password) for the frontend interactions, and Custom JWT for internal CRM users.
-- **Media & Storage**: Cloudinary (Image/Asset management) and Upstash Redis (Caching/Rate Limiting).
+- **Authentication**: Dual-auth system. Supabase Auth (email/password) for the frontend interactions.
+- **Media & Storage**: Cloudinary (Image/Asset management) [removed cloudinary] and Upstash Redis (Caching/Rate Limiting).
 
 ---
 
