@@ -4,7 +4,7 @@
 
 # Laneway India — Agency Website
 
-Welcome to the Laneway India monorepo! This project contains both the public-facing Agency Website and the internal OutreachDesk CRM Backend. 
+Welcome to the Laneway India monorepo! This project contains the public-facing Agency Website. 
 
 ## 🏗️ Project Architecture Overview
 
