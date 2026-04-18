@@ -70,7 +70,7 @@ npm run seed
 
 You will need two separate terminal windows—one for the backend API and one for the frontend Next.js server.
 
-**Terminal 1: Start Backend (Port 4000)**
+**Terminal 1: Start Backend (Port 5000)**
 ```bash
 cd backend
 npm run dev
