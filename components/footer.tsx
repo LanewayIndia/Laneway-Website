@@ -97,7 +97,7 @@ export function Footer() {
               </span>
             </Link>
             <p className="text-pumice text-sm leading-relaxed mb-6">
-              Laneway is a next-gen AI-Powered business consulting firm committed to help drive business growth through consulting, technology and media services.
+              Laneway is a next-generation AI-Powered business management consulting company that drives business growth through strategy, technology, and media solutions. Founded and led by modern innovators, we partner with businesses to solve today's challenges and build lasting, sustainable value.
             </p>
             <Link
               href="/contact"
